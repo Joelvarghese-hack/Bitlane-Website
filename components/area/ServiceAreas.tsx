@@ -1,8 +1,10 @@
+import { asset } from "@/lib/asset";
+
 const REGIONS = [
   {
     name: "Greater Toronto Area",
-    short: "GTA",
-    note: "The full GTA and the towns between.",
+    image: "/images/areas/gta.jpg",
+    alt: "Toronto skyline and the CN Tower",
     homeBase: null as string | null,
     cities: [
       "Toronto",
@@ -25,55 +27,21 @@ const REGIONS = [
   },
   {
     name: "Eastern Ontario and Quebec",
-    short: "And beyond",
-    note: "Our home turf and the long hauls east.",
+    image: "/images/areas/quebec.jpg",
+    alt: "Montreal skyline along the St. Lawrence",
     homeBase: "Kingston",
     cities: ["Kingston", "Belleville", "Cornwall", "Brockville", "Ottawa", "Montreal"],
   },
 ];
-
-function MapBand() {
-  return (
-    <div className="relative h-24 overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-50"
-        style={{
-          backgroundImage: "radial-gradient(rgba(245,241,232,0.10) 1px, transparent 1.6px)",
-          backgroundSize: "20px 20px",
-        }}
-        aria-hidden="true"
-      />
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 400 96" fill="none" preserveAspectRatio="none" aria-hidden="true">
-        <path
-          d="M20 74 C 90 74, 120 26, 200 30 S 320 66, 384 22"
-          stroke="#E63946"
-          strokeWidth="2"
-          strokeDasharray="5 7"
-          strokeLinecap="round"
-          opacity="0.7"
-        />
-        <circle cx="20" cy="74" r="4" fill="#F4A261" />
-        <circle cx="384" cy="22" r="4" fill="#E63946" />
-      </svg>
-    </div>
-  );
-}
 
 export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean }) {
   return (
     <div>
       {showIntro && (
         <div className="text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-pulse">
-            Coverage
-          </span>
-          <h2 className="mt-3 text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
+          <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
             Areas we serve
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-paper/60">
-            Based in Kingston and moving families and businesses right across the
-            Greater Toronto Area, Eastern Ontario, and into Quebec.
-          </p>
         </div>
       )}
 
@@ -83,22 +51,28 @@ export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean
             key={region.name}
             className="overflow-hidden rounded-4xl border border-paper/10 bg-surface shadow-panel"
           >
-            <MapBand />
-            <div className="p-7 md:p-8">
-              <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-velocity-red/15 text-velocity-red">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 21s-6.5-5.5-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.5 12 21 12 21z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
-                    <circle cx="12" cy="10.5" r="2.3" stroke="currentColor" strokeWidth="1.7" />
-                  </svg>
-                </span>
-                <div>
-                  <h3 className="text-xl font-bold text-paper">{region.name}</h3>
-                  <p className="text-sm text-paper/55">{region.note}</p>
-                </div>
-              </div>
+            <div className="relative h-52 w-full overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={asset(region.image)}
+                alt={region.alt}
+                className="h-full w-full object-cover"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(180deg, rgba(5,5,6,0) 35%, rgba(5,5,6,0.85) 100%)" }}
+                aria-hidden="true"
+              />
+              <h3 className="absolute bottom-5 left-6 right-6 text-3xl font-extrabold tracking-tight text-paper md:text-[2.1rem]">
+                {region.name}
+              </h3>
+            </div>
 
-              <ul className="mt-6 flex flex-wrap gap-2.5">
+            <div className="p-7 md:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/45">
+                Locations served
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-2.5">
                 {region.cities.map((city) => {
                   const isHome = city === region.homeBase;
                   return (
@@ -110,13 +84,12 @@ export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean
                             : "border-paper/12 bg-black/30 text-paper/75"
                         }`}
                       >
-                        {isHome && (
-                          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                            <path d="M2.5 7 8 2.5 13.5 7v6.5h-11z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-                          </svg>
-                        )}
                         {city}
-                        {isHome && <span className="text-[0.65rem] uppercase tracking-wide opacity-80">Home base</span>}
+                        {isHome && (
+                          <span className="text-[0.65rem] uppercase tracking-wide opacity-80">
+                            Home base
+                          </span>
+                        )}
                       </span>
                     </li>
                   );

@@ -5,8 +5,8 @@
  */
 
 const RATINGS = [
-  { platform: "Google", value: "4.9", meta: "Rated by our customers", glyph: "google" },
-  { platform: "Yelp", value: "5.0", meta: "Verified reviews", glyph: "yelp" },
+  { platform: "Google", value: "4.1", meta: "Rated by our customers", glyph: "google" },
+  { platform: "Yelp", value: "4.3", meta: "Verified reviews", glyph: "yelp" },
 ] as const;
 
 function Stars({ value }: { value: number }) {

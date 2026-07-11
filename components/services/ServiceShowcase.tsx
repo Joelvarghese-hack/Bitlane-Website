@@ -7,10 +7,7 @@ export default function ServiceShowcase() {
     <div>
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-pulse">
-            What we do
-          </span>
-          <h2 className="mt-3 text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
+          <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
             Our moving services
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-paper/60">

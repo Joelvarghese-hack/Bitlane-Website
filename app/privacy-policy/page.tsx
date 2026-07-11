@@ -31,10 +31,7 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="px-[clamp(20px,5vw,88px)] pb-24 pt-16 md:pt-20">
       <div className="mx-auto max-w-3xl">
-        <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-pulse">
-          Legal
-        </span>
-        <h1 className="mt-3 text-[clamp(2.4rem,5vw,3.6rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
+        <h1 className="text-[clamp(2.4rem,5vw,3.6rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
           Privacy Policy
         </h1>
         <p className="mt-4 text-sm text-paper/50">Last updated: {LAST_UPDATED}</p>
@@ -48,9 +45,12 @@ export default function PrivacyPolicyPage() {
             share with us. This policy explains what we collect, why we collect
             it, how we use and safeguard it, and the choices you have. We handle
             personal information in accordance with the federal Personal
-            Information Protection and Electronic Documents Act (PIPEDA) and
-            applicable Ontario law, including the Consumer Protection Act, 2002,
-            and Canada&apos;s Anti-Spam Legislation (CASL).
+            Information Protection and Electronic Documents Act (PIPEDA), the
+            Quebec Act respecting the protection of personal information in the
+            private sector (commonly known as Law 25), and applicable Ontario and
+            Quebec consumer protection law, together with Canada&apos;s Anti-Spam
+            Legislation (CASL). Where you deal with us in Quebec, the Quebec law
+            and the rights it gives you apply to your personal information.
           </p>
 
           <Section heading="Information we collect">
@@ -184,10 +184,55 @@ export default function PrivacyPolicyPage() {
               Subject to certain legal exceptions, you have the right to ask
               whether we hold personal information about you, to access that
               information, and to request a correction if it is inaccurate or
-              incomplete. To make a request, contact us using the details below.
-              We will respond within a reasonable time and in line with
-              applicable law. If you have a concern we cannot resolve, you may
-              contact the Office of the Privacy Commissioner of Canada.
+              incomplete. You may also withdraw your consent to our continued use
+              of your information. To make a request, contact us using the details
+              below. We will respond within a reasonable time and in line with
+              applicable law.
+            </p>
+            <p>
+              If you have a concern we cannot resolve, you may contact the Office
+              of the Privacy Commissioner of Canada, or, in Quebec, the Commission
+              d&apos;acces a l&apos;information du Quebec.
+            </p>
+          </Section>
+
+          <Section heading="Quebec residents (Law 25)">
+            <p>
+              If you deal with us in Quebec, the Act respecting the protection of
+              personal information in the private sector (Law 25) applies and gives
+              you additional protections:
+            </p>
+            <ul className="ml-5 list-disc space-y-2 marker:text-amber-pulse">
+              <li>
+                We obtain your free and informed consent before collecting, using,
+                or sharing your personal information, and we tell you the purposes at
+                or before the time of collection.
+              </li>
+              <li>
+                You may request access to, and correction of, your personal
+                information, ask us to stop sharing it, and in certain cases ask us
+                to delete or de index information about you.
+              </li>
+              <li>
+                Where technically possible, you may ask to receive the computerized
+                personal information you have provided to us in a structured, commonly
+                used format (data portability).
+              </li>
+              <li>
+                Before transferring personal information outside Quebec, we assess
+                whether it will receive adequate protection.
+              </li>
+              <li>
+                In the event of a confidentiality incident that presents a risk of
+                serious harm, we will notify the affected individuals and the
+                Commission d&apos;acces a l&apos;information as required, and keep a
+                record of the incident.
+              </li>
+            </ul>
+            <p>
+              We have designated a person responsible for the protection of personal
+              information within Bitlane. You can reach that person using the contact
+              details at the end of this policy.
             </p>
           </Section>
 

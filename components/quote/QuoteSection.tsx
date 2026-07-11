@@ -22,10 +22,7 @@ export default function QuoteSection() {
             aria-hidden="true"
           />
           <div className="relative">
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-pulse">
-              Get started
-            </span>
-            <h2 className="mt-3 text-[clamp(2rem,3.4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
+            <h2 className="text-[clamp(2rem,3.4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
               Get your free quote
             </h2>
             <p className="mt-4 max-w-md text-base leading-relaxed text-paper/65">

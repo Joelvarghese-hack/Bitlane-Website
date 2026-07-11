@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BrandEmblem from "@/components/brand/BrandEmblem";
+import LogoLockup from "@/components/nav/LogoLockup";
 import { QUOTE_EMAIL } from "@/lib/formSubmit";
 import { SERVICES } from "@/lib/services";
 
@@ -7,7 +7,7 @@ const COMPANY_LINKS = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/process", label: "Process" },
-  { href: "/coverage", label: "Coverage" },
+  { href: "/coverage", label: "Service Area" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -20,7 +20,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-12">
           {/* brand */}
           <div className="lg:col-span-5">
-            <BrandEmblem size={128} />
+            <LogoLockup size="lg" />
             <p className="mt-5 max-w-sm text-lg font-semibold leading-snug text-paper">
               We believe a stress-free move should be within everyone&apos;s reach.
             </p>
@@ -103,7 +103,9 @@ export default function Footer() {
             <Link href="/privacy-policy" className="transition-colors hover:text-amber-pulse">
               Privacy Policy
             </Link>
-            <span>Serving Ontario and Quebec</span>
+            <Link href="/terms-and-conditions" className="transition-colors hover:text-amber-pulse">
+              Terms and Conditions
+            </Link>
           </div>
         </div>
       </div>

@@ -42,16 +42,9 @@ export default function Faq() {
   return (
     <div className="grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:gap-14">
       <div className="lg:sticky lg:top-10 lg:self-start">
-        <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-pulse">
-          Questions
-        </span>
-        <h2 className="mt-3 text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
-          Frequently asked questions
+        <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
+          FAQs
         </h2>
-        <p className="mt-4 text-base leading-relaxed text-paper/60">
-          Moving can raise a lot of questions. Here are the ones we hear most.
-          Anything else, we are a phone call away.
-        </p>
 
         <div className="mt-8 rounded-4xl border border-paper/10 bg-surface p-6">
           <p className="text-sm text-paper/60">Still have questions?</p>

@@ -10,10 +10,7 @@ export default function PageHero({ title, lede, cta }: PageHeroProps) {
   return (
     <section className="hero-fade flex items-end px-[clamp(20px,5vw,88px)] pb-12 pt-16 md:pb-16 md:pt-20">
       <div className="mx-auto w-full max-w-5xl">
-        <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-pulse">
-          Bitlane
-        </span>
-        <h1 className="mt-3 text-[clamp(2.4rem,5.5vw,4rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
+        <h1 className="text-[clamp(2.4rem,5.5vw,4rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
           {title}
         </h1>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-paper/70 md:text-lg">{lede}</p>

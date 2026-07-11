@@ -1,55 +1,32 @@
 import Link from "next/link";
 import type { Service, Tint } from "@/lib/services";
+import { asset } from "@/lib/asset";
 
-const TINTS: Record<Tint, { slot: string; icon: string; tag: string }> = {
-  red: {
-    slot: "from-[#3a0e14] via-[#170a0c] to-[#0a0a0d]",
-    icon: "text-velocity-red",
-    tag: "text-amber-pulse",
-  },
-  amber: {
-    slot: "from-[#3a2510] via-[#17120a] to-[#0a0a0d]",
-    icon: "text-amber-pulse",
-    tag: "text-amber-pulse",
-  },
-  navy: {
-    slot: "from-[#102338] via-[#0c1220] to-[#0a0a0d]",
-    icon: "text-[#7ba3d6]",
-    tag: "text-[#9db8de]",
-  },
-  gold: {
-    slot: "from-[#33290f] via-[#171307] to-[#0a0a0d]",
-    icon: "text-gold",
-    tag: "text-gold",
-  },
+const TAG_TINT: Record<Tint, string> = {
+  red: "text-velocity-red",
+  amber: "text-amber-pulse",
+  navy: "text-[#9db8de]",
+  gold: "text-gold",
 };
 
 export default function ServiceShowcaseCard({ service }: { service: Service }) {
-  const tint = TINTS[service.tint];
-  const { Icon } = service;
-
   return (
     <article className="group flex flex-col overflow-hidden rounded-4xl border border-paper/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-paper/20 hover:shadow-panel">
-      {/* image slot (swap for a real photo later) */}
-      <div className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${tint.slot}`}>
+      {/* photo */}
+      <div className="relative aspect-[16/10] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={asset(`/images/services/${service.slug}.jpg`)}
+          alt={service.title}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
         <div
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage:
-              "radial-gradient(rgba(245,241,232,0.10) 1px, transparent 1.6px)",
-            backgroundSize: "22px 22px",
-          }}
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, rgba(5,5,6,0.15) 0%, rgba(5,5,6,0) 40%, rgba(5,5,6,0.5) 100%)" }}
           aria-hidden="true"
         />
-        <span className="absolute left-4 top-4 rounded-full border border-paper/15 bg-black/40 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-paper/80 backdrop-blur-sm">
-          <span className={tint.tag}>{service.tag}</span>
-        </span>
-        <span
-          className={`absolute inset-0 flex items-center justify-center ${tint.icon} transition-transform duration-500 group-hover:scale-110`}
-        >
-          <span className="[&>svg]:h-16 [&>svg]:w-16">
-            <Icon />
-          </span>
+        <span className="absolute left-4 top-4 rounded-full border border-paper/15 bg-black/50 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm">
+          <span className={TAG_TINT[service.tint]}>{service.tag}</span>
         </span>
       </div>
 

@@ -1,4 +1,5 @@
 import Hero from "@/components/hero/Hero";
+import WhyPeopleLoveUs from "@/components/why/WhyPeopleLoveUs";
 import ServiceShowcase from "@/components/services/ServiceShowcase";
 import Testimonials from "@/components/testimonials/Testimonials";
 import ServiceAreas from "@/components/area/ServiceAreas";
@@ -12,6 +13,12 @@ export default function Home() {
   return (
     <main>
       <Hero />
+
+      <section id="why" className={SECTION}>
+        <Reveal className="mx-auto w-full max-w-7xl">
+          <WhyPeopleLoveUs />
+        </Reveal>
+      </section>
 
       <section id="services" className={SECTION}>
         <Reveal className="mx-auto w-full max-w-7xl">

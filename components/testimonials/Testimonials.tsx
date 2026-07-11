@@ -75,16 +75,9 @@ export default function Testimonials() {
   return (
     <div>
       <div className="text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-pulse">
+        <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
           Testimonials
-        </span>
-        <h2 className="mt-3 text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
-          Why people love Bitlane
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-paper/60">
-          Real words from real moves across Ontario. Most of our work comes from
-          referrals, and reviews like these are the reason why.
-        </p>
       </div>
 
       <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
