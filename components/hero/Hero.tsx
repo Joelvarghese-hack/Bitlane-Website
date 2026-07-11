@@ -32,18 +32,13 @@ export default function Hero() {
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-[clamp(20px,5vw,88px)] py-20 lg:grid-cols-[1.05fr_0.95fr]">
         {/* Left: headline + ratings + call */}
         <div>
-          <h1 className="text-[clamp(2.7rem,5.4vw,4.9rem)] font-extrabold leading-[1.02] tracking-tight text-paper">
+          <h1 className="text-[clamp(3rem,6.6vw,6rem)] font-extrabold leading-[0.98] tracking-tight text-paper">
             The most trusted movers in{" "}
             <span className="text-velocity-red">Kingston</span> and across{" "}
             <span className="text-amber-pulse">Ontario</span>.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/75">
-            From Kingston to the Greater Toronto Area, Ottawa, and Montreal.
-            Careful hands, one clear all inclusive price, and a move that feels
-            easy from the first call to the last box.
-          </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#quote"
               className="inline-flex items-center justify-center rounded-full bg-velocity-red px-8 py-4 text-base font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"

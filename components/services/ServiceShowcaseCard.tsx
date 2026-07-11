@@ -1,13 +1,6 @@
 import Link from "next/link";
-import type { Service, Tint } from "@/lib/services";
+import type { Service } from "@/lib/services";
 import { asset } from "@/lib/asset";
-
-const TAG_TINT: Record<Tint, string> = {
-  red: "text-velocity-red",
-  amber: "text-amber-pulse",
-  navy: "text-[#9db8de]",
-  gold: "text-gold",
-};
 
 export default function ServiceShowcaseCard({ service }: { service: Service }) {
   return (
@@ -18,16 +11,15 @@ export default function ServiceShowcaseCard({ service }: { service: Service }) {
         <img
           src={asset(`/images/services/${service.slug}.jpg`)}
           alt={service.title}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(180deg, rgba(5,5,6,0.15) 0%, rgba(5,5,6,0) 40%, rgba(5,5,6,0.5) 100%)" }}
+          style={{ background: "linear-gradient(180deg, rgba(5,5,6,0.05) 0%, rgba(5,5,6,0) 45%, rgba(5,5,6,0.45) 100%)" }}
           aria-hidden="true"
         />
-        <span className="absolute left-4 top-4 rounded-full border border-paper/15 bg-black/50 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm">
-          <span className={TAG_TINT[service.tint]}>{service.tag}</span>
-        </span>
       </div>
 
       {/* body */}

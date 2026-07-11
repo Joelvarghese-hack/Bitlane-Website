@@ -102,6 +102,71 @@ html.lenis body {
 }
 
 /* ------------------------------------------------------------- */
+/* Tape marquee: angled brand strip with scrolling text.          */
+/* ------------------------------------------------------------- */
+
+.tape-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: 2.5rem 0;
+}
+
+.tape-strip {
+  width: 116%;
+  margin-left: -8%;
+  padding: 0.85rem 0;
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+}
+
+.tape-track {
+  display: flex;
+  width: max-content;
+  animation: tape-scroll 34s linear infinite;
+}
+
+.tape-group {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.tape-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 0 1.15rem;
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: clamp(1.05rem, 1.7vw, 1.6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tape-dot {
+  font-size: 0.7em;
+  opacity: 0.85;
+}
+
+@keyframes tape-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Title reveal: rises from just below into place when it enters view. */
+.title-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.title-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------------------- */
 /* Reduced motion: static everywhere, content fades in once only. */
 /* ------------------------------------------------------------- */
 
@@ -110,10 +175,15 @@ html.lenis body {
     animation: page-fade 0.4s ease-out 1;
   }
 
-  .reveal-ready {
+  .reveal-ready,
+  .title-reveal {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  .tape-track {
+    animation: none !important;
   }
 
   *,

@@ -45,17 +45,19 @@ export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean
         </div>
       )}
 
-      <div className={`grid gap-6 lg:grid-cols-2 ${showIntro ? "mt-12" : ""}`}>
+      <div className={`grid gap-6 ${showIntro ? "mt-12" : ""}`}>
         {REGIONS.map((region) => (
           <div
             key={region.name}
             className="overflow-hidden rounded-4xl border border-paper/10 bg-surface shadow-panel"
           >
-            <div className="relative h-52 w-full overflow-hidden">
+            <div className="relative h-60 w-full overflow-hidden md:h-72">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={asset(region.image)}
                 alt={region.alt}
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
               <div

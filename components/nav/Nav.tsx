@@ -8,7 +8,6 @@ const LINKS = [
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
   { href: "/process", label: "Process" },
-  { href: "/coverage", label: "Service Area" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -21,7 +20,7 @@ export default function Nav() {
   const quoteHref = pathname === "/" ? "#quote" : "/#quote";
 
   return (
-    <header className="relative z-40 border-b border-paper/10">
+    <header className="sticky top-0 z-40 border-b border-paper/10 bg-ink/80 backdrop-blur-md">
       <nav
         aria-label="Primary"
         className="mx-auto flex max-w-7xl items-center gap-x-4 px-[clamp(20px,5vw,88px)] py-5 md:gap-x-6"

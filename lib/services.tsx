@@ -1,187 +1,105 @@
-import type { ReactNode } from "react";
-
 /**
- * Single source of truth for the nine Bitlane services. Used by the homepage
- * showcase (short copy) and the /services page (long copy). `tint` selects the
- * accent used for the card's image slot and icon.
+ * Single source of truth for the nine Bitlane services. `short` is the one line
+ * used on the homepage cards; `detail` holds the longer explanation shown on the
+ * /services page. Photos live at /public/images/services/<slug>.jpg.
  */
-
-export type Tint = "red" | "amber" | "navy" | "gold";
 
 export type Service = {
   slug: string;
   title: string;
-  tag: string;
   short: string;
-  long: string;
-  tint: Tint;
-  Icon: () => ReactNode;
+  detail: string[];
 };
-
-const S = {
-  width: 34,
-  height: 34,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.7,
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-  "aria-hidden": true,
-  focusable: false,
-} as const;
 
 export const SERVICES: Service[] = [
   {
     slug: "specialty-item-moving",
     title: "Specialty Item Moving",
-    tag: "Handled with care",
     short:
       "Pianos, safes, artwork, and oversized pieces handled with the right equipment and a careful crew.",
-    long:
-      "Some pieces need more than muscle. Pianos, safes, antiques, and fine artwork are moved with padding, crating, and the right equipment, by a crew trained to protect the things that matter most.",
-    tint: "red",
-    Icon: () => (
-      <svg {...S}>
-        <path d="M4 8.5 12 4l8 4.5-8 4.5-8-4.5Z" />
-        <path d="M4 8.5v7L12 20l8-4.5v-7" />
-        <path d="M12 13v7" />
-        <path d="m10.4 6.2 1.6-.9 1.6.9" />
-      </svg>
-    ),
+    detail: [
+      "Some belongings are simply too valuable, heavy, or awkward to trust to a standard move. Pianos, safes, gym equipment, artwork, and antiques each need the right dollies, straps, padding, and technique, and a crew that has handled them before. In a city like Kingston, with its century homes, narrow staircases, and waterfront condos, that experience makes the difference.",
+      "We plan specialty items ahead of time, protect them with proper wrapping and crating where needed, and move them at a careful, deliberate pace. Because we price by the volume your items take up rather than their weight, a heavy safe or a solid oak armoire never triggers a surprise surcharge.",
+    ],
   },
   {
     slug: "affordable-pricing",
     title: "Affordable Pricing",
-    tag: "No hidden fees",
     short:
       "Clear, all inclusive quotes with no hidden fees. You know the full cost before we lift a thing.",
-    long:
-      "One clear price, agreed before moving day and honored at the end. No surprise surcharges, no fine print. Our customers come back and refer us because the number we quote is the number they pay.",
-    tint: "amber",
-    Icon: () => (
-      <svg {...S}>
-        <path d="M4 12.5V5.5A1.5 1.5 0 0 1 5.5 4h7l7.5 7.5a1.5 1.5 0 0 1 0 2.1l-5.9 5.9a1.5 1.5 0 0 1-2.1 0Z" />
-        <circle cx="8.5" cy="8.5" r="1.4" />
-      </svg>
-    ),
+    detail: [
+      "Affordable does not mean cutting corners. It means an honest, all inclusive quote that reflects the real size of your move and the distance we are driving, with nothing buried in the fine print. You approve the price before moving day, and that is the price you pay at the end.",
+      "We price by volume, the amount of space your belongings fill in the truck, not by weight. That keeps things fair and predictable, whether you are moving a studio near downtown Kingston or a full family home out to the Greater Toronto Area.",
+    ],
   },
   {
     slug: "residential-moving",
     title: "Residential Moving",
-    tag: "Free estimate",
     short:
       "Apartments, condos, and family homes packed, loaded, and delivered with care from door to door.",
-    long:
-      "Studios, condos, and large family homes. We wrap, load, and transport everything from everyday boxes to fragile glassware and heavy appliances. Most local homes are moved in a single day.",
-    tint: "navy",
-    Icon: () => (
-      <svg {...S}>
-        <path d="M3 11 12 4l9 7" />
-        <path d="M5.5 9.5V20h13V9.5" />
-        <path d="M10 20v-5h4v5" />
-      </svg>
-    ),
+    detail: [
+      "A home move is more than boxes. It is your everyday life, your fragile pieces, and the furniture that has to come apart and go back together. We handle apartments, condos, townhouses, and large family homes across Kingston and the surrounding towns, padding and wrapping as we go.",
+      "Most local Kingston homes are completed in a single day. We map out stairs, elevators, and parking in advance so moving day runs on schedule, and we price the whole job by volume so you know the cost before we arrive.",
+    ],
   },
   {
     slug: "commercial-moving",
     title: "Commercial Moving",
-    tag: "Minimal downtime",
     short:
       "Offices and businesses relocated on your schedule, planned to keep your downtime close to zero.",
-    long:
-      "Desks, equipment, files, and everything between, moved on your timeline. We work evenings and weekends and coordinate elevators and loading docks so your business is back up and running fast.",
-    tint: "gold",
-    Icon: () => (
-      <svg {...S}>
-        <rect x="5" y="3.5" width="14" height="17" rx="1.5" />
-        <path d="M9 7.5h2M13 7.5h2M9 11h2M13 11h2M10.5 20.5V16h3v4.5" />
-      </svg>
-    ),
+    detail: [
+      "Businesses cannot afford long downtime. We move offices, retail spaces, and commercial equipment on your timeline, including evenings and weekends, and coordinate with building management, elevators, and loading docks so your team is back to work quickly.",
+      "From a few workstations to a full office relocation in Kingston or across Ontario, we label, protect, and keep track of everything, and quote by volume so the budget is clear from the very start.",
+    ],
   },
   {
     slug: "junk-removal",
     title: "Junk Removal",
-    tag: "We haul it away",
     short:
       "Clear out unwanted furniture and clutter as you move, and we haul it away for you.",
-    long:
-      "Moving is the perfect time to lighten the load. We remove old furniture, appliances, and clutter as we go, so you arrive at your new place with only what you actually want to keep.",
-    tint: "red",
-    Icon: () => (
-      <svg {...S}>
-        <path d="M4 7h16" />
-        <path d="M6 7v12.5A1.5 1.5 0 0 0 7.5 21h9a1.5 1.5 0 0 0 1.5-1.5V7" />
-        <path d="M9.5 7V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v2" />
-        <path d="M10 11v6M14 11v6" />
-      </svg>
-    ),
+    detail: [
+      "Moving is the perfect moment to lighten the load. As we pack and load, we can haul away the old furniture, appliances, and clutter you no longer want, so you arrive at your new place with only the things that matter.",
+      "It saves you a second trip to the depot and the cost of an extra rental. Tell us what needs to go when we quote your move and we will fold it into one simple, volume based price.",
+    ],
   },
   {
     slug: "packing-services",
     title: "Packing Services",
-    tag: "Pro materials",
     short:
       "Full or partial packing with professional grade materials, every box labelled by room.",
-    long:
-      "Let us handle the packing, in part or in full. We use professional grade boxes, paper, and wrap, label every box by room, and can unpack at the other end so settling in is simple.",
-    tint: "amber",
-    Icon: () => (
-      <svg {...S}>
-        <path d="M3.5 8 12 4l8.5 4-8.5 4z" />
-        <path d="M3.5 8v8L12 20l8.5-4V8" />
-        <path d="M12 12v8M7.8 6 16 10" />
-      </svg>
-    ),
+    detail: [
+      "Packing is where a smooth move is won or lost. Our team packs part or all of your home with professional grade boxes, paper, and wrap, labels every carton by room, and can unpack at the other end so you settle in faster.",
+      "Good packing also protects your belongings in transit and makes the load more efficient. Since we price by volume, packing well can help keep your overall cost down.",
+    ],
   },
   {
     slug: "labour-only-services",
     title: "Labour Only Services",
-    tag: "By the hour",
     short:
       "Need muscle for loading or unloading only? Book our crew by the hour, truck optional.",
-    long:
-      "Already have a truck or a container? Book our crew by the hour to load, unload, or rearrange heavy furniture. The same careful, professional hands, priced for exactly what you need.",
-    tint: "navy",
-    Icon: () => (
-      <svg {...S}>
-        <circle cx="9" cy="5" r="2" />
-        <path d="M9 8v5l-2 7" />
-        <path d="M9 13l4 1.5 2.5 5.5" />
-        <path d="M9 10.5 14 12l3.5-2" />
-      </svg>
-    ),
+    detail: [
+      "Already have a truck, a trailer, or a portable container? Book our crew by the hour to do the heavy lifting: loading, unloading, or rearranging furniture within your home. You get the same trained, careful movers without the truck.",
+      "It is a practical option for container moves, in building shifts, and last minute help around Kingston. We will tell you honestly how many movers and how many hours the job really needs.",
+    ],
   },
   {
     slug: "student-moving",
     title: "Student Moving",
-    tag: "Budget friendly",
     short:
       "Affordable, fast moves for students between residences, dorms, and apartments across Ontario.",
-    long:
-      "Fast, affordable moves built around a student budget and a student schedule. Between dorms, residences, or your first apartment, we make move-in and move-out week painless.",
-    tint: "gold",
-    Icon: () => (
-      <svg {...S}>
-        <path d="M12 5 3 9l9 4 9-4-9-4Z" />
-        <path d="M7 11v4.5c0 1.1 2.2 2 5 2s5-.9 5-2V11" />
-        <path d="M21 9v4.5" />
-      </svg>
-    ),
+    detail: [
+      "Kingston is a student city, and move in and move out weeks are hectic. We offer fast, affordable moves between residences, student houses, and first apartments, sized and priced for a student budget.",
+      "Short notice is often fine, and because we charge by the volume of your things rather than the weight, a smaller move stays genuinely affordable.",
+    ],
   },
   {
     slug: "senior-moving",
     title: "Senior Moving",
-    tag: "At your pace",
     short:
       "Patient, respectful moves for seniors and downsizers, handled at a comfortable pace.",
-    long:
-      "Downsizing or relocating later in life deserves patience and respect. We move at a comfortable pace, take extra care with cherished belongings, and handle the heavy lifting from start to finish.",
-    tint: "red",
-    Icon: () => (
-      <svg {...S}>
-        <path d="M12 20.5s-6.8-4.2-8.4-8.6A4.7 4.7 0 0 1 12 6.6a4.7 4.7 0 0 1 8.4 5.3C18.8 16.3 12 20.5 12 20.5Z" />
-      </svg>
-    ),
+    detail: [
+      "Downsizing or relocating later in life deserves patience and respect. We move at a comfortable pace, take extra care with cherished and delicate belongings, and handle every bit of the heavy lifting from start to finish.",
+      "Whether it is a move to a smaller home, a retirement residence, or closer to family, we keep the day calm and organized, with a clear volume based price and no pressure at any point.",
+    ],
   },
 ];
