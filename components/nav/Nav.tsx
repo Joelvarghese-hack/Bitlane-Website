@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoLockup from "@/components/nav/LogoLockup";
@@ -13,34 +12,25 @@ const LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
+/**
+ * Top header. It sits in normal document flow and scrolls away with the page
+ * (not fixed), per the design.
+ */
 export default function Nav() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const quoteHref = pathname === "/" ? "#quote-section" : "/#quote-section";
+  const quoteHref = pathname === "/" ? "#quote" : "/#quote";
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-ink/75 backdrop-blur-md" : "bg-transparent"
-      }`}
-    >
+    <header className="relative z-40 border-b border-paper/10">
       <nav
         aria-label="Primary"
-        className="flex items-center gap-x-4 px-5 py-3 md:gap-x-6 md:px-8"
+        className="mx-auto flex max-w-7xl items-center gap-x-4 px-[clamp(20px,5vw,88px)] py-5 md:gap-x-6"
       >
-        <Link href="/" aria-label="Bitlane Relocations, home" className="rounded-md">
+        <Link href="/" aria-label="Bitlane, home" className="rounded-md">
           <LogoLockup />
         </Link>
 
-        <div className="ml-4 hidden items-center gap-x-6 text-sm font-medium text-paper/75 md:flex lg:ml-10">
+        <div className="ml-6 hidden items-center gap-x-7 text-sm font-medium text-paper/70 md:flex lg:ml-10">
           {LINKS.map((link) => (
             <Link
               key={link.href}
@@ -57,36 +47,23 @@ export default function Nav() {
         <div className="ml-auto flex items-center gap-3 md:gap-5">
           <a
             href="tel:+16137701638"
-            className="hidden whitespace-nowrap text-sm font-semibold text-paper/85 transition-colors hover:text-amber-pulse md:inline"
+            className="hidden whitespace-nowrap text-sm font-semibold text-paper/85 transition-colors hover:text-amber-pulse lg:inline"
           >
             (613) 770-1638
           </a>
-          <a
-            href="tel:+16137701638"
-            aria-label="Call (613) 770-1638"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-paper/20 text-paper transition-colors hover:border-amber-pulse hover:text-amber-pulse md:hidden"
-          >
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
-              <path
-                d="M3 2.5h2.6l1.2 3-1.6 1.2a9.6 9.6 0 0 0 4.1 4.1l1.2-1.6 3 1.2v2.6c0 .6-.5 1-1 1C7 14 2 9 2 3.5c0-.5.4-1 1-1Z"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </a>
           <Link
             href={quoteHref}
-            className="whitespace-nowrap rounded-full bg-velocity-red px-4 py-2 text-xs font-bold text-paper transition-colors hover:bg-crimson-shadow md:px-5 md:text-sm"
+            className="whitespace-nowrap rounded-full bg-velocity-red px-5 py-2.5 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"
           >
-            Get Quote
+            Get a quote
           </Link>
         </div>
       </nav>
 
+      {/* compact link row for narrow screens */}
       <nav
         aria-label="Pages"
-        className="flex items-center gap-x-5 overflow-x-auto px-5 pb-2 text-xs font-medium text-paper/75 md:hidden"
+        className="flex items-center gap-x-5 overflow-x-auto px-5 pb-3 text-xs font-medium text-paper/70 md:hidden"
       >
         {LINKS.map((link) => (
           <Link

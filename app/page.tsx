@@ -1,49 +1,45 @@
 import Hero from "@/components/hero/Hero";
-import TruckSection from "@/components/truck/TruckSection";
-import QuoteForm from "@/components/quote/QuoteForm";
-import WhyBitlane from "@/components/why/WhyBitlane";
-import WhatWeMove from "@/components/services/WhatWeMove";
-import ServiceArea from "@/components/area/ServiceArea";
-import CoverageStats from "@/components/stats/CoverageStats";
+import ServiceShowcase from "@/components/services/ServiceShowcase";
+import Testimonials from "@/components/testimonials/Testimonials";
+import ServiceAreas from "@/components/area/ServiceAreas";
+import Faq from "@/components/faq/Faq";
+import QuoteSection from "@/components/quote/QuoteSection";
 import Reveal from "@/components/scroll/Reveal";
 
-const CARD =
-  "rounded-2xl border border-paper/10 bg-[#15151B]/95 p-6 md:p-8 shadow-[0_30px_70px_-32px_rgba(139,30,45,0.5)]";
+const SECTION = "px-[clamp(20px,5vw,88px)] py-20 md:py-28";
 
 export default function Home() {
   return (
     <main>
       <Hero />
 
-      <TruckSection />
-
-      <section id="quote-section" className="px-6 py-16 md:py-24">
-        <Reveal className={`mx-auto w-full max-w-2xl ${CARD}`}>
-          <QuoteForm />
+      <section id="services" className={SECTION}>
+        <Reveal className="mx-auto w-full max-w-7xl">
+          <ServiceShowcase />
         </Reveal>
       </section>
 
-      <section id="why" className="px-6 py-16 md:py-24">
-        <Reveal className="mx-auto w-full max-w-5xl">
-          <WhyBitlane />
+      <section id="testimonials" className={SECTION}>
+        <Reveal className="mx-auto w-full max-w-7xl">
+          <Testimonials />
         </Reveal>
       </section>
 
-      <section id="services" className="px-6 py-16 md:py-24">
-        <Reveal className="mx-auto w-full max-w-5xl">
-          <WhatWeMove />
+      <section id="areas" className={SECTION}>
+        <Reveal className="mx-auto w-full max-w-7xl">
+          <ServiceAreas />
         </Reveal>
       </section>
 
-      <section id="area" className="px-6 py-16 md:py-24">
-        <Reveal className={`mx-auto w-full max-w-2xl ${CARD}`}>
-          <ServiceArea />
+      <section id="faq" className={SECTION}>
+        <Reveal className="mx-auto w-full max-w-7xl">
+          <Faq />
         </Reveal>
       </section>
 
-      <section aria-label="Coverage" className="px-6 py-16 md:py-24">
-        <Reveal className="mx-auto w-full max-w-4xl">
-          <CoverageStats />
+      <section id="quote" className={`${SECTION} scroll-mt-8`}>
+        <Reveal className="mx-auto w-full max-w-7xl">
+          <QuoteSection />
         </Reveal>
       </section>
     </main>

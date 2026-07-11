@@ -1,91 +1,72 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/inner/PageHero";
-import ServiceCard from "@/components/inner/ServiceCard";
+import { SERVICES, type Tint } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Services | Bitlane Relocations",
+  title: "Services | Bitlane",
   description:
-    "Residential, long-distance, office, packing, assembly, storage, same-day, and local Kingston moves. Fixed upfront pricing on every job.",
+    "Residential, commercial, specialty, packing, junk removal, labour only, student, and senior moving. Every job starts with a free, all inclusive estimate.",
 };
 
-// TODO: replace placeholder pricing with real numbers.
-const SERVICES = [
-  {
-    title: "Residential Moves",
-    price: "from $299",
-    description:
-      "Apartments, condos, and family homes of every size. We pad, wrap, and load everything from everyday boxes to fragile glassware and appliances. Most local residential moves are done in a single day.",
-  },
-  {
-    title: "Long-Distance Moves",
-    price: "from $899",
-    description:
-      "Kingston to Toronto, Ottawa, Montréal, and beyond. One fixed price covers the full route, fuel included. Your belongings ride in one truck with one crew, end to end.",
-  },
-  {
-    title: "Office Relocations",
-    price: "from $499",
-    description:
-      "Desks, equipment, files, and everything between, moved on your schedule. We work evenings and weekends to keep your downtime near zero, coordinated with your building's elevator and loading requirements.",
-  },
-  {
-    title: "Packing Services",
-    price: "from $199",
-    description:
-      "Full or partial packing with professional-grade boxes, paper, and wrap. Every box is labelled by room so unpacking is painless. Add it to any move or book it on its own.",
-  },
-  {
-    title: "Furniture Assembly",
-    price: "from $129",
-    description:
-      "We disassemble at pickup and reassemble at delivery: beds, tables, shelving, gym equipment. No tools required from you. Hardware is bagged, labelled, and never lost.",
-  },
-  {
-    title: "Storage Solutions",
-    price: "from $99",
-    description:
-      "Short and long-term storage in secure, monitored facilities. Useful when closing dates don't line up or you're between leases. In and out handling included.",
-  },
-  {
-    title: "Same-Day Moves",
-    price: "from $349",
-    description:
-      "Booked this morning, moved this afternoon. We keep capacity open for urgent relocations across the Kingston area. Call before noon and we'll tell you straight if we can fit you in.",
-  },
-  {
-    title: "Local Kingston Moves",
-    price: "from $249",
-    description:
-      "Quick, efficient moves anywhere in the Kingston area, often completed in hours. The same careful handling as a long-haul job, priced for short distances.",
-  },
-];
+const ICON_TINT: Record<Tint, string> = {
+  red: "bg-velocity-red/15 text-velocity-red",
+  amber: "bg-amber-pulse/15 text-amber-pulse",
+  navy: "bg-navy/40 text-[#7ba3d6]",
+  gold: "bg-gold/15 text-gold",
+};
 
 export default function ServicesPage() {
   return (
     <main>
       <PageHero
-        title="Services"
-        lede="Everything we move, and what it costs to start. Every job gets a fixed quote before we lift a thing."
+        title="Our services"
+        lede="Everything we move, and the care that goes into it. Every job starts with a free, all inclusive estimate, so you always know the price before we lift a thing."
       />
-      <section className="px-6 pb-16 md:pb-24">
-        <div className="mx-auto grid max-w-4xl gap-4 md:grid-cols-2">
-          {SERVICES.map((service) => (
-            <ServiceCard
-              key={service.title}
-              title={service.title}
-              price={service.price}
-              description={service.description}
-            />
-          ))}
+      <section className="px-[clamp(20px,5vw,88px)] pb-24">
+        <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">
+          {SERVICES.map((service) => {
+            const { Icon } = service;
+            return (
+              <article
+                key={service.slug}
+                id={service.slug}
+                className="scroll-mt-24 rounded-4xl border border-paper/10 bg-surface p-7 transition-colors duration-300 hover:border-paper/20"
+              >
+                <div className="flex items-center gap-4">
+                  <span
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${ICON_TINT[service.tint]} [&>svg]:h-6 [&>svg]:w-6`}
+                  >
+                    <Icon />
+                  </span>
+                  <div>
+                    <h2 className="text-lg font-bold text-paper">{service.title}</h2>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-amber-pulse">
+                      Free estimate
+                    </span>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-paper/65">
+                  {service.long}
+                </p>
+              </article>
+            );
+          })}
         </div>
-        <div className="mx-auto mt-10 max-w-4xl">
+
+        <div className="mx-auto mt-12 flex max-w-5xl flex-wrap gap-4">
           <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-velocity-red px-6 py-3 text-sm font-bold text-paper transition-colors hover:bg-crimson-shadow"
+            href="/#quote"
+            className="inline-flex items-center justify-center rounded-full bg-velocity-red px-7 py-3.5 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"
           >
-            Get a quote
+            Get a free quote
           </Link>
+          <a
+            href="tel:+16137701638"
+            className="inline-flex items-center justify-center rounded-full border border-paper/20 px-7 py-3.5 text-sm font-semibold text-paper transition-colors hover:border-amber-pulse hover:text-amber-pulse"
+          >
+            Call (613) 770-1638
+          </a>
         </div>
       </section>
     </main>

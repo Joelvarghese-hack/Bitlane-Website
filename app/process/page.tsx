@@ -4,7 +4,7 @@ import PageHero from "@/components/inner/PageHero";
 import ProcessStep from "@/components/process/ProcessStep";
 
 export const metadata: Metadata = {
-  title: "The Process | Bitlane Relocations",
+  title: "The Process | Bitlane",
   description:
     "Four steps from first call to settled in: Consult, Plan, Quote, Schedule. One fixed price, locked before we touch a box.",
 };
@@ -49,10 +49,10 @@ export default function ProcessPage() {
         </ol>
         <div className="mx-auto mt-12 max-w-3xl">
           <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-velocity-red px-6 py-3 text-sm font-bold text-paper transition-colors hover:bg-crimson-shadow"
+            href="/#quote"
+            className="inline-flex items-center justify-center rounded-full bg-velocity-red px-6 py-3.5 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"
           >
-            Get a quote
+            Get a free quote
           </Link>
         </div>
       </section>

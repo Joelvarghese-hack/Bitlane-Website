@@ -24,11 +24,11 @@ export default function ScrollTopButton() {
       type="button"
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      className={`fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-paper/15 bg-ink text-paper shadow-lg transition-all duration-300 hover:bg-velocity-red hover:border-velocity-red ${
-        visible ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-2"
+      className={`fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-paper/15 bg-surface-2/90 text-paper shadow-panel backdrop-blur-sm transition-all duration-300 hover:border-velocity-red hover:bg-velocity-red ${
+        visible ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-3"
       }`}
     >
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+      <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
         <path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </button>

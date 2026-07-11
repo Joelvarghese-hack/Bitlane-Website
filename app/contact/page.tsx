@@ -4,9 +4,9 @@ import QuoteForm from "@/components/quote/QuoteForm";
 import { QUOTE_EMAIL } from "@/lib/formSubmit";
 
 export const metadata: Metadata = {
-  title: "Contact | Bitlane Relocations",
+  title: "Contact | Bitlane",
   description:
-    "Call, email, or send the quote form. Bitlane Relocations responds within a few hours, Mon to Sat, 8am to 7pm EST.",
+    "Call, email, or send the quote form. Bitlane is open 24 hours and responds fast, often within the hour.",
 };
 
 export default function ContactPage() {
@@ -35,11 +35,19 @@ export default function ContactPage() {
                 {QUOTE_EMAIL}
               </a>
             </li>
-            <li className="text-paper/65">Mon to Sat, 8am to 7pm EST</li>
+            <li className="text-paper/65">Open 24 hours</li>
             <li className="text-paper/65">Kingston, Ontario, Canada</li>
           </ul>
-          <div className="mt-10 rounded-2xl border border-paper/10 bg-[#15151B]/95 p-6 md:p-8">
-            <QuoteForm />
+          <div className="mt-10 rounded-4xl border border-paper/10 bg-surface p-6 md:p-8">
+            <h2 className="text-xl font-extrabold tracking-tight text-paper">
+              Send us the details
+            </h2>
+            <p className="mt-1.5 text-sm text-paper/60">
+              Fill in the form and we will get back to you with an upfront price.
+            </p>
+            <div className="mt-6">
+              <QuoteForm variant="full" />
+            </div>
           </div>
         </div>
       </section>

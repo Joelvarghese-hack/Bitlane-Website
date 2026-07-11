@@ -5,10 +5,11 @@ const FIELD_ORDER = [
   "Full Name",
   "Phone",
   "Email",
-  "Moving From",
-  "Moving To",
-  "Move Type",
-  "Preferred Date",
+  "Pick Up Location",
+  "Drop Off Location",
+  "Moving Date",
+  "Move Size",
+  "How Did You Hear About Us",
   "Additional Notes",
 ] as const;
 

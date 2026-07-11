@@ -3,9 +3,9 @@ import PageHero from "@/components/inner/PageHero";
 import CoverageStats from "@/components/stats/CoverageStats";
 
 export const metadata: Metadata = {
-  title: "About | Bitlane Relocations",
+  title: "About | Bitlane",
   description:
-    "Bitlane Relocations is a licensed and insured moving company founded in Kingston, Ontario in 2022, with more than 80 moves completed across Ontario and Québec.",
+    "Bitlane is a licensed and insured moving company founded in Kingston, Ontario in 2022, with more than 80 moves completed across Ontario and Quebec.",
 };
 
 export default function AboutPage() {
@@ -18,11 +18,10 @@ export default function AboutPage() {
       <section className="px-6 pb-16 md:pb-24">
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-paper/75">
           <p>
-            Bitlane Relocations is a moving company based in Kingston, Ontario.
-            We started in 2022 with one truck and a simple position: moving day
-            should be the easiest day of your move, not the hardest. Since
-            then we&apos;ve completed more than 80 moves across Ontario and into
-            Québec.
+            Bitlane is a moving company based in Kingston, Ontario. We started
+            in 2022 with one truck and a simple position: moving day should be
+            the easiest day of your move, not the hardest. Since then we&apos;ve
+            completed more than 80 moves across Ontario and into Quebec.
           </p>
           <p>
             We&apos;re fully licensed and insured, and we price by volume instead
@@ -33,7 +32,7 @@ export default function AboutPage() {
           <p>
             Most of our work comes from referrals, which tells you more than
             any slogan could. If you&apos;re moving in or out of Kingston, Toronto,
-            Ottawa, or Montréal, call us. We&apos;ll give you a straight answer on
+            Ottawa, or Montreal, call us. We&apos;ll give you a straight answer on
             price and timing.
           </p>
         </div>

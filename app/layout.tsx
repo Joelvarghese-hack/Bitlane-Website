@@ -15,13 +15,13 @@ const bricolage = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Bitlane Relocations | Stress Free Moving Experience",
+  title: "Bitlane | Stress Free Moving Experience",
   description:
-    "Moving, made simple. Relocations across Ontario, from Kingston to Toronto, Ottawa, and beyond. Upfront pricing, careful hands, zero stress.",
+    "Bitlane is a Kingston moving company serving the GTA, Ottawa, and Montreal. Residential, commercial, and specialty moves with one clear all inclusive price.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0E0E10",
+  themeColor: "#050506",
 };
 
 export default function RootLayout({

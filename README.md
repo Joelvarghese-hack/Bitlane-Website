@@ -1,19 +1,14 @@
-# Bitlane Relocations
+# Bitlane
 
-Marketing site for Bitlane Relocations, a moving company based in Kingston,
-Ontario. Homepage with a scroll-driven 3D truck animation, plus five static
-inner pages.
+Marketing site for Bitlane, a moving company based in Kingston, Ontario,
+serving the Greater Toronto Area, Eastern Ontario, and Quebec. A premium,
+black-themed landing page plus supporting inner pages, built desktop first.
 
 ## Stack
 
 - Next.js 14 (App Router) + TypeScript
 - Tailwind CSS
-- Three.js + React Three Fiber + drei (truck animation only)
-- @react-three/postprocessing (bloom on the trail and truck highlights)
-- @react-spring/three (truck weight and inertia) + maath (damping)
-- GSAP + ScrollTrigger (scroll-to-progress bridge)
-- Lenis (smooth scroll)
-- Framer Motion (inner page micro-interactions)
+- Lenis + GSAP ticker (smooth scroll only)
 - Bricolage Grotesque variable font, self-hosted from `public/fonts`
 
 ## Run
@@ -29,25 +24,24 @@ npm run start  # serve the production build
 
 | Route | Content |
 | --- | --- |
-| `/` | Hero, truck scroll animation (Our Process), quote form, Why Bitlane, What We Move, Service Area, coverage stats |
-| `/services` | 8 expanded service cards with starting prices |
+| `/` | Hero (ratings, blank video panel, quote form), services, testimonials, areas we serve, FAQ, and a full quote section |
+| `/services` | The nine services in long form, each anchored for deep links |
 | `/about` | Company copy and stats |
-| `/process` | The four steps in long form |
-| `/coverage` | Six cities with distance notes |
+| `/process` | The four steps from first call to settled in |
+| `/coverage` | Service area, GTA plus Eastern Ontario and Quebec |
 | `/contact` | Contact details and the shared quote form |
+| `/privacy-policy` | Privacy policy, aligned with PIPEDA and Ontario norms |
 
-## Behavior
+## Notes
 
-- Desktop (>= 768px): the homepage process section pins a Three.js canvas.
-  A low-poly red truck drives a curved road as you scroll, leaving a glowing
-  trail; four milestone cards reveal as it passes; a rotating red pin marks
-  the destination.
-- Mobile (< 768px): the canvas never mounts. The process renders as a static
-  numbered timeline with a thin connecting line.
-- `prefers-reduced-motion: reduce`: no canvas, milestone cards in a 2x2 grid,
-  everything static.
-- Without JavaScript the page renders as a fully readable document and the
-  quote form still submits via `mailto:`.
+- Background is true black; boxes, inputs, and buttons are round-edged.
+- The hero video panel is intentionally blank, ready for a promo video. See
+  `components/hero/VideoPanel.tsx` for how to drop one in.
+- Service cards use styled placeholders in place of photos. Swap them for real
+  images when available.
+- The quote form submits by `mailto:`. Replace the placeholder address in
+  `lib/formSubmit.ts` (`QUOTE_EMAIL`) before launch.
+- Content is kept free of em dashes throughout.
 
 ## Deployment (GitHub Pages)
 
@@ -63,8 +57,3 @@ To regenerate `dist/` after changing the site:
 STATIC_EXPORT=1 PAGES_BASE_PATH=/Bitlane-Website npm run build
 rm -rf dist && cp -r out dist
 ```
-
-## TODO before launch
-
-- Replace the placeholder email in `lib/formSubmit.ts` (`QUOTE_EMAIL`).
-- Replace the placeholder service pricing in `app/services/page.tsx`.
