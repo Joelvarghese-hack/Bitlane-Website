@@ -21,9 +21,9 @@ export default function TapeMarquee({
       {Array.from({ length: 8 }).map((_, i) => (
         <span key={i} className="tape-item">
           BITLANE MOVING
-          <span className="tape-dot">◆</span>
+          <span className="tape-dot" aria-hidden="true" />
           (613) 770-1638
-          <span className="tape-dot">◆</span>
+          <span className="tape-dot" aria-hidden="true" />
         </span>
       ))}
     </div>

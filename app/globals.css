@@ -142,8 +142,12 @@ html.lenis body {
 }
 
 .tape-dot {
-  font-size: 0.7em;
-  opacity: 0.85;
+  display: inline-block;
+  width: 0.42em;
+  height: 0.42em;
+  transform: rotate(45deg);
+  background: currentColor;
+  opacity: 0.8;
 }
 
 @keyframes tape-scroll {
