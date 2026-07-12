@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactLink from "@/components/util/ContactLink";
 import { QUOTE_EMAIL } from "@/lib/formSubmit";
 
 export const metadata: Metadata = {
@@ -273,15 +274,15 @@ export default function PrivacyPolicyPage() {
             <ul className="ml-5 list-disc space-y-2 marker:text-amber-pulse">
               <li>
                 Phone:{" "}
-                <a href="tel:+16137701638" className="font-semibold text-amber-pulse hover:text-paper">
+                <ContactLink type="tel" value="(613) 770-1638" toastAbove={false} className="inline-block font-semibold text-amber-pulse hover:text-paper">
                   (613) 770-1638
-                </a>
+                </ContactLink>
               </li>
               <li>
                 Email:{" "}
-                <a href={`mailto:${QUOTE_EMAIL}`} className="font-semibold text-amber-pulse hover:text-paper">
+                <ContactLink type="email" value={QUOTE_EMAIL} toastAbove={false} className="inline-block break-all font-semibold text-amber-pulse hover:text-paper">
                   {QUOTE_EMAIL}
-                </a>
+                </ContactLink>
               </li>
               <li>Location: Kingston, Ontario, Canada</li>
             </ul>

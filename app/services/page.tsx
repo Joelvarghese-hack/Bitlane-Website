@@ -4,6 +4,7 @@ import PageHero from "@/components/inner/PageHero";
 import Reveal from "@/components/scroll/Reveal";
 import { SERVICES } from "@/lib/services";
 import { asset } from "@/lib/asset";
+import ContactLink from "@/components/util/ContactLink";
 
 export const metadata: Metadata = {
   title: "Services | Bitlane",
@@ -78,12 +79,13 @@ export default function ServicesPage() {
           >
             Get a free quote
           </Link>
-          <a
-            href="tel:+16137701638"
+          <ContactLink
+            type="tel"
+            value="(613) 770-1638"
             className="inline-flex items-center justify-center rounded-full border border-paper/20 px-7 py-3.5 text-sm font-semibold text-paper transition-colors hover:border-amber-pulse hover:text-amber-pulse"
           >
             Call (613) 770-1638
-          </a>
+          </ContactLink>
         </div>
       </section>
     </main>

@@ -1,12 +1,18 @@
-import QuoteForm from "@/components/quote/QuoteForm";
+"use client";
+
+import Link from "next/link";
 import RatingBadges from "@/components/hero/RatingBadges";
+import ContactLink from "@/components/util/ContactLink";
+import { QUOTE_EMAIL, submitQuoteForm } from "@/lib/formSubmit";
 import { asset } from "@/lib/asset";
+
+const INPUT =
+  "w-full rounded-full border border-paper/15 bg-black/50 px-5 py-3.5 text-sm text-paper placeholder:text-paper/45 outline-none transition-colors focus:border-amber-pulse/70 sm:max-w-[15rem]";
 
 export default function Hero() {
   return (
-    <section className="hero-fade relative flex min-h-[88vh] items-center overflow-hidden">
-      {/* Background video. Drop public/hero.mp4 in and it plays; until then the
-          poster image shows. Loops silently behind the hero content. */}
+    <section className="hero-fade relative flex min-h-[92vh] items-center overflow-hidden">
+      {/* background video (drop public/hero.mp4 in and it plays; poster until then) */}
       <video
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
@@ -18,58 +24,64 @@ export default function Hero() {
       >
         <source src={asset("/hero.mp4")} type="video/mp4" />
       </video>
-
-      {/* Legibility overlay, weighted to the left where the text sits. */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, rgba(5,5,6,0.94) 0%, rgba(5,5,6,0.82) 42%, rgba(5,5,6,0.55) 100%), linear-gradient(180deg, rgba(5,5,6,0.4) 0%, rgba(5,5,6,0) 30%, rgba(5,5,6,0.55) 100%)",
+            "linear-gradient(90deg, rgba(5,5,6,0.94) 0%, rgba(5,5,6,0.82) 46%, rgba(5,5,6,0.5) 100%), linear-gradient(180deg, rgba(5,5,6,0.35) 0%, rgba(5,5,6,0) 30%, rgba(5,5,6,0.5) 100%)",
         }}
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-[clamp(20px,5vw,88px)] py-20 lg:grid-cols-[1.05fr_0.95fr]">
-        {/* Left: headline + ratings + call */}
-        <div>
-          <h1 className="text-[clamp(3rem,6.6vw,6rem)] font-extrabold leading-[0.98] tracking-tight text-paper">
-            The most trusted movers in{" "}
-            <span className="text-velocity-red">Kingston</span> and across{" "}
-            <span className="text-amber-pulse">Ontario</span>.
+      <div className="relative mx-auto w-full max-w-7xl px-[clamp(20px,5vw,88px)] py-24">
+        <div className="max-w-2xl">
+          <h1 className="text-[clamp(2.6rem,5.6vw,4.7rem)] font-extrabold uppercase leading-[0.98] tracking-tight text-paper">
+            Careful local professionals you can trust!
           </h1>
+          <p className="mt-5 text-lg font-semibold text-paper/85 md:text-xl">
+            Affordable moving and storage services
+          </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href="#quote"
-              className="inline-flex items-center justify-center rounded-full bg-velocity-red px-8 py-4 text-base font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"
+          <div className="mt-7 flex flex-wrap items-center gap-4">
+            <Link
+              href="/about"
+              className="inline-flex items-center justify-center rounded-full border border-paper/25 px-7 py-3.5 text-base font-semibold text-paper transition-all duration-200 hover:border-amber-pulse hover:text-amber-pulse"
             >
-              Get a free quote
-            </a>
-            <a
-              href="tel:+16137701638"
-              className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-7 py-4 text-base font-semibold text-paper transition-all duration-200 hover:border-amber-pulse hover:text-amber-pulse"
+              About us
+            </Link>
+            <ContactLink
+              type="tel"
+              value="(613) 770-1638"
+              className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-7 py-3.5 text-base font-semibold text-paper transition-all duration-200 hover:border-amber-pulse hover:text-amber-pulse"
             >
               <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 2.5h2.6l1.2 3-1.6 1.2a9.6 9.6 0 0 0 4.1 4.1l1.2-1.6 3 1.2v2.6c0 .6-.5 1-1 1C7 14 2 9 2 3.5c0-.5.4-1 1-1Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
               </svg>
               (613) 770-1638
-            </a>
+            </ContactLink>
           </div>
 
-          <RatingBadges className="mt-9" />
-        </div>
-
-        {/* Right: quote form beside the headline */}
-        <div className="rounded-4xl border border-paper/12 bg-surface-2/95 p-6 shadow-panel backdrop-blur-sm md:p-8">
-          <h2 className="text-xl font-extrabold tracking-tight text-paper">
-            Get a fast quote
-          </h2>
-          <p className="mt-1.5 text-sm text-paper/60">
-            Tell us the basics and we will send an upfront price. No pressure.
+          <p className="mt-9 text-sm font-semibold uppercase tracking-[0.14em] text-amber-pulse">
+            Get a free quote
           </p>
-          <div className="mt-5">
-            <QuoteForm variant="compact" />
-          </div>
+          <form
+            action={`mailto:${QUOTE_EMAIL}`}
+            method="POST"
+            encType="text/plain"
+            onSubmit={submitQuoteForm}
+            className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center"
+          >
+            <input name="Pick Up Location" required autoComplete="postal-code" placeholder="Enter pick up postal code" className={INPUT} />
+            <input name="Drop Off Location" required autoComplete="postal-code" placeholder="Enter drop off postal code" className={INPUT} />
+            <button
+              type="submit"
+              className="shrink-0 rounded-full bg-velocity-red px-8 py-3.5 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"
+            >
+              Get a quote
+            </button>
+          </form>
+
+          <RatingBadges className="mt-8" />
         </div>
       </div>
     </section>

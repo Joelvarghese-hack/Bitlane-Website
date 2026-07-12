@@ -1,4 +1,5 @@
 import QuoteForm from "@/components/quote/QuoteForm";
+import ContactLink from "@/components/util/ContactLink";
 
 const POINTS = [
   "One clear, all inclusive price agreed up front",
@@ -12,16 +13,8 @@ export default function QuoteSection() {
     <div className="overflow-hidden rounded-5xl border border-paper/10 bg-surface shadow-panel">
       <div className="grid lg:grid-cols-2">
         {/* left: pitch + contact */}
-        <div className="relative p-8 md:p-12">
-          <div
-            className="absolute inset-0 opacity-90"
-            style={{
-              background:
-                "radial-gradient(120% 90% at 0% 0%, rgba(230,57,70,0.16), transparent 55%), radial-gradient(120% 90% at 100% 100%, rgba(201,169,97,0.10), transparent 55%)",
-            }}
-            aria-hidden="true"
-          />
-          <div className="relative">
+        <div className="p-8 md:p-12">
+          <div>
             <h2 className="text-[clamp(2rem,3.4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
               Get your free quote
             </h2>
@@ -44,16 +37,17 @@ export default function QuoteSection() {
             </ul>
 
             <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <a
-                href="tel:+16137701638"
+              <ContactLink
+                type="tel"
+                value="(613) 770-1638"
                 className="inline-flex items-center gap-2 text-lg font-bold text-paper transition-colors hover:text-amber-pulse"
               >
                 <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M3 2.5h2.6l1.2 3-1.6 1.2a9.6 9.6 0 0 0 4.1 4.1l1.2-1.6 3 1.2v2.6c0 .6-.5 1-1 1C7 14 2 9 2 3.5c0-.5.4-1 1-1Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
                 </svg>
                 (613) 770-1638
-              </a>
-              <span className="text-sm text-paper/50">Available 24 hours a day</span>
+              </ContactLink>
+              <span className="text-sm text-paper/50">We reply fast, often within the hour</span>
             </div>
           </div>
         </div>

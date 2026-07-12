@@ -1,5 +1,4 @@
-// TODO: replace with real email
-export const QUOTE_EMAIL = "info@bitlane-relocations.ca";
+export const QUOTE_EMAIL = "joelofficial201@gmail.com";
 
 const FIELD_ORDER = [
   "Full Name",
@@ -15,7 +14,12 @@ const FIELD_ORDER = [
 
 export function buildQuoteMailto(form: HTMLFormElement): string {
   const data = new FormData(form);
-  const lines: string[] = ["New quote request from the Bitlane website.", ""];
+  const lines: string[] = [
+    "Hello Bitlane team,",
+    "",
+    "I would like a free moving quote. Here are my details:",
+    "",
+  ];
 
   for (const field of FIELD_ORDER) {
     const raw = data.get(field);

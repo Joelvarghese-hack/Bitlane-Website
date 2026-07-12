@@ -6,16 +6,8 @@ export default function AboutBitlane() {
     <div className="overflow-hidden rounded-5xl border border-paper/10 bg-surface shadow-panel">
       <div className="grid items-stretch lg:grid-cols-2">
         {/* text panel */}
-        <div className="relative p-8 md:p-12 lg:p-14">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(110% 120% at 0% 0%, rgba(230,57,70,0.18), transparent 60%)",
-            }}
-            aria-hidden="true"
-          />
-          <div className="relative">
+        <div className="p-8 md:p-12 lg:p-14">
+          <div>
             <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold uppercase leading-[1.02] tracking-tight text-paper">
               About our company
             </h2>

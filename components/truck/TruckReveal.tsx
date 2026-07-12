@@ -2,59 +2,89 @@
 
 import { useEffect, useRef, type CSSProperties } from "react";
 
-/** Side-view Bitlane box truck, driving to the right. */
+/** Detailed side-view Bitlane box truck, wrapped in company branding, facing right. */
 function TruckSVG() {
   return (
-    <svg viewBox="0 0 240 130" className="h-full w-full" role="img" aria-label="Bitlane moving truck">
-      {/* ground shadow */}
-      <ellipse cx="120" cy="120" rx="104" ry="7" fill="#000" opacity="0.45" />
+    <svg viewBox="0 0 420 230" className="h-full w-full" role="img" aria-label="Bitlane moving truck">
+      <defs>
+        <linearGradient id="tk-box" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f4616b" />
+          <stop offset="0.5" stopColor="#E63946" />
+          <stop offset="1" stopColor="#c11f2c" />
+        </linearGradient>
+        <linearGradient id="tk-cab" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f4616b" />
+          <stop offset="1" stopColor="#c11f2c" />
+        </linearGradient>
+      </defs>
 
-      {/* cargo box */}
-      <rect x="6" y="20" width="150" height="78" rx="5" fill="#E63946" stroke="#8B1E2D" strokeWidth="3" />
-      {/* wordmark on the box */}
-      <text x="81" y="60" textAnchor="middle" fontFamily="var(--font-bricolage), system-ui, sans-serif" fontSize="26" fontWeight="800" letterSpacing="2" fill="#F5F1E8">
+      <ellipse cx="212" cy="210" rx="196" ry="9" fill="#000" opacity="0.4" />
+      {/* chassis */}
+      <rect x="26" y="172" width="352" height="13" rx="3" fill="#17171b" />
+
+      {/* box trailer */}
+      <rect x="18" y="34" width="258" height="142" rx="6" fill="url(#tk-box)" stroke="#8B1E2D" strokeWidth="3" />
+      <rect x="24" y="40" width="246" height="6" rx="3" fill="#ffffff" opacity="0.22" />
+      <g stroke="#8B1E2D" strokeWidth="1.4" opacity="0.35">
+        <line x1="82" y1="38" x2="82" y2="172" />
+        <line x1="150" y1="38" x2="150" y2="172" />
+        <line x1="216" y1="38" x2="216" y2="172" />
+      </g>
+      <rect x="24" y="94" width="6" height="28" rx="2" fill="#8B1E2D" />
+
+      {/* branding wrap */}
+      <text x="152" y="110" textAnchor="middle" fontFamily="var(--font-bricolage), system-ui, sans-serif" fontSize="42" fontWeight="800" fontStyle="italic" letterSpacing="1.5" fill="#F5F1E8">
         BITLANE
       </text>
-      <rect x="34" y="70" width="60" height="4" rx="2" fill="#F5F1E8" opacity="0.9" />
-      <rect x="98" y="70" width="14" height="4" rx="2" fill="#C9A961" />
+      <text x="152" y="136" textAnchor="middle" fontFamily="var(--font-bricolage), system-ui, sans-serif" fontSize="14" fontWeight="700" letterSpacing="5" fill="#F5F1E8" opacity="0.85">
+        MOVING COMPANY
+      </text>
+      <rect x="70" y="150" width="120" height="5" rx="2.5" fill="#C9A961" />
+      <rect x="192" y="150" width="20" height="5" rx="2.5" fill="#F4A261" />
 
       {/* cab */}
-      <path d="M156 40 h26 l24 26 v32 h-50 z" fill="#EFE9DC" stroke="#8B1E2D" strokeWidth="3" />
-      {/* windshield */}
-      <path d="M184 46 h9 l16 18 h-25 z" fill="#1A2B4A" />
-      {/* headlight + bumper */}
-      <rect x="203" y="86" width="6" height="9" rx="1.5" fill="#C9A961" />
-      <rect x="150" y="92" width="60" height="6" fill="#0B0B0E" />
+      <path d="M276 68 h44 l42 42 v66 h-86 z" fill="url(#tk-cab)" stroke="#8B1E2D" strokeWidth="3" />
+      <path d="M324 76 h13 l31 31 h-44 z" fill="#bcd2e8" stroke="#8B1E2D" strokeWidth="2" />
+      <rect x="284" y="86" width="30" height="26" rx="3" fill="#bcd2e8" stroke="#8B1E2D" strokeWidth="2" />
+      <line x1="300" y1="112" x2="300" y2="174" stroke="#8B1E2D" strokeWidth="2" opacity="0.5" />
+      <rect x="270" y="92" width="6" height="16" rx="2" fill="#17171b" />
+      <rect x="356" y="150" width="10" height="20" rx="2" fill="#C9A961" />
+      <rect x="352" y="176" width="22" height="10" rx="2" fill="#0b0b0e" />
+      <circle cx="361" cy="150" r="4" fill="#fff" opacity="0.9" />
 
       {/* wheels */}
-      {[46, 116, 184].map((cx) => (
+      {[70, 120, 320].map((cx) => (
         <g key={cx}>
-          <circle cx={cx} cy="100" r="15" fill="#0B0B0E" stroke="#3a3a40" strokeWidth="3" />
-          <circle cx={cx} cy="100" r="5" fill="#C9A961" />
+          <circle cx={cx} cy="186" r="25" fill="#0b0b0e" />
+          <circle cx={cx} cy="186" r="12" fill="#37373d" />
+          <circle cx={cx} cy="186" r="5" fill="#C9A961" />
         </g>
       ))}
+      <rect x="40" y="182" width="8" height="24" fill="#0b0b0e" />
     </svg>
   );
 }
 
 export default function TruckReveal() {
-  const ref = useRef<HTMLDivElement>(null);
+  const outerRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const outer = outerRef.current;
+    const stage = stageRef.current;
+    if (!outer || !stage) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
     const onScroll = () => {
-      const rect = el.getBoundingClientRect();
+      const rect = outer.getBoundingClientRect();
       const vh = window.innerHeight;
-      const total = rect.height + vh;
-      const p = clamp((vh - rect.top) / total, 0, 1);
-      const truckX = -14 + p * 128; // percent, enters left, exits right
-      const wipe = clamp(truckX + 4, 0, 100);
-      el.style.setProperty("--truck-x", `${truckX}%`);
-      el.style.setProperty("--wipe", `${wipe}%`);
+      const range = rect.height - vh;
+      const p = range > 0 ? clamp(-rect.top / range, 0, 1) : 0;
+      const truckX = -8 + p * 116; // half out at rest, exits right
+      const wipe = clamp(truckX + 2, 0, 100);
+      stage.style.setProperty("--truck-x", `${truckX}%`);
+      stage.style.setProperty("--wipe", `${wipe}%`);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -66,26 +96,27 @@ export default function TruckReveal() {
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className="relative flex min-h-[46vh] items-center overflow-hidden px-[clamp(20px,5vw,88px)] py-24"
-      style={{ "--wipe": "0%", "--truck-x": "-14%" } as CSSProperties}
-    >
-      <div className="relative mx-auto w-full max-w-6xl">
-        <h2
-          className="text-[clamp(2rem,6vw,5.2rem)] font-extrabold uppercase leading-[0.98] tracking-tight text-paper"
-          style={{ clipPath: "inset(0 0 0 var(--wipe))" }}
-        >
-          You&apos;ll notice our truck from miles away!
-        </h2>
-
-        {/* the truck rides along the same line, wiping the text as it passes */}
+    <div ref={outerRef} className="relative h-[220vh]">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div
-          className="pointer-events-none absolute top-1/2 h-[clamp(90px,13vw,150px)] w-[clamp(160px,23vw,280px)] -translate-x-1/2 -translate-y-1/2"
-          style={{ left: "var(--truck-x)" }}
-          aria-hidden="true"
+          ref={stageRef}
+          className="relative mx-auto w-full max-w-6xl px-[clamp(20px,5vw,88px)]"
+          style={{ "--wipe": "0%", "--truck-x": "-8%" } as CSSProperties}
         >
-          <TruckSVG />
+          <h2
+            className="ml-auto max-w-[75%] text-right text-[clamp(2rem,6vw,5rem)] font-extrabold uppercase leading-[0.98] tracking-tight text-paper"
+            style={{ clipPath: "inset(0 0 0 var(--wipe))" }}
+          >
+            You&apos;ll notice our truck from miles away!
+          </h2>
+
+          <div
+            className="pointer-events-none absolute top-1/2 h-[clamp(120px,20vw,240px)] w-[clamp(220px,36vw,440px)] -translate-x-1/2 -translate-y-1/2"
+            style={{ left: "var(--truck-x)" }}
+            aria-hidden="true"
+          >
+            <TruckSVG />
+          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import TruckReveal from "@/components/truck/TruckReveal";
 import TapeMarquee from "@/components/marquee/TapeMarquee";
 import WhyPeopleLoveUs from "@/components/why/WhyPeopleLoveUs";
 import ServiceShowcase from "@/components/services/ServiceShowcase";
-import TrustQuote from "@/components/trust/TrustQuote";
 import Testimonials from "@/components/testimonials/Testimonials";
 import AboutBitlane from "@/components/about/AboutBitlane";
 import ServiceAreas from "@/components/area/ServiceAreas";
@@ -35,12 +34,6 @@ export default function Home() {
       </section>
 
       <TapeMarquee slope="up" />
-
-      <section id="get-a-quote" className={SECTION}>
-        <Reveal className="mx-auto w-full max-w-7xl">
-          <TrustQuote />
-        </Reveal>
-      </section>
 
       <section id="testimonials" className={SECTION}>
         <Reveal className="mx-auto w-full max-w-7xl">

@@ -1,4 +1,5 @@
 import FaqItem from "@/components/faq/FaqItem";
+import ContactLink from "@/components/util/ContactLink";
 
 const FAQS = [
   {
@@ -51,15 +52,16 @@ export default function Faq() {
           <p className="mt-1 text-base font-semibold text-paper">
             Call us and get answers in minutes.
           </p>
-          <a
-            href="tel:+16137701638"
+          <ContactLink
+            type="tel"
+            value="(613) 770-1638"
             className="mt-4 inline-flex items-center gap-2 rounded-full bg-velocity-red px-6 py-3 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 2.5h2.6l1.2 3-1.6 1.2a9.6 9.6 0 0 0 4.1 4.1l1.2-1.6 3 1.2v2.6c0 .6-.5 1-1 1C7 14 2 9 2 3.5c0-.5.4-1 1-1Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
             </svg>
             (613) 770-1638
-          </a>
+          </ContactLink>
         </div>
       </div>
 

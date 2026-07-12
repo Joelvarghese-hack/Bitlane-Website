@@ -1,4 +1,5 @@
 import { asset } from "@/lib/asset";
+import ContactLink from "@/components/util/ContactLink";
 
 const REGIONS = [
   {
@@ -104,9 +105,9 @@ export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean
 
       <p className="mt-8 text-center text-sm text-paper/55">
         Do not see your city? We travel further than you think.{" "}
-        <a href="tel:+16137701638" className="font-semibold text-amber-pulse transition-colors hover:text-paper">
+        <ContactLink type="tel" value="(613) 770-1638" className="inline-block font-semibold text-amber-pulse transition-colors hover:text-paper">
           Call (613) 770-1638
-        </a>
+        </ContactLink>
       </p>
     </div>
   );

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoLockup from "@/components/nav/LogoLockup";
+import ContactLink from "@/components/util/ContactLink";
 
 const LINKS = [
   { href: "/services", label: "Services" },
@@ -44,12 +45,14 @@ export default function Nav() {
         </div>
 
         <div className="ml-auto flex items-center gap-3 md:gap-5">
-          <a
-            href="tel:+16137701638"
+          <ContactLink
+            type="tel"
+            value="(613) 770-1638"
+            toastAbove={false}
             className="hidden whitespace-nowrap text-sm font-semibold text-paper/85 transition-colors hover:text-amber-pulse lg:inline"
           >
             (613) 770-1638
-          </a>
+          </ContactLink>
           <Link
             href={quoteHref}
             className="whitespace-nowrap rounded-full bg-velocity-red px-5 py-2.5 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"
