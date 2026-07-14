@@ -235,6 +235,11 @@ html.lenis body {
   flex-shrink: 0;
 }
 
+/* Truck wheels spin in step with how far the truck has driven. */
+.wheel {
+  transform: rotate(var(--wheel-rot, 0deg));
+}
+
 /* Title reveal: rises from just below into place when it enters view. */
 .title-reveal {
   opacity: 0;
