@@ -4,7 +4,7 @@ import ContactLink from "@/components/util/ContactLink";
 const POINTS = [
   "One clear, all inclusive price agreed up front",
   "Licensed, insured, and careful with every item",
-  "Open 24 hours, with fast replies and easy booking",
+  "Fast, friendly replies and easy booking",
   "Serving Kingston, the GTA, Ottawa, and Montreal",
 ];
 

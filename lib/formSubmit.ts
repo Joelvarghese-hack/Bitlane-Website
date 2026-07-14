@@ -4,12 +4,15 @@ const FIELD_ORDER = [
   "Full Name",
   "Phone",
   "Email",
+  "Preferred Contact",
   "Pick Up Location",
   "Drop Off Location",
-  "Moving Date",
+  "Pick Up Postal Code",
+  "Drop Off Postal Code",
   "Move Size",
+  "Moving Date",
   "How Did You Hear About Us",
-  "Additional Notes",
+  "Special Request",
 ] as const;
 
 export function buildQuoteMailto(form: HTMLFormElement): string {
@@ -40,7 +43,20 @@ export function buildQuoteMailto(form: HTMLFormElement): string {
   )}&body=${encodeURIComponent(lines.join("\n"))}`;
 }
 
-export function submitQuoteForm(event: { preventDefault(): void; currentTarget: HTMLFormElement }): void {
+/**
+ * Opens the visitor's email client pre-filled with their quote details, then
+ * sends them to the thank-you page. The short delay gives the mail client time
+ * to launch before the page navigates away.
+ */
+export function submitQuoteForm(event: {
+  preventDefault(): void;
+  currentTarget: HTMLFormElement;
+}): void {
   event.preventDefault();
-  window.location.href = buildQuoteMailto(event.currentTarget);
+  const mailto = buildQuoteMailto(event.currentTarget);
+  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  window.location.href = mailto;
+  window.setTimeout(() => {
+    window.location.href = `${base}/thank-you/`;
+  }, 600);
 }

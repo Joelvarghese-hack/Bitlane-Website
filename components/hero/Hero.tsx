@@ -3,11 +3,33 @@
 import Link from "next/link";
 import RatingBadges from "@/components/hero/RatingBadges";
 import ContactLink from "@/components/util/ContactLink";
-import { QUOTE_EMAIL, submitQuoteForm } from "@/lib/formSubmit";
 import { asset } from "@/lib/asset";
 
 const INPUT =
   "w-full rounded-full border border-paper/15 bg-black/50 px-5 py-3.5 text-sm text-paper placeholder:text-paper/45 outline-none transition-colors focus:border-amber-pulse/70 sm:max-w-[15rem]";
+
+/**
+ * Carries the two postal codes into the full quote form at the bottom of the
+ * page and smooth-scrolls there, instead of opening an email. Both forms live
+ * on the home page and use uncontrolled inputs, so setting the values directly
+ * is safe and persists.
+ */
+function goToQuote(event: React.FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const pickup = (form.elements.namedItem("Pick Up Location") as HTMLInputElement | null)?.value ?? "";
+  const dropoff = (form.elements.namedItem("Drop Off Location") as HTMLInputElement | null)?.value ?? "";
+
+  const carry = (id: string, value: string) => {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (el && value.trim()) el.value = value.trim();
+  };
+  carry("q-zip-from", pickup);
+  carry("q-zip-to", dropoff);
+
+  const target = document.getElementById("quote");
+  if (target) target.scrollIntoView({ behavior: "smooth" });
+}
 
 export default function Hero() {
   return (
@@ -65,10 +87,7 @@ export default function Hero() {
             Get a free quote
           </p>
           <form
-            action={`mailto:${QUOTE_EMAIL}`}
-            method="POST"
-            encType="text/plain"
-            onSubmit={submitQuoteForm}
+            onSubmit={goToQuote}
             className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <input name="Pick Up Location" required autoComplete="postal-code" placeholder="Enter pick up postal code" className={INPUT} />

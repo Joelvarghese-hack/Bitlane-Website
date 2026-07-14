@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoLockup from "@/components/nav/LogoLockup";
 import ContactLink from "@/components/util/ContactLink";
+import WhatsAppLink from "@/components/nav/WhatsAppLink";
 
 const LINKS = [
   { href: "/services", label: "Services" },
@@ -42,6 +43,7 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
+          <WhatsAppLink className="text-paper/70" />
         </div>
 
         <div className="ml-auto flex items-center gap-3 md:gap-5">
@@ -78,6 +80,7 @@ export default function Nav() {
             {link.label}
           </Link>
         ))}
+        <WhatsAppLink className="text-paper/70" />
       </nav>
     </header>
   );

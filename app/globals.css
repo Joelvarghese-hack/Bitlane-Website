@@ -109,13 +109,13 @@ html.lenis body {
   position: relative;
   overflow: hidden;
   padding: 2.5rem 0;
+  pointer-events: none;
 }
 
 .tape-strip {
   width: 116%;
   margin-left: -8%;
-  padding: 0.85rem 0;
-  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+  padding: 0.5rem 0;
 }
 
 .tape-track {
@@ -131,25 +131,32 @@ html.lenis body {
 
 .tape-item {
   display: inline-flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 0 1.7rem;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0 0.55rem;
   white-space: nowrap;
 }
 
-.tape-brand {
+.tape-box {
+  display: inline-block;
+  padding: 0.28em 0.85em;
   font-weight: 800;
   font-style: italic;
-  font-size: clamp(1.3rem, 2.4vw, 2.2rem);
+  font-size: clamp(1.1rem, 2vw, 1.9rem);
   text-transform: uppercase;
   letter-spacing: 0.01em;
+  transform: skewX(-9deg);
+  box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.6);
 }
 
-.tape-phone {
-  font-weight: 700;
-  font-style: italic;
-  font-size: clamp(0.85rem, 1.3vw, 1.1rem);
-  opacity: 0.9;
+.tape-box--brand {
+  background: var(--paper);
+  color: var(--velocity-red);
+}
+
+.tape-box--phone {
+  background: var(--velocity-red);
+  color: var(--paper);
 }
 
 @keyframes tape-scroll {
@@ -159,6 +166,73 @@ html.lenis body {
   to {
     transform: translateX(-50%);
   }
+}
+
+/* ------------------------------------------------------------- */
+/* Gallery band: real job photos scrolling right to left,         */
+/* edge to edge with no gaps. Decorative and non-interactive.     */
+/* ------------------------------------------------------------- */
+
+.gallery-band {
+  position: relative;
+  overflow: hidden;
+  background: #050506;
+  border-top: 1px solid rgba(245, 241, 232, 0.08);
+  border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+  pointer-events: none;
+}
+
+.gallery-track {
+  display: flex;
+  width: max-content;
+  animation: tape-scroll 70s linear infinite;
+}
+
+.gallery-group {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.gallery-cell {
+  height: clamp(220px, 32vw, 420px);
+  width: clamp(300px, 34vw, 500px);
+  flex-shrink: 0;
+}
+
+.gallery-cell img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ------------------------------------------------------------- */
+/* Testimonials marquee: cards drift left to right at a readable   */
+/* pace. Decorative motion, unresponsive to hover and clicks.      */
+/* ------------------------------------------------------------- */
+
+.marquee-wrap {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: tape-scroll 90s linear infinite;
+  animation-direction: reverse;
+}
+
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.marquee-cell {
+  width: clamp(280px, 82vw, 400px);
+  flex-shrink: 0;
 }
 
 /* Title reveal: rises from just below into place when it enters view. */
@@ -188,7 +262,9 @@ html.lenis body {
     transition: none !important;
   }
 
-  .tape-track {
+  .tape-track,
+  .gallery-track,
+  .marquee-track {
     animation: none !important;
   }
 

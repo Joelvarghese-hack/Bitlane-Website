@@ -4,6 +4,7 @@ import TapeMarquee from "@/components/marquee/TapeMarquee";
 import WhyPeopleLoveUs from "@/components/why/WhyPeopleLoveUs";
 import ServiceShowcase from "@/components/services/ServiceShowcase";
 import Testimonials from "@/components/testimonials/Testimonials";
+import Gallery from "@/components/gallery/Gallery";
 import AboutBitlane from "@/components/about/AboutBitlane";
 import ServiceAreas from "@/components/area/ServiceAreas";
 import Faq from "@/components/faq/Faq";
@@ -41,7 +42,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <TapeMarquee slope="down" />
+      <Gallery />
 
       <section id="about" className={SECTION}>
         <Reveal className="mx-auto w-full max-w-7xl">
@@ -55,7 +56,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <TapeMarquee slope="up" />
+      <TapeMarquee slope="down" />
 
       <section id="faq" className={SECTION}>
         <Reveal className="mx-auto w-full max-w-7xl">

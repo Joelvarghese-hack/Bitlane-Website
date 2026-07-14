@@ -16,6 +16,8 @@ const MOVE_SIZES = [
   "Other",
 ];
 
+const PREFERRED_CONTACT = ["Phone call", "Text message", "Email"];
+
 const HEARD_OPTIONS = [
   "Google",
   "Yelp",
@@ -25,10 +27,15 @@ const HEARD_OPTIONS = [
   "Other",
 ];
 
+// Kept verbatim per request, leading space included.
+const SPECIAL_PLACEHOLDER = " i have a special item/appliances that needs extra care";
+
 const INPUT_CLASS =
   "w-full rounded-2xl border border-paper/12 bg-black/45 px-4 py-3 text-sm text-paper placeholder:text-paper/35 outline-none transition-colors focus:border-amber-pulse/70 focus:bg-black/60";
 
 const SELECT_CLASS = `${INPUT_CLASS} cursor-pointer appearance-none pr-10 [&>option]:bg-[#111116] [&>option]:text-paper`;
+
+const TEXTAREA_CLASS = `${INPUT_CLASS} min-h-[96px] resize-y leading-relaxed`;
 
 const LABEL_CLASS =
   "mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-paper/55";
@@ -148,26 +155,67 @@ export default function QuoteForm({
           />
         )}
 
-        <Field id="q-from" name="Pick Up Location" label="Pick Up Location" required placeholder="City or address" />
-        <Field id="q-to" name="Drop Off Location" label="Drop Off Location" required placeholder="City or address" />
+        <Field
+          id="q-from"
+          name="Pick Up Location"
+          label="Pick Up Address"
+          placeholder="Street, city"
+          autoComplete="address-line1"
+        />
+        <Field
+          id="q-to"
+          name="Drop Off Location"
+          label="Drop Off Address"
+          placeholder="Street, city"
+          autoComplete="address-line1"
+        />
 
         {!compact && (
-          <div>
-            <label htmlFor="q-date" className={LABEL_CLASS}>
-              Moving Date
-            </label>
-            <input id="q-date" name="Moving Date" type="date" className={INPUT_CLASS} />
-          </div>
+          <>
+            <Field
+              id="q-zip-from"
+              name="Pick Up Postal Code"
+              label="Pick Up Postal Code"
+              placeholder="e.g. K7L 3N6"
+              autoComplete="postal-code"
+            />
+            <Field
+              id="q-zip-to"
+              name="Drop Off Postal Code"
+              label="Drop Off Postal Code"
+              placeholder="e.g. M5V 2T6"
+              autoComplete="postal-code"
+            />
+          </>
         )}
 
         <SelectField
           id="q-size"
           name="Move Size"
-          label="Move Size"
+          label="Size of Apartment / Home"
           options={MOVE_SIZES}
           placeholder="Select your move size"
           className={compact ? "sm:col-span-2" : ""}
         />
+
+        {!compact && (
+          <div>
+            <label htmlFor="q-date" className={LABEL_CLASS}>
+              Date of Planning
+            </label>
+            <input id="q-date" name="Moving Date" type="date" className={INPUT_CLASS} />
+          </div>
+        )}
+
+        {!compact && (
+          <SelectField
+            id="q-contact"
+            name="Preferred Contact"
+            label="How Should We Contact You"
+            options={PREFERRED_CONTACT}
+            placeholder="Phone or email"
+          />
+        )}
 
         {!compact && (
           <SelectField
@@ -176,8 +224,22 @@ export default function QuoteForm({
             label="How Did You Hear About Us"
             options={HEARD_OPTIONS}
             placeholder="Select one"
-            className="sm:col-span-2"
           />
+        )}
+
+        {!compact && (
+          <div className="sm:col-span-2">
+            <label htmlFor="q-special" className={LABEL_CLASS}>
+              Any Special Request
+            </label>
+            <textarea
+              id="q-special"
+              name="Special Request"
+              rows={3}
+              placeholder={SPECIAL_PLACEHOLDER}
+              className={TEXTAREA_CLASS}
+            />
+          </div>
         )}
       </div>
 

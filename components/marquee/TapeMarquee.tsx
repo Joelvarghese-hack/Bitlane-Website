@@ -1,27 +1,19 @@
 /**
- * Angled "tape" strip with bold repeating text that scrolls sideways. The scroll
- * direction follows the tape's slope: a down slope scrolls right to left, an up
- * slope scrolls left to right, at the same speed. Decorative; hidden from screen
- * readers. Motion pauses under prefers-reduced-motion (see globals.css).
+ * Angled marquee made of slanted tape boxes: white boxes with the brand in red,
+ * red boxes with the phone number in white, same size. The scroll direction
+ * follows the slope (down = right to left, up = left to right), same speed for
+ * every marquee. Decorative and non-interactive: no hover pause, no clicks.
  */
-export default function TapeMarquee({
-  slope = "down",
-  tone = "red",
-}: {
-  slope?: "up" | "down";
-  tone?: "red" | "amber";
-}) {
+export default function TapeMarquee({ slope = "down" }: { slope?: "up" | "down" }) {
   const rotate = slope === "down" ? "-2.4deg" : "2.4deg";
-  const bg = tone === "red" ? "var(--velocity-red)" : "var(--amber-pulse)";
-  const fg = tone === "red" ? "var(--paper)" : "#1a1205";
   const direction = slope === "up" ? "reverse" : "normal";
 
   const group = (
     <div className="tape-group">
-      {Array.from({ length: 8 }).map((_, i) => (
+      {Array.from({ length: 6 }).map((_, i) => (
         <span key={i} className="tape-item">
-          <span className="tape-brand">BITLANE MOVING</span>
-          <span className="tape-phone">(613) 770-1638</span>
+          <span className="tape-box tape-box--brand">BITLANE</span>
+          <span className="tape-box tape-box--phone">(613) 770-1638</span>
         </span>
       ))}
     </div>
@@ -29,7 +21,7 @@ export default function TapeMarquee({
 
   return (
     <div className="tape-wrap" aria-hidden="true">
-      <div className="tape-strip" style={{ transform: `rotate(${rotate})`, background: bg, color: fg }}>
+      <div className="tape-strip" style={{ transform: `rotate(${rotate})` }}>
         <div className="tape-track" style={{ animationDirection: direction }}>
           {group}
           {group}

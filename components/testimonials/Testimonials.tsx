@@ -72,6 +72,16 @@ const TESTIMONIALS: Testimonial[] = [
 ];
 
 export default function Testimonials() {
+  const group = (
+    <div className="marquee-group">
+      {TESTIMONIALS.map((t, i) => (
+        <div key={t.name} className="marquee-cell">
+          <TestimonialCard testimonial={t} index={i} />
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div>
       <div className="text-center">
@@ -80,10 +90,12 @@ export default function Testimonials() {
         </h2>
       </div>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {TESTIMONIALS.map((t, i) => (
-          <TestimonialCard key={t.name} testimonial={t} index={i} />
-        ))}
+      {/* Cards drift steadily left to right; the strip ignores hover and clicks. */}
+      <div className="marquee-wrap mt-12">
+        <div className="marquee-track">
+          {group}
+          {group}
+        </div>
       </div>
     </div>
   );
