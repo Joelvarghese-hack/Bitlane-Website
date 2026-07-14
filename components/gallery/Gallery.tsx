@@ -32,13 +32,15 @@ export default function Gallery() {
 
   return (
     <section aria-label="Our work" className="relative">
-      <TapeMarquee slope="down" />
-
-      <div className="py-2 text-center">
+      <div className="pt-10 pb-1 text-center md:pt-14">
         <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-paper">
           Our work
         </h2>
       </div>
+
+      {/* The photo band is framed symmetrically: a down-sloped tape hugs the
+          top and an up-sloped tape hugs the bottom, with equal gaps. */}
+      <TapeMarquee slope="down" />
 
       <div className="gallery-band" aria-hidden="true">
         <div className="gallery-track">

@@ -1,5 +1,18 @@
 export const QUOTE_EMAIL = "joelofficial201@gmail.com";
 
+/**
+ * Quote submissions are relayed to QUOTE_EMAIL by FormSubmit
+ * (https://formsubmit.co) — a free relay that needs no backend and no account.
+ * We post the details in the background with fetch, so the visitor never leaves
+ * the site and no mail app is ever opened. On success the caller sends them to
+ * the /thank-you/ page.
+ *
+ * One-time setup: the first submission makes FormSubmit email QUOTE_EMAIL an
+ * "Activate form" link that must be clicked once; after that every submission
+ * is delivered straight to the inbox.
+ */
+const ENDPOINT = "https://formsubmit.co/ajax/joelofficial201@gmail.com";
+
 const FIELD_ORDER = [
   "Full Name",
   "Phone",
@@ -15,48 +28,46 @@ const FIELD_ORDER = [
   "Special Request",
 ] as const;
 
-export function buildQuoteMailto(form: HTMLFormElement): string {
+export function buildQuotePayload(form: HTMLFormElement): Record<string, string> {
   const data = new FormData(form);
-  const lines: string[] = [
-    "Hello Bitlane team,",
-    "",
-    "I would like a free moving quote. Here are my details:",
-    "",
-  ];
+  const payload: Record<string, string> = {};
 
   for (const field of FIELD_ORDER) {
     const raw = data.get(field);
     const value = typeof raw === "string" ? raw.trim() : "";
-    if (value) {
-      lines.push(`${field}: ${value}`);
-    }
+    if (value) payload[field] = value;
   }
 
-  const name = data.get("Full Name");
-  const subject =
-    typeof name === "string" && name.trim()
-      ? `Quote request from ${name.trim()}`
-      : "Quote request";
+  const name = payload["Full Name"];
+  // FormSubmit control fields: email subject, a readable table layout, and no
+  // captcha redirect (we handle the "thank you" ourselves).
+  payload._subject = name ? `New quote request from ${name}` : "New quote request";
+  payload._template = "table";
+  payload._captcha = "false";
 
-  return `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(
-    subject
-  )}&body=${encodeURIComponent(lines.join("\n"))}`;
+  return payload;
 }
 
 /**
- * Opens the visitor's email client pre-filled with their quote details, then
- * sends them to the thank-you page. The short delay gives the mail client time
- * to launch before the page navigates away.
+ * Sends the quote to QUOTE_EMAIL in the background. Resolves on success and
+ * throws on any failure so the caller can show an error instead of navigating.
  */
-export function submitQuoteForm(event: {
-  preventDefault(): void;
-  currentTarget: HTMLFormElement;
-}): void {
-  event.preventDefault();
-  const mailto = buildQuoteMailto(event.currentTarget);
-  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-  window.location.href = mailto;
-  window.setTimeout(() => {
-    window.location.href = `${base}/thank-you/`;
-  }, 600);
+export async function sendQuote(form: HTMLFormElement): Promise<void> {
+  const response = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(buildQuotePayload(form)),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Quote submission failed with status ${response.status}`);
+  }
+
+  const result = (await response.json().catch(() => null)) as { success?: string } | null;
+  if (result && String(result.success) === "false") {
+    throw new Error("Quote submission was rejected");
+  }
 }

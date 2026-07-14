@@ -1,6 +1,8 @@
 "use client";
 
-import { QUOTE_EMAIL, submitQuoteForm } from "@/lib/formSubmit";
+import { useState, type FormEvent } from "react";
+
+import { sendQuote } from "@/lib/formSubmit";
 
 const MOVE_SIZES = [
   "Studio or less",
@@ -131,14 +133,24 @@ export default function QuoteForm({
   submitLabel?: string;
 }) {
   const compact = variant === "compact";
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setStatus("sending");
+    try {
+      await sendQuote(form);
+      const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+      // Stay on the site: navigate to the in-site thank-you page.
+      window.location.href = `${base}/thank-you/`;
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
-    <form
-      action={`mailto:${QUOTE_EMAIL}`}
-      method="POST"
-      encType="text/plain"
-      onSubmit={submitQuoteForm}
-    >
+    <form onSubmit={handleSubmit}>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field id="q-name" name="Full Name" label="Full Name" required autoComplete="name" />
         <Field id="q-phone" name="Phone" label="Phone" type="tel" required autoComplete="tel" />
@@ -245,10 +257,22 @@ export default function QuoteForm({
 
       <button
         type="submit"
-        className="mt-5 w-full rounded-full bg-velocity-red px-7 py-3.5 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5 md:text-base"
+        disabled={status === "sending"}
+        className="mt-5 w-full rounded-full bg-velocity-red px-7 py-3.5 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 md:text-base"
       >
-        {submitLabel}
+        {status === "sending" ? "Sending…" : submitLabel}
       </button>
+
+      {status === "error" && (
+        <p className="mt-3 text-center text-sm text-velocity-red" role="alert">
+          Something went wrong sending your request. Please try again, or call us
+          at{" "}
+          <a href="tel:+16137701638" className="font-semibold underline">
+            (613) 770-1638
+          </a>
+          .
+        </p>
+      )}
 
       {compact ? (
         <p className="mt-3 text-center text-xs text-paper/50">
