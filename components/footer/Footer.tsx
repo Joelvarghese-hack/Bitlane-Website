@@ -137,13 +137,24 @@ export default function Footer() {
         {/* bottom bar */}
         <div className="mt-12 flex flex-col gap-4 border-t border-paper/10 pt-6 text-sm text-paper/45 md:flex-row md:items-center md:justify-between">
           <p>© 2026 Bitlane. All rights reserved.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link href="/privacy-policy" className="transition-colors hover:text-amber-pulse">
               Privacy Policy
             </Link>
             <Link href="/terms-and-conditions" className="transition-colors hover:text-amber-pulse">
               Terms and Conditions
             </Link>
+            <p>
+              SEO and design by{" "}
+              <a
+                href="https://joelvarghese-hack.github.io/Marketing-Portfolio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-amber-pulse"
+              >
+                Joel Varghese
+              </a>
+            </p>
           </div>
         </div>
       </div>

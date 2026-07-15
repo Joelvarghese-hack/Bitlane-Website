@@ -14,24 +14,25 @@ const LINKS = [
 ];
 
 /**
- * Top header. It sits in normal document flow and scrolls away with the page
- * (not fixed), per the design.
+ * Floating "liquid glass" pill header. It stays stuck to the top and detached
+ * from the edge, so it is always visible and clickable, and whatever scrolls
+ * under it is blurred through the frosted-glass backdrop.
  */
 export default function Nav() {
   const pathname = usePathname();
   const quoteHref = pathname === "/" ? "#quote" : "/#quote";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-paper/10 bg-ink/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 px-[clamp(12px,4vw,44px)] pt-3">
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-7xl items-center gap-x-4 px-[clamp(20px,5vw,88px)] py-5 md:gap-x-6"
+        className="mx-auto flex max-w-6xl items-center gap-x-3 rounded-full border border-paper/12 bg-ink/55 px-3 py-2 shadow-[0_14px_36px_-16px_rgba(0,0,0,0.85)] ring-1 ring-inset ring-white/5 backdrop-blur-xl backdrop-saturate-150 md:gap-x-5 md:px-5 md:py-2.5"
       >
-        <Link href="/" aria-label="Bitlane, home" className="rounded-md">
+        <Link href="/" aria-label="Bitlane, home" className="rounded-full">
           <LogoLockup />
         </Link>
 
-        <div className="ml-6 hidden items-center gap-x-7 text-sm font-medium text-paper/70 md:flex lg:ml-10">
+        <div className="ml-2 hidden items-center gap-x-6 text-sm font-medium text-paper/70 md:flex lg:ml-6">
           {LINKS.map((link) => (
             <Link
               key={link.href}
@@ -46,7 +47,7 @@ export default function Nav() {
           <WhatsAppLink className="text-paper/70" />
         </div>
 
-        <div className="ml-auto flex items-center gap-3 md:gap-5">
+        <div className="ml-auto flex items-center gap-2 md:gap-4">
           <ContactLink
             type="tel"
             value="(613) 770-1638"
@@ -64,10 +65,10 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* compact link row for narrow screens */}
+      {/* compact link pill for narrow screens */}
       <nav
         aria-label="Pages"
-        className="flex items-center gap-x-5 overflow-x-auto px-5 pb-3 text-xs font-medium text-paper/70 md:hidden"
+        className="mx-auto mt-2 flex max-w-6xl items-center gap-x-5 overflow-x-auto rounded-full border border-paper/12 bg-ink/55 px-4 py-2 text-xs font-medium text-paper/70 ring-1 ring-inset ring-white/5 backdrop-blur-xl backdrop-saturate-150 [scrollbar-width:none] md:hidden [&::-webkit-scrollbar]:hidden"
       >
         {LINKS.map((link) => (
           <Link

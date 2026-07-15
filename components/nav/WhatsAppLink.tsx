@@ -15,7 +15,7 @@ export default function WhatsAppLink({ className = "" }: { className?: string })
       title={WA_MESSAGE}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 whitespace-nowrap transition-colors hover:text-[#25D366] ${className}`}
+      className={`wa-nudge inline-flex items-center gap-2 whitespace-nowrap transition-colors hover:text-[#25D366] ${className}`}
     >
       <svg
         width="17"
