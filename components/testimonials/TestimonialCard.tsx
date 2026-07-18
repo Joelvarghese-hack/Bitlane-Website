@@ -14,7 +14,7 @@ function Stars() {
         <svg key={i} width="16" height="16" viewBox="0 0 20 20" aria-hidden="true">
           <path
             d="M10 1.6l2.47 5.01 5.53.8-4 3.9.94 5.5L10 14.7l-4.95 2.6.95-5.5-4-3.9 5.53-.8z"
-            fill="#F4A261"
+            fill="#FE4436"
           />
         </svg>
       ))}

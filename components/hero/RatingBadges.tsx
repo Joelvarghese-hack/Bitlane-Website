@@ -18,7 +18,7 @@ function Stars({ value }: { value: number }) {
           <svg key={i} width="15" height="15" viewBox="0 0 20 20">
             <defs>
               <linearGradient id={`star-${i}`}>
-                <stop offset={`${fill * 100}%`} stopColor="#F4A261" />
+                <stop offset={`${fill * 100}%`} stopColor="#FE4436" />
                 <stop offset={`${fill * 100}%`} stopColor="rgba(245,241,232,0.18)" />
               </linearGradient>
             </defs>

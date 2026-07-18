@@ -28,8 +28,8 @@ export default function QuoteSection() {
               {POINTS.map((point) => (
                 <li key={point} className="flex items-start gap-3 text-sm text-paper/75">
                   <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="mt-0.5 shrink-0">
-                    <circle cx="10" cy="10" r="9" stroke="#F4A261" strokeWidth="1.4" />
-                    <path d="M6 10.2l2.6 2.6L14 7.5" stroke="#F4A261" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="10" cy="10" r="9" stroke="#FE4436" strokeWidth="1.4" />
+                    <path d="M6 10.2l2.6 2.6L14 7.5" stroke="#FE4436" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   {point}
                 </li>

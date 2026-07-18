@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Spiral from "@/components/decor/Spiral";
 
 const S = {
   width: 26,
@@ -41,7 +42,7 @@ const FEATURES: Feature[] = [
   {
     title: "Read Our Reviews",
     body: "Do not just take our word for it. Read our reviews on Google and Yelp, then see why our customers keep coming back and referring their friends to us.",
-    tint: "bg-navy/40 text-[#7ba3d6]",
+    tint: "bg-velocity-red/15 text-velocity-red",
     icon: (
       <svg {...S}>
         <path d="M12 3.5l2.5 5 5.5.8-4 3.9.95 5.5L12 16.1 7.05 18.7 8 13.2l-4-3.9 5.5-.8z" />
@@ -89,14 +90,22 @@ const FEATURES: Feature[] = [
 
 export default function WhyPeopleLoveUs() {
   return (
-    <div>
-      <div className="text-center">
-        <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
-          Why people love us
+    <div className="relative">
+      <Spiral className="opacity-55" flip />
+      <div className="relative z-10 mx-auto max-w-2xl text-center">
+        <span className="inline-block rounded-full bg-velocity-red/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-velocity-red">
+          Our mission
+        </span>
+        <h2 className="mt-6 text-[clamp(2rem,3.8vw,3.2rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
+          Here&apos;s where we come in.
         </h2>
+        <p className="mt-4 text-base leading-relaxed text-paper/60">
+          Every headache above has a fix built into the way we work. This is the
+          standard we hold ourselves to on every single move.
+        </p>
       </div>
 
-      <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="relative z-10 mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {FEATURES.map((f) => (
           <div key={f.title}>
             <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${f.tint}`}>

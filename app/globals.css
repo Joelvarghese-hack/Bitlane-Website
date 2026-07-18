@@ -3,24 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --velocity-red: #E63946;
-  --crimson-shadow: #8B1E2D;
-  --amber-pulse: #F4A261;
-  --amber-deep: #C77B3F;
-  --ink: #050506;
-  --surface: #0F1015;
-  --surface-2: #16161D;
-  --paper: #F5F1E8;
-  --navy: #1A2B4A;
-  --gold: #C9A961;
+  /* ===================================================================== */
+  /* BRAND COLORS — EDIT HEX HERE (mirror the same 3 in tailwind.config.ts) */
+  /* ===================================================================== */
+  --brand-orange: #FE4436;
+  --brand-black: #231F20;
+  --brand-white: #FFFFFF;
+
+  /* semantic tokens derive from the brand colors above */
+  --velocity-red: var(--brand-orange);
+  --crimson-shadow: #D62D1E;
+  --amber-pulse: var(--brand-orange);
+  --amber-deep: #D62D1E;
+  --ink: var(--brand-black);
+  --surface: #2C2724;
+  --surface-2: #372F2C;
+  --paper: var(--brand-white);
+  --navy: #2C2724;
+  --gold: var(--brand-orange);
   color-scheme: dark;
+}
+
+/* Titles use Montserrat; everything else inherits Open Sauce (body). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title), system-ui, sans-serif;
 }
 
 body {
   background:
-    radial-gradient(1200px 620px at 50% -8%, rgba(230, 57, 70, 0.12), transparent 62%),
-    radial-gradient(900px 520px at 100% 8%, rgba(201, 169, 97, 0.06), transparent 58%),
-    radial-gradient(1000px 700px at -5% 108%, rgba(139, 30, 45, 0.16), transparent 60%),
+    radial-gradient(1200px 620px at 50% -8%, rgba(254, 68, 54, 0.10), transparent 62%),
+    radial-gradient(900px 520px at 100% 8%, rgba(254, 68, 54, 0.05), transparent 58%),
+    radial-gradient(1000px 700px at -5% 108%, rgba(254, 68, 54, 0.13), transparent 60%),
     var(--ink);
   background-attachment: fixed;
   font-optical-sizing: auto;
@@ -40,20 +58,20 @@ body {
 /* Thin, sleek scrollbar to match the premium dark theme. */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(245, 241, 232, 0.18) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
 }
 *::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 *::-webkit-scrollbar-thumb {
-  background: rgba(245, 241, 232, 0.16);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 241, 232, 0.28);
+  background: rgba(255, 255, 255, 0.28);
   background-clip: padding-box;
 }
 
@@ -76,13 +94,45 @@ html.lenis body {
 
 .reveal-ready {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 .reveal-ready.is-in {
   opacity: 1;
   transform: none;
+}
+
+/* ------------------------------------------------------------- */
+/* Decorative spiral ribbons: brand-colour, subtle, behind        */
+/* content, slowly drifting in and out at the edges. No text.     */
+/* ------------------------------------------------------------- */
+.spiral {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.spiral svg {
+  width: 100%;
+  height: 100%;
+  animation: spiral-drift 26s ease-in-out infinite alternate;
+}
+@keyframes spiral-drift {
+  from {
+    transform: translate3d(-3%, 1%, 0) rotate(-1deg);
+  }
+  to {
+    transform: translate3d(3%, -2%, 0) rotate(1deg);
+  }
+}
+
+/* Problem tiles: drift purely with scroll (no self-animation). */
+.pain-tile {
+  transform: translateY(calc((0.5 - var(--p, 0.5)) * (var(--sp, 30) * 1px)));
+  will-change: transform;
 }
 
 /* Hero load-in: CSS keyframes so it ends visible even without JS. */
@@ -138,25 +188,35 @@ html.lenis body {
 }
 
 .tape-box {
-  display: inline-block;
-  padding: 0.28em 0.85em;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3em 0.9em;
   font-weight: 800;
   font-style: italic;
   font-size: clamp(1.1rem, 2vw, 1.9rem);
   text-transform: uppercase;
   letter-spacing: 0.01em;
   transform: skewX(-9deg);
-  box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.6);
 }
 
 .tape-box--brand {
-  background: var(--paper);
-  color: var(--velocity-red);
+  background: var(--brand-white);
 }
 
 .tape-box--phone {
-  background: var(--velocity-red);
-  color: var(--paper);
+  background: var(--brand-orange);
+  color: var(--brand-white);
+}
+
+/* Logo rides upright (counter-skew) inside the slanted white box. */
+.tape-logo {
+  display: block;
+  height: 1.15em;
+  width: auto;
+  transform: skewX(9deg);
+}
+.tape-logo--icon {
+  height: 1.5em;
 }
 
 @keyframes tape-scroll {
@@ -177,8 +237,8 @@ html.lenis body {
   position: relative;
   overflow: hidden;
   background: #050506;
-  border-top: 1px solid rgba(245, 241, 232, 0.08);
-  border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   pointer-events: none;
 }
 
@@ -289,8 +349,12 @@ html.lenis body {
 
   .tape-track,
   .gallery-track,
-  .wa-nudge {
+  .wa-nudge,
+  .spiral svg {
     animation: none !important;
+  }
+  .pain-tile {
+    transform: none !important;
   }
 
   *,

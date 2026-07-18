@@ -154,13 +154,16 @@ export default function Testimonials() {
 
   return (
     <div>
-      <div className="text-center">
+      <div className="px-[clamp(22px,6vw,120px)] text-center">
         <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
           Testimonials
         </h2>
       </div>
 
-      <div ref={scrollerRef} className="testi-scroller mt-12 flex gap-6 overflow-x-auto pb-4">
+      <div
+        ref={scrollerRef}
+        className="testi-scroller mt-12 flex gap-6 overflow-x-auto px-[clamp(22px,6vw,120px)] pb-4"
+      >
         {cards.map((t, i) => (
           <div key={i} className="w-[clamp(280px,82vw,400px)] shrink-0">
             <TestimonialCard testimonial={t} index={i % TESTIMONIALS.length} />

@@ -49,7 +49,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      <TapeMarquee slope="up" />
+      <TapeMarquee slope="up" logo="icon" />
     </section>
   );
 }

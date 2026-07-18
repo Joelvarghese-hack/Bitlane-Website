@@ -1,4 +1,5 @@
 import Hero from "@/components/hero/Hero";
+import ProblemStatement from "@/components/problem/ProblemStatement";
 import TruckReveal from "@/components/truck/TruckReveal";
 import TapeMarquee from "@/components/marquee/TapeMarquee";
 import WhyPeopleLoveUs from "@/components/why/WhyPeopleLoveUs";
@@ -11,33 +12,38 @@ import Faq from "@/components/faq/Faq";
 import QuoteSection from "@/components/quote/QuoteSection";
 import Reveal from "@/components/scroll/Reveal";
 
-const SECTION = "px-[clamp(20px,5vw,88px)] py-16 md:py-24";
+// Roomier side margins; content containers a touch narrower for breathing room.
+const SECTION = "px-[clamp(22px,6vw,120px)] py-16 md:py-24";
+const INNER = "mx-auto w-full max-w-6xl";
 
 export default function Home() {
   return (
     <main>
       <Hero />
 
-      <TruckReveal />
-
-      <TapeMarquee slope="down" />
+      <ProblemStatement />
 
       <section id="why" className={SECTION}>
-        <Reveal className="mx-auto w-full max-w-7xl">
+        <Reveal className={INNER}>
           <WhyPeopleLoveUs />
         </Reveal>
       </section>
 
+      <TruckReveal />
+
+      <TapeMarquee slope="down" />
+
       <section id="services" className={SECTION}>
-        <Reveal className="mx-auto w-full max-w-7xl">
+        <Reveal className={INNER}>
           <ServiceShowcase />
         </Reveal>
       </section>
 
-      <TapeMarquee slope="up" />
+      <TapeMarquee slope="up" logo="icon" />
 
-      <section id="testimonials" className={SECTION}>
-        <Reveal className="mx-auto w-full max-w-7xl">
+      {/* Testimonials stay edge-to-edge (component adds its own inner padding). */}
+      <section id="testimonials" className="py-16 md:py-24">
+        <Reveal>
           <Testimonials />
         </Reveal>
       </section>
@@ -45,13 +51,13 @@ export default function Home() {
       <Gallery />
 
       <section id="about" className={SECTION}>
-        <Reveal className="mx-auto w-full max-w-7xl">
+        <Reveal className={INNER}>
           <AboutBitlane />
         </Reveal>
       </section>
 
       <section id="areas" className={SECTION}>
-        <Reveal className="mx-auto w-full max-w-7xl">
+        <Reveal className={INNER}>
           <ServiceAreas />
         </Reveal>
       </section>
@@ -59,13 +65,13 @@ export default function Home() {
       <TapeMarquee slope="down" />
 
       <section id="faq" className={SECTION}>
-        <Reveal className="mx-auto w-full max-w-7xl">
+        <Reveal className={INNER}>
           <Faq />
         </Reveal>
       </section>
 
       <section id="quote" className={`${SECTION} scroll-mt-24`}>
-        <Reveal className="mx-auto w-full max-w-7xl">
+        <Reveal className={INNER}>
           <QuoteSection />
         </Reveal>
       </section>

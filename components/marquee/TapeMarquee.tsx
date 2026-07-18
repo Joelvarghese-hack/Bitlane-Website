@@ -1,18 +1,36 @@
+import { asset } from "@/lib/asset";
+
 /**
- * Angled marquee made of slanted tape boxes: white boxes with the brand in red,
- * red boxes with the phone number in white, same size. The scroll direction
- * follows the slope (down = right to left, up = left to right), same speed for
- * every marquee. Decorative and non-interactive: no hover pause, no clicks.
+ * Angled marquee of slanted tape boxes: white boxes carrying the Bitlane logo
+ * (wordmark or, when `logo="icon"`, just the truck mark), alternating with
+ * orange boxes carrying the phone number in white. Boxes butt together with no
+ * gaps. The logo image is counter-skewed so it reads upright and neat inside
+ * the slanted tape. Scroll direction follows the slope; same speed everywhere.
  */
-export default function TapeMarquee({ slope = "down" }: { slope?: "up" | "down" }) {
+export default function TapeMarquee({
+  slope = "down",
+  logo = "wordmark",
+}: {
+  slope?: "up" | "down";
+  logo?: "wordmark" | "icon";
+}) {
   const rotate = slope === "down" ? "-2.4deg" : "2.4deg";
   const direction = slope === "up" ? "reverse" : "normal";
+  const src = logo === "icon" ? asset("/images/logo-icon.png") : asset("/images/logo-tape.png");
 
   const group = (
     <div className="tape-group">
       {Array.from({ length: 6 }).map((_, i) => (
         <span key={i} className="tape-item">
-          <span className="tape-box tape-box--brand">BITLANE</span>
+          <span className="tape-box tape-box--brand">
+            <img
+              src={src}
+              alt=""
+              aria-hidden="true"
+              draggable={false}
+              className={`tape-logo ${logo === "icon" ? "tape-logo--icon" : ""}`}
+            />
+          </span>
           <span className="tape-box tape-box--phone">(613) 770-1638</span>
         </span>
       ))}

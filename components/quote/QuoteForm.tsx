@@ -33,7 +33,7 @@ const HEARD_OPTIONS = [
 const SPECIAL_PLACEHOLDER = " i have a special item/appliances that needs extra care";
 
 const INPUT_CLASS =
-  "w-full rounded-2xl border border-paper/12 bg-black/45 px-4 py-3 text-sm text-paper placeholder:text-paper/35 outline-none transition-colors focus:border-amber-pulse/70 focus:bg-black/60";
+  "block w-full min-w-0 max-w-full appearance-none rounded-2xl border border-paper/12 bg-black/45 px-4 py-3 text-sm text-paper placeholder:text-paper/35 outline-none transition-colors [color-scheme:dark] focus:border-amber-pulse/70 focus:bg-black/60";
 
 const SELECT_CLASS = `${INPUT_CLASS} cursor-pointer appearance-none pr-10 [&>option]:bg-[#111116] [&>option]:text-paper`;
 
@@ -58,7 +58,7 @@ function SelectField({
   className?: string;
 }) {
   return (
-    <div className={className}>
+    <div className={`min-w-0 ${className}`}>
       <label htmlFor={id} className={LABEL_CLASS}>
         {label}
       </label>
@@ -108,7 +108,7 @@ function Field({
   className?: string;
 }) {
   return (
-    <div className={className}>
+    <div className={`min-w-0 ${className}`}>
       <label htmlFor={id} className={LABEL_CLASS}>
         {label}
       </label>
@@ -211,7 +211,7 @@ export default function QuoteForm({
         />
 
         {!compact && (
-          <div>
+          <div className="min-w-0">
             <label htmlFor="q-date" className={LABEL_CLASS}>
               Date of Planning
             </label>

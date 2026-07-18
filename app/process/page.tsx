@@ -39,16 +39,16 @@ function Roadmap() {
     <div className="overflow-x-auto">
       <svg viewBox="0 0 820 220" className="mx-auto h-auto w-full min-w-[640px] max-w-3xl" role="img" aria-label="Bitlane process roadmap from consult to move">
         {/* dotted route */}
-        <path d="M60 120 H760" stroke="#F4A261" strokeWidth="3" strokeDasharray="4 12" strokeLinecap="round" opacity="0.7" />
+        <path d="M60 120 H760" stroke="#FE4436" strokeWidth="3" strokeDasharray="4 12" strokeLinecap="round" opacity="0.7" />
         {STOPS.map((label, i) => {
           const x = 60 + i * ((760 - 60) / 3);
           return (
             <g key={label}>
-              <circle cx={x} cy="120" r="16" fill="#0F1015" stroke="#E63946" strokeWidth="3" />
-              <text x={x} y="126" textAnchor="middle" fontFamily="var(--font-bricolage), system-ui, sans-serif" fontSize="15" fontWeight="800" fill="#F5F1E8">
+              <circle cx={x} cy="120" r="16" fill="#2C2724" stroke="#FE4436" strokeWidth="3" />
+              <text x={x} y="126" textAnchor="middle" fontFamily="var(--font-title), system-ui, sans-serif" fontSize="15" fontWeight="800" fill="#FFFFFF">
                 {i + 1}
               </text>
-              <text x={x} y="170" textAnchor="middle" fontFamily="var(--font-bricolage), system-ui, sans-serif" fontSize="17" fontWeight="700" fill="#F5F1E8">
+              <text x={x} y="170" textAnchor="middle" fontFamily="var(--font-title), system-ui, sans-serif" fontSize="17" fontWeight="700" fill="#FFFFFF">
                 {label}
               </text>
             </g>
@@ -56,14 +56,14 @@ function Roadmap() {
         })}
         {/* start truck */}
         <g transform="translate(24 96)">
-          <rect x="0" y="6" width="30" height="18" rx="2" fill="#E63946" />
+          <rect x="0" y="6" width="30" height="18" rx="2" fill="#FE4436" />
           <path d="M30 10 h7 l6 6 v8 h-13 z" fill="#EFE9DC" />
           <circle cx="9" cy="26" r="4" fill="#0B0B0E" />
           <circle cx="34" cy="26" r="4" fill="#0B0B0E" />
         </g>
         {/* end pin */}
         <g transform="translate(770 92)">
-          <path d="M8 0a10 10 0 0 1 10 10c0 7-10 18-10 18S-2 17-2 10A10 10 0 0 1 8 0Z" fill="#E63946" />
+          <path d="M8 0a10 10 0 0 1 10 10c0 7-10 18-10 18S-2 17-2 10A10 10 0 0 1 8 0Z" fill="#FE4436" />
           <circle cx="8" cy="10" r="4" fill="#0B0B0E" />
         </g>
       </svg>

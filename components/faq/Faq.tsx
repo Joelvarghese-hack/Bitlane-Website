@@ -41,35 +41,32 @@ const FAQS = [
 
 export default function Faq() {
   return (
-    <div className="grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:gap-14">
-      <div className="lg:sticky lg:top-10 lg:self-start">
-        <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
+    <div className="mx-auto max-w-3xl">
+      <div className="text-center">
+        <h2 className="text-[clamp(2rem,3.8vw,3.2rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
           FAQs
         </h2>
-
-        <div className="mt-8 rounded-4xl border border-paper/10 bg-surface p-6">
-          <p className="text-sm text-paper/60">Still have questions?</p>
-          <p className="mt-1 text-base font-semibold text-paper">
-            Call us and get answers in minutes.
-          </p>
-          <ContactLink
-            type="tel"
-            value="(613) 770-1638"
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-velocity-red px-6 py-3 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 2.5h2.6l1.2 3-1.6 1.2a9.6 9.6 0 0 0 4.1 4.1l1.2-1.6 3 1.2v2.6c0 .6-.5 1-1 1C7 14 2 9 2 3.5c0-.5.4-1 1-1Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-            </svg>
-            (613) 770-1638
-          </ContactLink>
-        </div>
+        <p className="mt-4 text-base text-paper/60">
+          Everything worth knowing before moving day.
+        </p>
       </div>
 
-      <div className="grid gap-3">
+      <div className="mt-10 border-t border-paper/10">
         {FAQS.map((faq) => (
           <FaqItem key={faq.question} question={faq.question} answer={faq.answer} />
         ))}
       </div>
+
+      <p className="mt-9 text-center text-sm text-paper/55">
+        Still have questions?{" "}
+        <ContactLink
+          type="tel"
+          value="(613) 770-1638"
+          className="font-semibold text-velocity-red transition-colors hover:text-crimson-shadow"
+        >
+          Call (613) 770-1638
+        </ContactLink>
+      </p>
     </div>
   );
 }
