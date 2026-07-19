@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { asset } from "@/lib/asset";
@@ -15,15 +15,17 @@ const LINKS = [
 ];
 
 /**
- * Borderless floating "liquid glass" nav. Detached from the top, sticky and
- * always clickable. A heavy frosted backdrop blurs whatever scrolls under it,
- * while a semi-opaque dark layer keeps the nav's own logo, links and buttons at
- * full contrast regardless of what passes behind. Mobile uses a burger drawer.
+ * Borderless floating "liquid glass" nav — sticky, always clickable, blurring
+ * whatever scrolls under it while keeping its own contents at full contrast.
+ * The standard links share one white pill that glides to whichever link is
+ * hovered (its text flips black); the logo and WhatsApp are excluded from it.
+ * Mobile uses a burger drawer.
  */
 export default function Nav() {
   const pathname = usePathname();
   const quoteHref = pathname === "/" ? "#quote" : "/#quote";
   const [open, setOpen] = useState(false);
+  const [pill, setPill] = useState({ left: 0, width: 0, visible: false, active: "" });
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -33,9 +35,13 @@ export default function Nav() {
     };
   }, [open]);
 
+  const moveTo = (el: HTMLElement, href: string) =>
+    setPill({ left: el.offsetLeft, width: el.offsetWidth, visible: true, active: href });
+  const hidePill = () => setPill((p) => ({ ...p, visible: false, active: "" }));
+
   return (
     <header className="sticky top-0 z-50 px-[clamp(12px,4vw,44px)] pt-3">
-      <nav className="mx-auto flex max-w-6xl items-center gap-x-3 rounded-full bg-ink/60 px-4 py-2.5 shadow-[0_16px_40px_-18px_rgba(0,0,0,0.9)] backdrop-blur-2xl backdrop-saturate-150 md:gap-x-6 md:px-6">
+      <nav className="mx-auto flex max-w-6xl items-center gap-x-3 rounded-full bg-ink/60 px-4 py-2 shadow-[0_16px_40px_-18px_rgba(0,0,0,0.9)] backdrop-blur-2xl backdrop-saturate-150 md:gap-x-5 md:px-6">
         <Link href="/" aria-label="Bitlane, home" className="shrink-0">
           <img
             src={asset("/images/logo-nav.png")}
@@ -45,20 +51,31 @@ export default function Nav() {
           />
         </Link>
 
-        <div className="ml-2 hidden items-center gap-x-6 text-sm font-medium text-paper/80 md:flex lg:ml-6">
+        {/* standard links share one gliding white pill */}
+        <div
+          onMouseLeave={hidePill}
+          className="relative ml-2 hidden items-center text-sm font-medium md:flex lg:ml-5"
+        >
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute top-1/2 h-8 -translate-y-1/2 rounded-full bg-white transition-all duration-300 ease-out"
+            style={{ left: pill.left, width: pill.width, opacity: pill.visible ? 1 : 0 }}
+          />
           {LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`transition-colors hover:text-velocity-red ${
-                pathname === link.href ? "text-paper" : ""
+              onMouseEnter={(e) => moveTo(e.currentTarget, link.href)}
+              className={`relative z-10 whitespace-nowrap rounded-full px-3.5 py-1.5 transition-colors duration-200 ${
+                pill.active === link.href ? "text-black" : "text-paper/85"
               }`}
             >
               {link.label}
             </Link>
           ))}
-          <WhatsAppLink className="text-paper/80" />
         </div>
+
+        <WhatsAppLink className="ml-3 hidden text-paper/80 md:inline-flex" />
 
         <div className="ml-auto flex items-center gap-2 md:gap-4">
           <ContactLink
@@ -71,9 +88,12 @@ export default function Nav() {
           </ContactLink>
           <Link
             href={quoteHref}
-            className="hidden whitespace-nowrap rounded-full bg-velocity-red px-5 py-2.5 text-sm font-bold text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5 sm:inline-block"
+            className="hidden flex-col items-center rounded-full bg-velocity-red px-5 py-1.5 text-paper shadow-glow transition-all duration-200 hover:bg-crimson-shadow hover:-translate-y-0.5 sm:flex"
           >
-            Get a quote
+            <span className="whitespace-nowrap text-sm font-bold leading-tight">Get a quote</span>
+            <span className="whitespace-nowrap text-[0.6rem] font-medium leading-tight text-paper/85">
+              in less than 30 mins
+            </span>
           </Link>
 
           <button
@@ -123,9 +143,12 @@ export default function Nav() {
             <WhatsAppLink className="px-3 text-paper/85" />
             <Link
               href={quoteHref}
-              className="rounded-full bg-velocity-red px-5 py-3 text-center text-sm font-bold text-paper shadow-glow"
+              className="rounded-full bg-velocity-red px-5 py-3 text-center text-paper shadow-glow"
             >
-              Get a quote
+              <span className="block text-sm font-bold leading-tight">Get a quote</span>
+              <span className="block text-[0.65rem] font-medium leading-tight text-paper/85">
+                in less than 30 mins
+              </span>
             </Link>
           </div>
         </div>

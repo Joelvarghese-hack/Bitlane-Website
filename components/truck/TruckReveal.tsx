@@ -24,18 +24,17 @@ export default function TruckReveal() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
-    const X0 = -55; // fully off the left — headline stays readable
-    const X1 = 155; // fully off the right
+    const X0 = 150; // rest: fully off the right
+    const X1 = -50; // end: fully off the left
 
     const apply = () => {
       const rect = outer.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Truck holds off-left while the band sits centred (readable), then sweeps
-      // quickly left -> right as it scrolls up past centre; reverses on scroll up.
-      const q = clamp((0.28 * vh - rect.top) / (0.6 * vh), 0, 1);
+      // Truck (facing left) sweeps right -> left across the band as it passes
+      // through the viewport, tied smoothly to scroll; reverses on scroll up.
+      const q = clamp((vh - rect.top) / (vh + rect.height), 0, 1);
       const x = X0 + q * (X1 - X0);
       stage.style.setProperty("--truck-x", `${x}%`);
-      stage.style.setProperty("--wipe", `${clamp(x, 0, 100)}%`);
     };
 
     apply();
@@ -56,22 +55,19 @@ export default function TruckReveal() {
       <div
         ref={stageRef}
         className="relative mx-auto w-full max-w-6xl px-[clamp(20px,5vw,88px)]"
-        style={{ "--wipe": "0%", "--truck-x": "-30%" } as CSSProperties}
+        style={{ "--truck-x": "150%" } as CSSProperties}
       >
-        <h2
-          className="ml-auto max-w-full text-right text-[clamp(1rem,4.2vw,1.35rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-paper sm:text-center sm:text-[clamp(1.4rem,3vw,2.2rem)]"
-          style={{ clipPath: "inset(0 0 0 var(--wipe))" }}
-        >
+        <h2 className="mx-auto max-w-full text-center text-[clamp(1.05rem,4.4vw,1.4rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-paper sm:text-[clamp(1.5rem,3vw,2.3rem)]">
           You&apos;ll notice our truck from miles away!
         </h2>
 
         <div
-          className="pointer-events-none absolute top-1/2 z-10 w-[clamp(230px,56vw,660px)] -translate-x-1/2 -translate-y-1/2"
+          className="pointer-events-none absolute top-1/2 z-10 w-[clamp(150px,34vw,430px)] -translate-x-1/2 -translate-y-1/2"
           style={{ left: "var(--truck-x)" }}
           aria-hidden="true"
         >
           <img
-            src={asset("/images/truck-east.webp")}
+            src={asset("/images/truck-west.webp")}
             alt=""
             draggable={false}
             className="block h-auto w-full select-none"

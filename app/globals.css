@@ -250,10 +250,14 @@ html.lenis body {
   font-weight: 800;
   font-style: italic;
   font-size: clamp(1.1rem, 2vw, 1.9rem);
+  line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.01em;
   text-decoration: none;
   transform: skewX(-9deg);
+}
+.tape-box--phone {
+  text-decoration: none;
 }
 
 .tape-box--brand {

@@ -1,5 +1,4 @@
 import type { CSSProperties, ReactNode } from "react";
-import Spiral from "@/components/decor/Spiral";
 
 const S = {
   width: 26,
@@ -91,7 +90,6 @@ const FEATURES: Feature[] = [
 export default function WhyPeopleLoveUs() {
   return (
     <div className="relative">
-      <Spiral className="opacity-55" flip />
       <div className="relative z-10 mx-auto max-w-3xl text-center">
         <h2 className="text-[clamp(2rem,4.6vw,3.5rem)] font-extrabold leading-[1.03] tracking-tight text-paper">
           Here&apos;s where we come in.

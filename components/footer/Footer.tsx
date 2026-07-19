@@ -1,6 +1,5 @@
 import Link from "next/link";
 import ContactLink from "@/components/util/ContactLink";
-import Spiral from "@/components/decor/Spiral";
 import { asset } from "@/lib/asset";
 import { QUOTE_EMAIL } from "@/lib/formSubmit";
 import { SERVICES } from "@/lib/services";
@@ -25,7 +24,6 @@ const SOCIALS: { label: string; href: string; icon: React.ReactNode }[] = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-paper/10 bg-ink">
-      <Spiral className="opacity-50" />
       <div className="relative z-10 mx-auto max-w-7xl px-[clamp(20px,5vw,88px)] py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
           {/* brand */}
@@ -62,26 +60,6 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* trust badges, stacked, under the social icons (BBB is a placeholder;
-                supply the official asset and real license, and confirm accreditation) */}
-            <div className="mt-6 flex max-w-xs flex-col gap-3">
-              <span className="inline-flex items-center gap-2.5 rounded-xl border border-paper/15 bg-surface px-4 py-2.5">
-                <span className="flex h-8 w-11 items-center justify-center rounded-md bg-[#0b3c8c] text-[0.7rem] font-extrabold tracking-tight text-white">
-                  BBB
-                </span>
-                <span className="leading-tight">
-                  <span className="block text-xs font-bold text-paper">Accredited Business</span>
-                  <span className="block text-[0.65rem] text-paper/45">Rating A+</span>
-                </span>
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-xl border border-paper/15 bg-surface px-4 py-2.5 text-xs text-paper/60">
-                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M10 1.7l7 3v5c0 4.2-3 7.4-7 8.6-4-1.2-7-4.4-7-8.6v-5z" stroke="#FE4436" strokeWidth="1.4" strokeLinejoin="round" />
-                  <path d="M6.6 10.2l2.2 2.2 4.4-4.6" stroke="#FE4436" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                Licensed and insured · License No. 0000-0000
-              </span>
-            </div>
           </div>
 
           {/* company */}

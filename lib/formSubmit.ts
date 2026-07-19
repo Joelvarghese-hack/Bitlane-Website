@@ -1,4 +1,4 @@
-export const QUOTE_EMAIL = "joelofficial201@gmail.com";
+export const QUOTE_EMAIL = "amalshibu08@gmail.com";
 
 /**
  * Quote submissions are relayed to QUOTE_EMAIL by FormSubmit
@@ -11,7 +11,7 @@ export const QUOTE_EMAIL = "joelofficial201@gmail.com";
  * "Activate form" link that must be clicked once; after that every submission
  * is delivered straight to the inbox.
  */
-const ENDPOINT = "https://formsubmit.co/ajax/joelofficial201@gmail.com";
+const ENDPOINT = "https://formsubmit.co/ajax/amalshibu08@gmail.com";
 
 const FIELD_ORDER = [
   "Full Name",

@@ -47,7 +47,7 @@ export default function QuoteSection() {
                 </svg>
                 (613) 770-1638
               </ContactLink>
-              <span className="text-sm text-paper/50">We reply fast, often within the hour</span>
+              <span className="text-sm text-paper/50">We reply fast, often within 30 minutes</span>
             </div>
           </div>
         </div>

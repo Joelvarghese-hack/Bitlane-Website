@@ -276,7 +276,7 @@ export default function QuoteForm({
 
       {compact ? (
         <p className="mt-3 text-center text-xs text-paper/50">
-          No commitment. We reply fast, often within the hour.
+          No commitment. We reply fast, often within 30 minutes.
         </p>
       ) : (
         <p className="mt-4 text-xs leading-relaxed text-paper/45">

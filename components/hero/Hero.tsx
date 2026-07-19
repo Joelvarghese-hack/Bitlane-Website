@@ -36,7 +36,7 @@ export default function Hero() {
     <section className="hero-fade relative flex min-h-[92vh] items-center overflow-hidden">
       {/* background video (drop public/hero.mp4 in and it plays; poster until then) */}
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover opacity-80"
         autoPlay
         muted
         loop
@@ -52,7 +52,7 @@ export default function Hero() {
           // Darken only around the headline (centre-left); leave the very top
           // clear so the nav reads as a floating pill over the image, not a bar.
           background:
-            "radial-gradient(135% 125% at 22% 54%, rgba(35,31,32,0.92) 0%, rgba(35,31,32,0.55) 40%, rgba(35,31,32,0) 70%), linear-gradient(180deg, rgba(35,31,32,0) 58%, rgba(35,31,32,0.5) 100%)",
+            "radial-gradient(120% 95% at 20% 74%, rgba(35,31,32,0.92) 0%, rgba(35,31,32,0.5) 42%, rgba(35,31,32,0) 66%), linear-gradient(180deg, rgba(35,31,32,0) 60%, rgba(35,31,32,0.5) 100%)",
         }}
         aria-hidden="true"
       />
@@ -62,7 +62,7 @@ export default function Hero() {
           <h1 className="text-[clamp(2.6rem,5.6vw,4.7rem)] font-extrabold uppercase leading-[0.98] tracking-tight text-paper">
             Careful local professionals you can trust!
           </h1>
-          <p className="mt-5 text-lg font-semibold text-paper/85 md:text-xl">
+          <p className="mt-5 text-lg font-semibold tracking-[0.1em] text-paper/85 md:text-xl">
             Affordable moving and storage services
           </p>
 
