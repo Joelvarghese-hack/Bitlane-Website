@@ -49,8 +49,10 @@ export default function Hero() {
       <div
         className="absolute inset-0"
         style={{
+          // Darken only around the headline (centre-left); leave the very top
+          // clear so the nav reads as a floating pill over the image, not a bar.
           background:
-            "linear-gradient(90deg, rgba(5,5,6,0.94) 0%, rgba(5,5,6,0.82) 46%, rgba(5,5,6,0.5) 100%), linear-gradient(180deg, rgba(5,5,6,0.35) 0%, rgba(5,5,6,0) 30%, rgba(5,5,6,0.5) 100%)",
+            "radial-gradient(135% 125% at 22% 54%, rgba(35,31,32,0.92) 0%, rgba(35,31,32,0.55) 40%, rgba(35,31,32,0) 70%), linear-gradient(180deg, rgba(35,31,32,0) 58%, rgba(35,31,32,0.5) 100%)",
         }}
         aria-hidden="true"
       />

@@ -1,31 +1,30 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 /**
- * One-shot fade-up reveal on scroll. The hidden state is applied only after
- * JavaScript runs, so server-rendered content is always readable without JS.
- * Reveal is driven by a scroll/resize check (not IntersectionObserver) so it
- * fires reliably in every environment.
+ * Slides its child in on a gentle arc (from the top-left or top-right,
+ * alternating by index) once, when it scrolls into view. No reversal.
  */
-export default function Reveal({
+export default function ArcItem({
+  index,
   children,
-  className = "",
 }: {
+  index: number;
   children: ReactNode;
-  className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    el.classList.add("reveal-ready");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("is-in");
+      return;
+    }
     const check = () => {
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.9 && r.bottom > 0) {
+      if (r.top < window.innerHeight * 0.86 && r.bottom > 0) {
         el.classList.add("is-in");
         window.removeEventListener("scroll", check);
         window.removeEventListener("resize", check);
@@ -40,8 +39,14 @@ export default function Reveal({
     };
   }, []);
 
+  const left = index % 2 === 0;
+  const style = {
+    "--arc-x": left ? "-72px" : "72px",
+    "--arc-r": left ? "-5deg" : "5deg",
+  } as CSSProperties;
+
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className="arc-tile" style={style}>
       {children}
     </div>
   );

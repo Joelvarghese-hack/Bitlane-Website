@@ -114,25 +114,80 @@ html.lenis body {
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  pointer-events: none;
 }
-.spiral svg {
+.spiral > svg {
+  display: block;
   width: 100%;
   height: 100%;
-  animation: spiral-drift 26s ease-in-out infinite alternate;
 }
-@keyframes spiral-drift {
-  from {
-    transform: translate3d(-3%, 1%, 0) rotate(-1deg);
-  }
-  to {
-    transform: translate3d(3%, -2%, 0) rotate(1deg);
-  }
+.spiral-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.spiral-line--b {
+  transition-duration: 2.1s;
+  transition-delay: 0.28s;
+}
+.spiral.is-drawn .spiral-line {
+  stroke-dashoffset: 0;
 }
 
-/* Problem tiles: drift purely with scroll (no self-animation). */
+/* Problem tiles drift purely with scroll (no self-animation). */
 .pain-tile {
-  transform: translateY(calc((0.5 - var(--p, 0.5)) * (var(--sp, 30) * 1px)));
+  transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0);
   will-change: transform;
+}
+
+/* Staggered card reveal once the parent Reveal enters view. */
+.reveal-ready .mission-card {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.reveal-ready.is-in .mission-card {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.55s ease-out, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+/* Service tiles arc in from alternating sides, once, on scroll-in. */
+.arc-tile {
+  opacity: 0;
+  transform: translate(var(--arc-x, -70px), -34px) rotate(var(--arc-r, -5deg));
+  transition: opacity 0.7s ease-out, transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.arc-tile.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* "Don't settle" comparison: Bitlane card overlaps and eases forward on hover. */
+.ds-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.ds-bitlane {
+  position: relative;
+  z-index: 10;
+}
+@media (min-width: 768px) {
+  .ds-bitlane {
+    margin-left: -2.75rem;
+  }
+}
+@media (hover: hover) and (min-width: 768px) {
+  .ds-cards:has(.ds-bitlane:hover) .ds-bitlane {
+    transform: translateX(8px) scale(1.03);
+    z-index: 20;
+  }
+  .ds-cards:has(.ds-bitlane:hover) .ds-other {
+    transform: translateX(-16px);
+  }
+  .ds-cards:has(.ds-other:hover) .ds-bitlane {
+    transform: translateX(30px);
+  }
 }
 
 /* Hero load-in: CSS keyframes so it ends visible even without JS. */
@@ -190,12 +245,14 @@ html.lenis body {
 .tape-box {
   display: inline-flex;
   align-items: center;
-  padding: 0.3em 0.9em;
+  height: 2.05em;
+  padding: 0 0.95em;
   font-weight: 800;
   font-style: italic;
   font-size: clamp(1.1rem, 2vw, 1.9rem);
   text-transform: uppercase;
   letter-spacing: 0.01em;
+  text-decoration: none;
   transform: skewX(-9deg);
 }
 
@@ -211,12 +268,12 @@ html.lenis body {
 /* Logo rides upright (counter-skew) inside the slanted white box. */
 .tape-logo {
   display: block;
-  height: 1.15em;
+  height: 1.3em;
   width: auto;
   transform: skewX(9deg);
 }
 .tape-logo--icon {
-  height: 1.5em;
+  height: 1.6em;
 }
 
 @keyframes tape-scroll {
@@ -235,11 +292,9 @@ html.lenis body {
 
 .gallery-band {
   position: relative;
-  overflow: hidden;
-  background: #050506;
+  background: #1B1715;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  pointer-events: none;
 }
 
 .gallery-track {
@@ -341,6 +396,8 @@ html.lenis body {
   }
 
   .reveal-ready,
+  .reveal-ready .mission-card,
+  .arc-tile,
   .title-reveal {
     opacity: 1 !important;
     transform: none !important;
@@ -349,9 +406,11 @@ html.lenis body {
 
   .tape-track,
   .gallery-track,
-  .wa-nudge,
-  .spiral svg {
+  .wa-nudge {
     animation: none !important;
+  }
+  .spiral-line {
+    transition: none !important;
   }
   .pain-tile {
     transform: none !important;

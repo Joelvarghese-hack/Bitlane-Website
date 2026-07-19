@@ -1,7 +1,7 @@
 import Link from "next/link";
-import LogoLockup from "@/components/nav/LogoLockup";
 import ContactLink from "@/components/util/ContactLink";
 import Spiral from "@/components/decor/Spiral";
+import { asset } from "@/lib/asset";
 import { QUOTE_EMAIL } from "@/lib/formSubmit";
 import { SERVICES } from "@/lib/services";
 
@@ -30,7 +30,7 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
           {/* brand */}
           <div className="sm:col-span-2 lg:col-span-4">
-            <LogoLockup size="lg" />
+            <img src={asset("/images/logo-nav.png")} alt="Bitlane" className="h-8 w-auto" />
             <p className="mt-5 max-w-sm text-lg font-semibold leading-snug text-paper">
               We believe a stress-free move should be within everyone&apos;s reach.
             </p>

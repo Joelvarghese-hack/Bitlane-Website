@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { SERVICES } from "@/lib/services";
 import ServiceShowcaseCard from "@/components/services/ServiceShowcaseCard";
+import ArcItem from "@/components/services/ArcItem";
+import Spiral from "@/components/decor/Spiral";
 
 export default function ServiceShowcase() {
   return (
-    <div>
-      <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+    <div className="relative">
+      <Spiral className="opacity-60" />
+
+      <div className="relative z-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div>
           <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
             Our moving services
@@ -27,9 +31,11 @@ export default function ServiceShowcase() {
         </Link>
       </div>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {SERVICES.map((service) => (
-          <ServiceShowcaseCard key={service.slug} service={service} />
+      <div className="relative z-10 mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {SERVICES.map((service, i) => (
+          <ArcItem key={service.slug} index={i}>
+            <ServiceShowcaseCard service={service} />
+          </ArcItem>
         ))}
       </div>
     </div>

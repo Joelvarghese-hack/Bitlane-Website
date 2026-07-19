@@ -1,7 +1,13 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
 /**
- * Decorative spiral ribbon — brand-coloured, low-opacity, textless. Sits behind
- * content and drifts slowly in and out at the edges (CSS-only, so it never
- * touches the scroll). Purely atmospheric.
+ * Two spiral ribbon lines that DRAW themselves in once, when the section
+ * scrolls into view (IntersectionObserver toggles a class; the stroke is
+ * revealed via stroke-dashoffset). They cross/tangle near one edge and sweep
+ * off the other, then stay put — no looping, no reversing. Orange + white only,
+ * low-opacity, behind content, never touching contrast.
  */
 export default function Spiral({
   className = "",
@@ -10,34 +16,57 @@ export default function Spiral({
   className?: string;
   flip?: boolean;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("is-drawn");
+      return;
+    }
+    const check = () => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.82 && r.bottom > 0) {
+        el.classList.add("is-drawn");
+        window.removeEventListener("scroll", check);
+        window.removeEventListener("resize", check);
+      }
+    };
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => {
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
+  }, []);
+
   return (
-    <div className={`spiral ${className}`} aria-hidden="true">
+    <div ref={ref} className={`spiral ${className}`} aria-hidden="true">
       <svg
-        viewBox="0 0 1200 420"
+        viewBox="0 0 1200 520"
         fill="none"
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMid meet"
         style={flip ? { transform: "scaleX(-1)" } : undefined}
       >
         <path
-          d="M-80 300 C 180 110, 380 110, 560 235 S 940 380, 1280 130"
+          pathLength={1}
+          className="spiral-line"
+          d="M 150 -50 C 20 210, 120 360, 380 372 C 660 386, 920 300, 1330 384"
           stroke="var(--brand-orange)"
-          strokeWidth="54"
+          strokeWidth="13"
           strokeLinecap="round"
-          opacity="0.13"
+          opacity="0.55"
         />
         <path
-          d="M-80 330 C 210 150, 430 150, 610 275 S 980 410, 1280 175"
-          stroke="#D62D1E"
-          strokeWidth="22"
+          pathLength={1}
+          className="spiral-line spiral-line--b"
+          d="M -40 150 C 260 30, 250 -20, 470 140 C 720 320, 1000 300, 1330 196"
+          stroke="var(--brand-white)"
+          strokeWidth="9"
           strokeLinecap="round"
-          opacity="0.12"
-        />
-        <path
-          d="M-80 268 C 160 90, 360 90, 540 205 S 900 350, 1280 95"
-          stroke="var(--brand-orange)"
-          strokeWidth="10"
-          strokeLinecap="round"
-          opacity="0.10"
+          opacity="0.4"
         />
       </svg>
     </div>

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Spiral from "@/components/decor/Spiral";
 
 const S = {
@@ -92,22 +92,15 @@ export default function WhyPeopleLoveUs() {
   return (
     <div className="relative">
       <Spiral className="opacity-55" flip />
-      <div className="relative z-10 mx-auto max-w-2xl text-center">
-        <span className="inline-block rounded-full bg-velocity-red/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-velocity-red">
-          Our mission
-        </span>
-        <h2 className="mt-6 text-[clamp(2rem,3.8vw,3.2rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
+      <div className="relative z-10 mx-auto max-w-3xl text-center">
+        <h2 className="text-[clamp(2rem,4.6vw,3.5rem)] font-extrabold leading-[1.03] tracking-tight text-paper">
           Here&apos;s where we come in.
         </h2>
-        <p className="mt-4 text-base leading-relaxed text-paper/60">
-          Every headache above has a fix built into the way we work. This is the
-          standard we hold ourselves to on every single move.
-        </p>
       </div>
 
       <div className="relative z-10 mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-        {FEATURES.map((f) => (
-          <div key={f.title}>
+        {FEATURES.map((f, i) => (
+          <div key={f.title} className="mission-card" style={{ "--i": i } as CSSProperties}>
             <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${f.tint}`}>
               {f.icon}
             </span>

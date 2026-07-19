@@ -4,10 +4,12 @@ import TruckReveal from "@/components/truck/TruckReveal";
 import TapeMarquee from "@/components/marquee/TapeMarquee";
 import WhyPeopleLoveUs from "@/components/why/WhyPeopleLoveUs";
 import ServiceShowcase from "@/components/services/ServiceShowcase";
+import DontSettle from "@/components/compare/DontSettle";
 import Testimonials from "@/components/testimonials/Testimonials";
 import Gallery from "@/components/gallery/Gallery";
 import AboutBitlane from "@/components/about/AboutBitlane";
 import ServiceAreas from "@/components/area/ServiceAreas";
+import ContactTile from "@/components/area/ContactTile";
 import Faq from "@/components/faq/Faq";
 import QuoteSection from "@/components/quote/QuoteSection";
 import Reveal from "@/components/scroll/Reveal";
@@ -39,6 +41,12 @@ export default function Home() {
         </Reveal>
       </section>
 
+      <section id="why-us" className={SECTION}>
+        <Reveal className={INNER}>
+          <DontSettle />
+        </Reveal>
+      </section>
+
       <TapeMarquee slope="up" logo="icon" />
 
       {/* Testimonials stay edge-to-edge (component adds its own inner padding). */}
@@ -59,6 +67,12 @@ export default function Home() {
       <section id="areas" className={SECTION}>
         <Reveal className={INNER}>
           <ServiceAreas />
+        </Reveal>
+      </section>
+
+      <section className="px-[clamp(22px,6vw,120px)] pb-16 md:pb-24">
+        <Reveal className={INNER}>
+          <ContactTile />
         </Reveal>
       </section>
 

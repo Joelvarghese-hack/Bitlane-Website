@@ -1,79 +1,50 @@
-"use client";
-
-import { useEffect, useRef, type CSSProperties } from "react";
 import Spiral from "@/components/decor/Spiral";
 
 /**
- * Pain-point section that sits right after the hero. The tiles do not animate on
- * their own — they drift purely with the scroll (parallax), each at its own
- * speed, so they float up as the reader moves down the page. Uses the site's own
- * colours (no white-to-black transition), and leads into the mission section.
+ * Problem section. The headline stays pinned in the centre (sticky) while the
+ * individual pain-point tiles scroll up past it, scattered left and right. Pure
+ * CSS scroll — the page never pauses. Each tile is its own dark box with an
+ * orange X and its text stacked. Leads straight into the mission section.
  */
 const PAINS = [
-  "Quotes that balloon on moving day",
-  "Movers who show up late, or never",
-  "Scratched walls and broken furniture",
-  "Hidden fees buried in the fine print",
-  "Getting ghosted the moment you have a question",
-  "Boxes tossed around with zero care",
-];
+  { text: "Quotes that balloon on moving day", top: "15%", side: "left", off: "3%" },
+  { text: "Movers who show up late, or never", top: "29%", side: "right", off: "3%" },
+  { text: "Scratched walls and broken furniture", top: "45%", side: "left", off: "7%" },
+  { text: "Hidden fees buried in the fine print", top: "60%", side: "right", off: "6%" },
+  { text: "Boxes tossed around with zero care", top: "76%", side: "left", off: "4%" },
+  { text: "Getting ghosted when you have a question", top: "90%", side: "right", off: "4%" },
+] as const;
 
 export default function ProblemStatement() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const onScroll = () => {
-      const r = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      el.style.setProperty("--p", String(p));
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden px-[clamp(22px,6vw,120px)] py-20 md:py-28"
-      style={{ "--p": 0.5 } as CSSProperties}
-    >
-      <Spiral className="opacity-70" />
-
-      <div className="relative z-10 mx-auto max-w-3xl text-center">
-        <span className="inline-block rounded-full bg-velocity-red/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-velocity-red">
-          The problem
-        </span>
-        <h2 className="mt-6 text-[clamp(1.9rem,4.6vw,3.3rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
-          Moving day shouldn&apos;t be a mess.
+    <section className="relative h-[200vh]">
+      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-6">
+        <Spiral className="opacity-70" />
+        <h2 className="relative z-10 max-w-4xl text-center text-[clamp(2rem,6.4vw,4.4rem)] font-extrabold leading-[1.02] tracking-tight text-paper">
+          Moving day shouldn&apos;t be a{" "}
+          <span className="text-velocity-red">mess</span>.
         </h2>
-        <p className="mt-5 text-base leading-relaxed text-paper/60 md:text-lg">
-          Most moves go sideways for the same handful of reasons. Any of these
-          sound painfully familiar?
-        </p>
       </div>
 
-      <div className="relative z-10 mx-auto mt-14 flex max-w-4xl flex-wrap justify-center gap-4">
-        {PAINS.map((pain, i) => (
+      <div className="pointer-events-none absolute inset-0 z-20">
+        {PAINS.map((p) => (
           <div
-            key={pain}
-            className="pain-tile flex items-center gap-3 rounded-2xl border border-paper/10 bg-surface/80 px-5 py-4 text-left shadow-panel backdrop-blur-sm"
-            style={{ "--sp": 26 + i * 16 } as CSSProperties}
+            key={p.text}
+            className="absolute w-[clamp(188px,62vw,260px)] rounded-2xl bg-surface/90 p-5 shadow-panel ring-1 ring-white/5 backdrop-blur-sm"
+            style={
+              p.side === "left"
+                ? { top: p.top, left: p.off }
+                : { top: p.top, right: p.off }
+            }
           >
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-velocity-red text-paper">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+            <span className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-velocity-red text-paper">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </span>
-            <span className="text-sm font-semibold text-paper/85">{pain}</span>
+            <p className="text-base font-bold leading-snug text-paper md:text-lg">
+              {p.text}
+            </p>
           </div>
         ))}
       </div>
