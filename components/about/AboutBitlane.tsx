@@ -61,7 +61,9 @@ export default function AboutBitlane() {
           />
           <img
             src={asset("/images/owner.jpg")}
-            alt="The Bitlane owner"
+            alt="Portrait of the Bitlane owner"
+            width="820"
+            height="1025"
             loading="lazy"
             decoding="async"
             className="relative aspect-[4/5] w-full -rotate-2 object-cover object-top shadow-2xl"

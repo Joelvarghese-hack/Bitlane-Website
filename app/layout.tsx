@@ -28,9 +28,14 @@ const body = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bitlanerelocations.com"),
   title: "Bitlane | Stress Free Moving Experience",
   description:
     "Bitlane is a Kingston moving company serving the GTA, Ottawa, and Montreal. Residential, commercial, and specialty moves with one clear all inclusive price.",
+  alternates: { canonical: "/" },
+  // Stop iOS/Safari from auto-linking phone-number-like text (which adds the
+  // unwanted blue underline under the marquee phone numbers on mobile).
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {

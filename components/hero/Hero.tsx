@@ -41,6 +41,7 @@ export default function Hero() {
         muted
         loop
         playsInline
+        preload="auto"
         poster={asset("/images/hero-poster.jpg")}
         aria-hidden="true"
       >

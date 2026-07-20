@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import TestimonialCard from "@/components/testimonials/TestimonialCard";
+import ScrollArrows from "@/components/util/ScrollArrows";
 
 export type Testimonial = {
   name: string;
@@ -170,6 +171,8 @@ export default function Testimonials() {
           </div>
         ))}
       </div>
+
+      <ScrollArrows scrollerRef={scrollerRef} label="reviews" className="mt-7" />
     </div>
   );
 }

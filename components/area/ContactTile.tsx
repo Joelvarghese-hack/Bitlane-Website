@@ -13,6 +13,9 @@ export default function ContactTile() {
         <img
           src={asset("/images/owner.jpg")}
           alt="Bitlane owner"
+          width="64"
+          height="64"
+          loading="lazy"
           className="h-16 w-16 rounded-2xl object-cover object-top"
         />
         <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-surface bg-green-400" />

@@ -9,7 +9,7 @@ const AVATAR_TINTS = [
 
 function Stars() {
   return (
-    <span className="flex items-center gap-0.5" aria-label="5 out of 5 stars">
+    <span role="img" className="flex items-center gap-0.5" aria-label="Rated 5 out of 5 stars">
       {[0, 1, 2, 3, 4].map((i) => (
         <svg key={i} width="16" height="16" viewBox="0 0 20 20" aria-hidden="true">
           <path

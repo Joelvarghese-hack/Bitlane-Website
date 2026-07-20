@@ -3,10 +3,9 @@
 import { useState } from "react";
 
 /**
- * Interactive service-area map (Google embed, so it keeps the familiar red map
- * pin and the normal light Google look). Clicking a town does NOT black the map
- * out: a quick brand "whoosh" sweeps across, a red coverage ring pulses over the
- * area, and the map itself scales in smoothly to the new city.
+ * Interactive service-area map (Google embed, so it keeps the familiar look and
+ * built-in zoom controls). Clicking a town smoothly zooms/eases the map to that
+ * city — no blackout, no overlays drawn on top of the map.
  */
 const REGIONS = [
   {
@@ -26,14 +25,12 @@ const REGIONS = [
 export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean }) {
   const [active, setActive] = useState("Kingston");
   const [ready, setReady] = useState(true);
-  const [whoosh, setWhoosh] = useState(0);
   const src = `https://maps.google.com/maps?q=${encodeURIComponent(`${active}, Canada`)}&z=11&output=embed`;
 
   const go = (name: string) => {
     if (name === active) return;
     setReady(false);
     setActive(name);
-    setWhoosh((n) => n + 1); // restart the whoosh + ring animations
   };
 
   return (
@@ -60,12 +57,6 @@ export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
-
-          {/* red coverage ring over the selected city area */}
-          <div key={`ring-${whoosh}`} className="map-ring" aria-hidden="true" />
-
-          {/* brand whoosh sweep, restarts on every city change */}
-          {whoosh > 0 && <div key={`whoosh-${whoosh}`} className="map-whoosh" aria-hidden="true" />}
         </div>
 
         <div className="flex flex-col gap-7">

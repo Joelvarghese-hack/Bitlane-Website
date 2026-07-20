@@ -45,6 +45,8 @@ export default function Nav() {
           <img
             src={asset("/images/logo-nav.png")}
             alt="Bitlane"
+            width="120"
+            height="28"
             draggable={false}
             className="h-6 w-auto md:h-7"
           />
@@ -130,6 +132,7 @@ export default function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
+                tabIndex={open ? 0 : -1}
                 className={`rounded-xl px-3 py-3 transition-colors hover:bg-white/5 hover:text-velocity-red ${
                   pathname === link.href ? "text-velocity-red" : ""
                 }`}
@@ -139,9 +142,10 @@ export default function Nav() {
             ))}
           </div>
           <div className="mt-4 flex flex-col gap-4 border-t border-white/10 pt-5">
-            <WhatsAppLink className="px-3 text-paper/85" />
+            <WhatsAppLink className="px-3 text-paper/85" tabIndex={open ? 0 : -1} />
             <Link
               href={quoteHref}
+              tabIndex={open ? 0 : -1}
               className="rounded-full bg-velocity-red px-5 py-3 text-center text-paper shadow-glow"
             >
               <span className="block text-sm font-bold leading-tight">Get a quote</span>

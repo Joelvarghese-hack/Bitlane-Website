@@ -8,13 +8,20 @@ export const WA_MESSAGE =
   "Hi Bitlane, I would like to get a quote for my upcoming move.";
 const WA_HREF = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`;
 
-export default function WhatsAppLink({ className = "" }: { className?: string }) {
+export default function WhatsAppLink({
+  className = "",
+  tabIndex,
+}: {
+  className?: string;
+  tabIndex?: number;
+}) {
   return (
     <a
       href={WA_HREF}
       title={WA_MESSAGE}
       target="_blank"
       rel="noopener noreferrer"
+      tabIndex={tabIndex}
       className={`wa-nudge inline-flex items-center gap-2 whitespace-nowrap transition-colors hover:text-[#25D366] ${className}`}
     >
       <svg

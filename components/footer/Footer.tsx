@@ -15,8 +15,6 @@ const FOOTER_SERVICES = SERVICES.slice(0, 5);
 // Placeholder links until real handles are supplied.
 const SOCIALS: { label: string; href: string; icon: React.ReactNode }[] = [
   { label: "Facebook", href: "#", icon: <path d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.5c0-.8.2-1.3 1.4-1.3H16V5.8c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v1.9H8.2V14h2.4v7z" /> },
-  { label: "X", href: "#", icon: <path d="M17.5 4h2.6l-5.7 6.5L21 20h-5.3l-4.1-5.4L6.8 20H4.2l6.1-7L4 4h5.4l3.7 4.9zm-.9 14.4h1.4L8.4 5.5H6.9z" /> },
-  { label: "LinkedIn", href: "#", icon: <path d="M6.9 8.8V19H3.7V8.8zM5.3 4.3a1.9 1.9 0 1 1 0 3.7 1.9 1.9 0 0 1 0-3.7zM9 8.8h3.1v1.4h.05c.43-.8 1.5-1.7 3.05-1.7 3.25 0 3.85 2.1 3.85 4.9V19h-3.2v-4.9c0-1.2 0-2.7-1.65-2.7s-1.9 1.3-1.9 2.6V19H9z" /> },
   { label: "Instagram", href: "#", icon: <><rect x="4" y="4" width="16" height="16" rx="4.5" fill="none" stroke="currentColor" strokeWidth="1.7" /><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" strokeWidth="1.7" /><circle cx="16.4" cy="7.6" r="1.1" /></> },
 ];
 
@@ -63,7 +61,7 @@ export default function Footer() {
 
           {/* company */}
           <nav aria-label="Company" className="lg:col-span-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/45">Company</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/65">Company</p>
             <ul className="mt-4 grid gap-3 text-sm">
               {COMPANY_LINKS.map((link) => (
                 <li key={link.href}>
@@ -77,7 +75,7 @@ export default function Footer() {
 
           {/* services */}
           <nav aria-label="Services" className="lg:col-span-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/45">Services</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/65">Services</p>
             <ul className="mt-4 grid gap-3 text-sm">
               {FOOTER_SERVICES.map((service) => (
                 <li key={service.slug}>
@@ -91,7 +89,7 @@ export default function Footer() {
 
           {/* contact + hours */}
           <div className="lg:col-span-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/45">Main office</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/65">Main office</p>
             <ul className="mt-4 grid gap-2.5 text-sm">
               <li className="text-paper/70">Kingston, Ontario, Canada</li>
               <li>
@@ -105,7 +103,7 @@ export default function Footer() {
                 </ContactLink>
               </li>
             </ul>
-            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-paper/45">Hours</p>
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-paper/65">Hours</p>
             <ul className="mt-3 grid gap-1.5 text-sm text-paper/70">
               <li>Mon to Fri: 8:00 AM to 6:00 PM</li>
               <li>Sat and Sun: 8:00 AM to 5:00 PM</li>
@@ -114,7 +112,7 @@ export default function Footer() {
         </div>
 
         {/* bottom bar */}
-        <div className="mt-12 flex flex-col gap-4 border-t border-paper/10 pt-6 text-sm text-paper/45 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-paper/10 pt-6 text-sm text-paper/65 md:flex-row md:items-center md:justify-between">
           <p>© 2026 Bitlane. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link href="/privacy-policy" className="transition-colors hover:text-amber-pulse">

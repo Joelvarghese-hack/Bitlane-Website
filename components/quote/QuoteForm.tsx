@@ -1,8 +1,12 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 
-import { sendQuote } from "@/lib/formSubmit";
+import { sendQuote, HONEYPOT_FIELD, TURNSTILE_FIELD } from "@/lib/formSubmit";
+
+// Set NEXT_PUBLIC_TURNSTILE_SITE_KEY in Cloudflare Pages to switch the bot
+// challenge on. Until then the widget stays off and the form works as normal.
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
 const MOVE_SIZES = [
   "Studio or less",
@@ -135,15 +139,51 @@ export default function QuoteForm({
   const compact = variant === "compact";
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
 
+  // Load the Cloudflare Turnstile script only when a site key is configured.
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return;
+    if (document.getElementById("cf-turnstile-script")) return;
+    const s = document.createElement("script");
+    s.id = "cf-turnstile-script";
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  }, []);
+
+  const goThankYou = () => {
+    const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+    window.location.href = `${base}/thank-you/`;
+  };
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
+
+    // Honeypot: real users can't see or fill this field. If it has any value the
+    // request is a bot — show a normal "success" screen and relay nothing.
+    const trap = (form.elements.namedItem(HONEYPOT_FIELD) as HTMLInputElement | null)?.value ?? "";
+    if (trap.trim()) {
+      goThankYou();
+      return;
+    }
+
+    // If the Turnstile challenge is enabled, refuse to dispatch without a token.
+    if (TURNSTILE_SITE_KEY) {
+      const token = (form.elements.namedItem(TURNSTILE_FIELD) as HTMLInputElement | null)?.value ?? "";
+      if (!token.trim()) {
+        setStatus("error");
+        return;
+      }
+    }
+
     setStatus("sending");
     try {
       await sendQuote(form);
-      const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-      // Stay on the site: navigate to the in-site thank-you page.
-      window.location.href = `${base}/thank-you/`;
+      // Scrub the raw phone / email / addresses out of the DOM the moment the
+      // payload is on the wire, so the values don't linger in browser state.
+      form.reset();
+      goThankYou();
     } catch {
       setStatus("error");
     }
@@ -151,6 +191,31 @@ export default function QuoteForm({
 
   return (
     <form onSubmit={handleSubmit}>
+      {status === "sending" && (
+        <div
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-5 bg-ink/85 backdrop-blur-md"
+          role="status"
+          aria-live="assertive"
+        >
+          <span className="h-12 w-12 animate-spin rounded-full border-[3px] border-white/20 border-t-velocity-red" />
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-paper">
+            Securing your details…
+          </p>
+        </div>
+      )}
+
+      {/* Invisible honeypot trap — hidden from humans, tempting to scraper bots. */}
+      <div className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden" aria-hidden="true">
+        <label htmlFor="q-mname">Middle name</label>
+        <input
+          id="q-mname"
+          type="text"
+          name={HONEYPOT_FIELD}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <Field id="q-name" name="Full Name" label="Full Name" required autoComplete="name" />
         <Field id="q-phone" name="Phone" label="Phone" type="tel" required autoComplete="tel" />
@@ -254,6 +319,14 @@ export default function QuoteForm({
           </div>
         )}
       </div>
+
+      {TURNSTILE_SITE_KEY && (
+        <div
+          className="cf-turnstile mt-5"
+          data-sitekey={TURNSTILE_SITE_KEY}
+          data-theme="dark"
+        />
+      )}
 
       <button
         type="submit"

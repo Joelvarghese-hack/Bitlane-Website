@@ -27,6 +27,8 @@ export default function TapeMarquee({
               src={src}
               alt=""
               aria-hidden="true"
+              width={logo === "icon" ? 40 : 150}
+              height={40}
               draggable={false}
               className={`tape-logo ${logo === "icon" ? "tape-logo--icon" : ""}`}
             />

@@ -67,6 +67,8 @@ export default function TruckReveal() {
           <img
             src={asset("/images/truck-solid.webp")}
             alt=""
+            width="1500"
+            height="617"
             draggable={false}
             className="block h-auto w-full select-none"
           />

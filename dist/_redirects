@@ -1,0 +1,9 @@
+# Cloudflare Pages redirect rules.
+# The static export (trailingSlash: true) already emits clean /path/ URLs with
+# their own index.html, and Cloudflare Pages serves /404.html automatically, so
+# no SPA catch-all is needed here.
+#
+# URL canonicalization (www -> apex): enable this line AFTER you connect the
+# custom domain in the Cloudflare Pages dashboard. Until then leave it commented
+# so it can't misfire on the *.pages.dev preview URL.
+# https://www.bitlanerelocations.com/*  https://bitlanerelocations.com/:splat  301!

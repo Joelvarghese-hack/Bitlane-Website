@@ -20,15 +20,23 @@ const OURS = [
   "Fast, friendly support",
 ];
 
-function Check({ muted = false }: { muted?: boolean }) {
+/** Green-ish tick for Bitlane's list. */
+function Check() {
   return (
-    <span
-      className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
-        muted ? "bg-paper/15 text-paper/40" : "bg-ink text-paper"
-      }`}
-    >
+    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-paper">
       <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path d="M2.5 6.2l2.3 2.3L9.5 3.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  );
+}
+
+/** Red X cross for the "other companies" list, to contrast with our ticks. */
+function Cross() {
+  return (
+    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-velocity-red/15 text-velocity-red">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M3.2 3.2l5.6 5.6M8.8 3.2l-5.6 5.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
     </span>
   );
@@ -47,7 +55,7 @@ export default function DontSettle() {
           <ul className="mt-6 space-y-3.5">
             {OTHERS.map((o) => (
               <li key={o} className="flex items-start gap-3 text-sm text-paper/55 md:text-base">
-                <Check muted />
+                <Cross />
                 {o}
               </li>
             ))}

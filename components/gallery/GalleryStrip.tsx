@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { asset } from "@/lib/asset";
+import ScrollArrows from "@/components/util/ScrollArrows";
 
 const PHOTOS = [
   { src: "/images/gallery/g1.jpg", alt: "Bitlane mover carrying a wrapped box" },
@@ -83,13 +84,15 @@ export default function GalleryStrip() {
   const items = [...PHOTOS, ...PHOTOS];
 
   return (
-    <div className="gallery-band">
+    <div className="gallery-band relative">
       <div ref={scrollerRef} className="testi-scroller flex overflow-x-auto">
         {items.map((p, i) => (
           <div key={`${p.src}-${i}`} className="gallery-cell">
             <img
               src={asset(p.src)}
               alt={p.alt}
+              width="500"
+              height="420"
               loading="lazy"
               draggable={false}
               className="h-full w-full object-cover"
@@ -97,6 +100,12 @@ export default function GalleryStrip() {
           </div>
         ))}
       </div>
+
+      <ScrollArrows
+        scrollerRef={scrollerRef}
+        label="photos"
+        className="pointer-events-none absolute inset-x-0 bottom-4 [&>button]:pointer-events-auto"
+      />
     </div>
   );
 }

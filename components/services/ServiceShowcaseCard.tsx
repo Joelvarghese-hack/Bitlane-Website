@@ -10,7 +10,9 @@ export default function ServiceShowcaseCard({ service }: { service: Service }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={asset(`/images/services/${service.slug}.jpg`)}
-          alt={service.title}
+          alt={`Bitlane ${service.title} service`}
+          width="640"
+          height="400"
           loading="lazy"
           decoding="async"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -30,9 +32,10 @@ export default function ServiceShowcaseCard({ service }: { service: Service }) {
         </p>
         <Link
           href={`/services#${service.slug}`}
+          aria-label={`Learn more about Bitlane ${service.title}`}
           className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-pulse transition-colors hover:text-paper"
         >
-          Learn more
+          Learn more<span className="sr-only"> about {service.title}</span>
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
             <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
