@@ -46,7 +46,7 @@ export default function ArcItem({
   } as CSSProperties;
 
   return (
-    <div ref={ref} className="arc-tile" style={style}>
+    <div ref={ref} className="arc-tile h-full" style={style}>
       {children}
     </div>
   );

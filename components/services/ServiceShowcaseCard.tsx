@@ -4,7 +4,7 @@ import { asset } from "@/lib/asset";
 
 export default function ServiceShowcaseCard({ service }: { service: Service }) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-4xl border border-paper/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-paper/20 hover:shadow-panel">
+    <article className="group flex h-full flex-col overflow-hidden rounded-4xl border border-paper/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-paper/20 hover:shadow-panel">
       {/* photo */}
       <div className="relative aspect-[16/10] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -54,7 +54,7 @@ export default function DontSettle() {
           </ul>
         </div>
 
-        <div className="ds-card ds-bitlane w-full rounded-4xl bg-velocity-red p-7 text-ink shadow-glow md:max-w-md md:p-10">
+        <div className="ds-card ds-bitlane w-full rounded-4xl bg-velocity-red p-7 text-ink shadow-panel md:max-w-md md:p-10">
           <p className="text-xl font-extrabold tracking-tight">Bitlane</p>
           <ul className="mt-6 space-y-3.5">
             {OURS.map((o) => (

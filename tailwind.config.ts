@@ -9,19 +9,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "velocity-red": "#E63946",
-        "crimson-shadow": "#8B1E2D",
-        "amber-pulse": "#F4A261",
-        "amber-deep": "#C77B3F",
-        ink: "#050506",
-        surface: "#0F1015",
-        "surface-2": "#16161D",
-        paper: "#F5F1E8",
-        navy: "#1A2B4A",
-        gold: "#C9A961",
+        /* ============================================================= */
+        /* BRAND COLORS — EDIT HEX HERE (mirror in app/globals.css :root) */
+        /* orange #FE4436 · deep black #231F20 · pure white #FFFFFF      */
+        /* ============================================================= */
+        "velocity-red": "#FE4436", // primary orange accent
+        "crimson-shadow": "#D62D1E", // accent hover / pressed
+        "amber-pulse": "#FE4436", // secondary accent (orange)
+        "amber-deep": "#D62D1E",
+        ink: "#231F20", // deep black — page background
+        surface: "#2C2724", // elevated card
+        "surface-2": "#372F2C", // floating card
+        paper: "#FFFFFF", // pure white — text / light surfaces
+        navy: "#2C2724",
+        gold: "#FE4436",
       },
       fontFamily: {
-        sans: ["var(--font-bricolage)", "system-ui", "sans-serif"],
+        // Body / subtitles: Open Sauce. Titles: Montserrat.
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
+        title: ["var(--font-title)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         "4xl": "2rem",
@@ -29,7 +35,7 @@ const config: Config = {
       },
       boxShadow: {
         panel: "0 30px 80px -40px rgba(0, 0, 0, 0.9)",
-        glow: "0 24px 70px -30px rgba(230, 57, 70, 0.45)",
+        glow: "0 24px 70px -30px rgba(254, 68, 54, 0.5)",
       },
     },
   },

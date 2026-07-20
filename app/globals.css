@@ -212,6 +212,7 @@ html.lenis body {
 
 .tape-wrap {
   position: relative;
+  z-index: 20;
   overflow: hidden;
   padding: 1.15rem 0;
   pointer-events: none;
@@ -286,6 +287,76 @@ html.lenis body {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* ------------------------------------------------------------- */
+/* Service-area map: a quick "whoosh" sweep + coverage-ring pulse  */
+/* fire each time a new city is selected. Decorative overlays only. */
+/* ------------------------------------------------------------- */
+.map-whoosh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(254, 68, 54, 0) 35%,
+    rgba(254, 68, 54, 0.42) 50%,
+    rgba(254, 68, 54, 0) 65%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: map-whoosh 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes map-whoosh {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.map-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: clamp(120px, 30%, 220px);
+  width: clamp(120px, 30%, 220px);
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  border: 2.5px solid var(--velocity-red);
+  box-shadow: 0 0 0 4px rgba(254, 68, 54, 0.16), inset 0 0 34px rgba(254, 68, 54, 0.14);
+  background: rgba(254, 68, 54, 0.06);
+  pointer-events: none;
+}
+.map-ring::after {
+  content: "";
+  position: absolute;
+  inset: -2.5px;
+  border-radius: 9999px;
+  border: 2.5px solid var(--velocity-red);
+  animation: map-ring-pulse 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes map-ring-pulse {
+  from {
+    transform: scale(0.55);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-whoosh {
+    animation: none !important;
+    display: none;
+  }
+  .map-ring::after {
+    animation: none !important;
+    display: none;
   }
 }
 

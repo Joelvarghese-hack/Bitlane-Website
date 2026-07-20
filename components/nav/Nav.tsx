@@ -10,7 +10,6 @@ import WhatsAppLink from "@/components/nav/WhatsAppLink";
 const LINKS = [
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
-  { href: "/process", label: "Process" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -41,7 +40,7 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-50 px-[clamp(12px,4vw,44px)] pt-3">
-      <nav className="mx-auto flex max-w-6xl items-center gap-x-3 rounded-full bg-ink/60 px-4 py-2 shadow-[0_16px_40px_-18px_rgba(0,0,0,0.9)] backdrop-blur-2xl backdrop-saturate-150 md:gap-x-5 md:px-6">
+      <nav className="mx-auto flex max-w-6xl items-center gap-x-3 rounded-full bg-ink/70 px-5 py-2.5 shadow-[0_18px_44px_-18px_rgba(0,0,0,0.95)] ring-1 ring-inset ring-white/5 backdrop-blur-2xl backdrop-saturate-150 md:gap-x-6 md:px-7">
         <Link href="/" aria-label="Bitlane, home" className="shrink-0">
           <img
             src={asset("/images/logo-nav.png")}

@@ -156,7 +156,7 @@ export default function Testimonials() {
     <div>
       <div className="px-[clamp(22px,6vw,120px)] text-center">
         <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
-          Testimonials
+          Trusted by many
         </h2>
       </div>
 

@@ -36,7 +36,7 @@ export default function Hero() {
     <section className="hero-fade relative -mt-28 flex min-h-[calc(92vh+7rem)] items-center overflow-hidden pt-28">
       {/* background video (drop public/hero.mp4 in and it plays; poster until then) */}
       <video
-        className="absolute inset-0 h-full w-full object-cover opacity-40"
+        className="absolute inset-0 h-full w-full object-cover opacity-[0.3]"
         autoPlay
         muted
         loop
@@ -62,11 +62,7 @@ export default function Hero() {
           <h1 className="text-[clamp(2.6rem,5.6vw,4.7rem)] font-extrabold uppercase leading-[0.98] tracking-tight text-paper">
             Careful local professionals you can trust!
           </h1>
-          <p className="mt-5 text-lg font-semibold tracking-[0.1em] text-paper/85 md:text-xl">
-            Affordable moving and storage services
-          </p>
-
-          <div className="mt-7 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/about"
               className="inline-flex items-center justify-center rounded-full border border-paper/25 px-7 py-3.5 text-base font-semibold text-paper transition-all duration-200 hover:border-amber-pulse hover:text-amber-pulse"

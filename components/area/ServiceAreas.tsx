@@ -4,8 +4,9 @@ import { useState } from "react";
 
 /**
  * Interactive service-area map (Google embed, so it keeps the familiar red map
- * pin). Towns are grouped by region; clicking one crossfades the map to that
- * town — the iframe fades out and back in instead of a hard blackout reload.
+ * pin and the normal light Google look). Clicking a town does NOT black the map
+ * out: a quick brand "whoosh" sweeps across, a red coverage ring pulses over the
+ * area, and the map itself scales in smoothly to the new city.
  */
 const REGIONS = [
   {
@@ -25,12 +26,14 @@ const REGIONS = [
 export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean }) {
   const [active, setActive] = useState("Kingston");
   const [ready, setReady] = useState(true);
+  const [whoosh, setWhoosh] = useState(0);
   const src = `https://maps.google.com/maps?q=${encodeURIComponent(`${active}, Canada`)}&z=11&output=embed`;
 
   const go = (name: string) => {
     if (name === active) return;
     setReady(false);
     setActive(name);
+    setWhoosh((n) => n + 1); // restart the whoosh + ring animations
   };
 
   return (
@@ -44,19 +47,25 @@ export default function ServiceAreas({ showIntro = true }: { showIntro?: boolean
       )}
 
       <div className={`grid gap-6 lg:grid-cols-[1.15fr_1fr] ${showIntro ? "mt-12" : ""}`}>
-        <div className="overflow-hidden rounded-4xl border border-paper/10 bg-surface shadow-panel">
+        <div className="relative overflow-hidden rounded-4xl border border-paper/10 bg-surface shadow-panel">
           <iframe
             key={active}
             title={`Map of ${active}`}
             src={src}
             onLoad={() => setReady(true)}
-            className={`h-[320px] w-full transition-opacity duration-500 ease-out md:h-[480px] ${
-              ready ? "opacity-100" : "opacity-30"
+            className={`h-[320px] w-full transition-[opacity,transform] duration-500 ease-out md:h-[480px] ${
+              ready ? "scale-100 opacity-100" : "scale-[1.06] opacity-70"
             }`}
             style={{ border: 0 }}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
+
+          {/* red coverage ring over the selected city area */}
+          <div key={`ring-${whoosh}`} className="map-ring" aria-hidden="true" />
+
+          {/* brand whoosh sweep, restarts on every city change */}
+          {whoosh > 0 && <div key={`whoosh-${whoosh}`} className="map-whoosh" aria-hidden="true" />}
         </div>
 
         <div className="flex flex-col gap-7">
