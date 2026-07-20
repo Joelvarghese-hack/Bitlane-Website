@@ -24,14 +24,14 @@ export default function TruckReveal() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
-    const X0 = 150; // rest: fully off the right
-    const X1 = -50; // end: fully off the left
+    const X0 = -50; // rest: fully off the left
+    const X1 = 150; // end: fully off the right
 
     const apply = () => {
       const rect = outer.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Truck (facing left) sweeps right -> left across the band as it passes
-      // through the viewport, tied smoothly to scroll; reverses on scroll up.
+      // Truck (facing right) drives left -> right (forward) as you scroll DOWN,
+      // and reverses back on scroll up. Tied smoothly to scroll.
       const q = clamp((vh - rect.top) / (vh + rect.height), 0, 1);
       const x = X0 + q * (X1 - X0);
       stage.style.setProperty("--truck-x", `${x}%`);
@@ -50,14 +50,14 @@ export default function TruckReveal() {
     <section
       ref={outerRef}
       aria-label="You'll notice our truck from miles away"
-      className="relative flex min-h-[44vh] items-center overflow-hidden py-6 md:min-h-[56vh] md:py-10"
+      className="relative flex min-h-[42vh] items-center overflow-hidden bg-[#F3F3F3] py-6 md:min-h-[54vh] md:py-10"
     >
       <div
         ref={stageRef}
         className="relative mx-auto w-full max-w-6xl px-[clamp(20px,5vw,88px)]"
-        style={{ "--truck-x": "150%" } as CSSProperties}
+        style={{ "--truck-x": "-50%" } as CSSProperties}
       >
-        <h2 className="mx-auto max-w-full text-center text-[clamp(1.05rem,4.4vw,1.4rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-paper sm:text-[clamp(1.5rem,3vw,2.3rem)]">
+        <h2 className="mx-auto max-w-full text-center text-[clamp(1.05rem,4.4vw,1.4rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-ink sm:text-[clamp(1.5rem,3vw,2.3rem)]">
           You&apos;ll notice our truck from miles away!
         </h2>
 

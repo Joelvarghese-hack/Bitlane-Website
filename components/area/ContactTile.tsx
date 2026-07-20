@@ -1,4 +1,5 @@
 import ContactLink from "@/components/util/ContactLink";
+import { asset } from "@/lib/asset";
 
 /**
  * Small "don't see your city" contact tile that sits just below the areas map.
@@ -9,13 +10,11 @@ export default function ContactTile() {
   return (
     <div className="mx-auto flex max-w-md items-center gap-4 rounded-3xl border border-paper/10 bg-surface p-4 shadow-panel sm:p-5">
       <div className="relative shrink-0">
-        {/* Placeholder — replace with owner photo when provided */}
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-velocity-red to-crimson-shadow text-paper">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.6" />
-            <path d="M5 19c0-3.3 3.1-5.5 7-5.5s7 2.2 7 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-          </svg>
-        </div>
+        <img
+          src={asset("/images/owner.jpg")}
+          alt="Bitlane owner"
+          className="h-16 w-16 rounded-2xl object-cover object-top"
+        />
         <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-surface bg-green-400" />
       </div>
 

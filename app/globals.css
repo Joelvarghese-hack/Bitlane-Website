@@ -369,24 +369,18 @@ html.lenis body {
 }
 @keyframes wa-nudge {
   0%,
-  88%,
+  91%,
   100% {
-    transform: rotate(0) translateX(0);
-  }
-  90% {
-    transform: rotate(-6deg) translateX(-1px);
-  }
-  92% {
-    transform: rotate(5deg) translateX(1px);
+    transform: rotate(0);
   }
   94% {
-    transform: rotate(-4deg);
+    transform: rotate(-3deg);
   }
-  96% {
+  97% {
     transform: rotate(3deg);
   }
-  98% {
-    transform: rotate(0);
+  99% {
+    transform: rotate(-1.5deg);
   }
 }
 

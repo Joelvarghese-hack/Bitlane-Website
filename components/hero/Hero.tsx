@@ -33,10 +33,10 @@ function goToQuote(event: React.FormEvent<HTMLFormElement>) {
 
 export default function Hero() {
   return (
-    <section className="hero-fade relative flex min-h-[92vh] items-center overflow-hidden">
+    <section className="hero-fade relative -mt-28 flex min-h-[calc(92vh+7rem)] items-center overflow-hidden pt-28">
       {/* background video (drop public/hero.mp4 in and it plays; poster until then) */}
       <video
-        className="absolute inset-0 h-full w-full object-cover opacity-80"
+        className="absolute inset-0 h-full w-full object-cover opacity-40"
         autoPlay
         muted
         loop

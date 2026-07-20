@@ -1,5 +1,4 @@
 import FaqItem from "@/components/faq/FaqItem";
-import ContactLink from "@/components/util/ContactLink";
 
 const FAQS = [
   {
@@ -46,9 +45,6 @@ export default function Faq() {
         <h2 className="text-[clamp(2rem,3.8vw,3.2rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
           FAQs
         </h2>
-        <p className="mt-4 text-base text-paper/60">
-          Everything worth knowing before moving day.
-        </p>
       </div>
 
       <div className="mt-10 border-t border-paper/10">
@@ -56,17 +52,6 @@ export default function Faq() {
           <FaqItem key={faq.question} question={faq.question} answer={faq.answer} />
         ))}
       </div>
-
-      <p className="mt-9 text-center text-sm text-paper/55">
-        Still have questions?{" "}
-        <ContactLink
-          type="tel"
-          value="(613) 770-1638"
-          className="font-semibold text-velocity-red transition-colors hover:text-crimson-shadow"
-        >
-          Call (613) 770-1638
-        </ContactLink>
-      </p>
     </div>
   );
 }
