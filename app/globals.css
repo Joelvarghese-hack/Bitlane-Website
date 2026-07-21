@@ -374,6 +374,8 @@ html.lenis body {
 .tape-box--phone {
   background: var(--brand-orange);
   color: var(--brand-white);
+  font-weight: 900;
+  font-style: italic;
 }
 
 /* Logo sits upright inside the ribbon (no counter-skew needed anymore). */
