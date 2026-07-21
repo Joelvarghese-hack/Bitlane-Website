@@ -35,7 +35,7 @@ const config: Config = {
       },
       boxShadow: {
         panel: "0 30px 80px -40px rgba(0, 0, 0, 0.9)",
-        glow: "0 24px 70px -30px rgba(254, 68, 54, 0.5)",
+        glow: "0 14px 30px -16px rgba(0, 0, 0, 0.55)",
       },
     },
   },

@@ -15,8 +15,14 @@ export default function ScrollTopButton() {
 
   const scrollToTop = () => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (window.__lenis && !reduce) window.__lenis.scrollTo(0, { duration: 1 });
-    else window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    if (reduce) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    // force:true scrolls even if Lenis is momentarily stopped/locked (the cause
+    // of the button "sometimes" not responding); native smooth is the fallback.
+    if (window.__lenis) window.__lenis.scrollTo(0, { duration: 0.9, force: true });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

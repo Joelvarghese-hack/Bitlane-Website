@@ -44,22 +44,9 @@ body {
 }
 
 body {
-  background:
-    radial-gradient(1200px 620px at 50% -8%, rgba(254, 68, 54, 0.10), transparent 62%),
-    radial-gradient(900px 520px at 100% 8%, rgba(254, 68, 54, 0.05), transparent 58%),
-    radial-gradient(1000px 700px at -5% 108%, rgba(254, 68, 54, 0.13), transparent 60%),
-    var(--ink);
-  background-attachment: fixed;
+  /* Solid brand background — no orange glow gradients. */
+  background: var(--ink);
   font-optical-sizing: auto;
-}
-
-/* Fixed background attachment janks/repaints hard on mobile (iOS especially) and
-   makes the marquee + gallery visibly glitch while scrolling. Pin it to scroll
-   on smaller / touch screens where the effect isn't noticeable anyway. */
-@media (max-width: 900px) {
-  body {
-    background-attachment: scroll;
-  }
 }
 
 /* Content protection: block casual text selection / copying / dragging site-wide,
@@ -303,7 +290,6 @@ html.lenis body {
   min-width: 100%;
   animation: tape-scroll 28s linear infinite;
   will-change: transform;
-  transform: translateZ(0);
   backface-visibility: hidden;
 }
 
@@ -390,10 +376,10 @@ html.lenis body {
 
 @keyframes tape-scroll {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -414,7 +400,6 @@ html.lenis body {
   width: max-content;
   animation: tape-scroll 48s linear infinite;
   will-change: transform;
-  transform: translateZ(0);
   backface-visibility: hidden;
 }
 

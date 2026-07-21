@@ -19,7 +19,7 @@ export default function ServiceShowcaseCard({ service }: { service: Service }) {
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(180deg, rgba(5,5,6,0.05) 0%, rgba(5,5,6,0) 45%, rgba(5,5,6,0.45) 100%)" }}
+          style={{ background: "rgba(5,5,6,0.22)" }}
           aria-hidden="true"
         />
       </div>
