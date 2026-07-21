@@ -24,15 +24,24 @@ export default function ScrollArrows({
     // Pause any auto-drift so it doesn't overwrite the scroll.
     onInteract?.();
     const amount = Math.max(260, el.clientWidth * 0.82);
-    const target = el.scrollLeft + dir * amount;
-    // Instant jump (guaranteed to move everywhere), then a short smooth easing
-    // via CSS for browsers that honour it — reliability first.
-    el.style.scrollBehavior = "smooth";
-    el.scrollTo({ left: target });
-    // Fallback hard-set on the next tick in case smooth scrolling is disabled.
-    requestAnimationFrame(() => {
-      if (Math.abs(el.scrollLeft - target) > 4) el.scrollLeft = target;
-    });
+    const max = el.scrollWidth - el.clientWidth;
+    const target = Math.max(0, Math.min(max, el.scrollLeft + dir * amount));
+    // Manual eased tween on a timer (works everywhere; no reliance on native
+    // smooth-scroll or requestAnimationFrame, which some engines throttle).
+    const from = el.scrollLeft;
+    const dist = target - from;
+    const steps = 16;
+    let i = 0;
+    const timer = setInterval(() => {
+      i += 1;
+      const t = i / steps;
+      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      el.scrollLeft = from + dist * eased;
+      if (i >= steps) {
+        el.scrollLeft = target;
+        clearInterval(timer);
+      }
+    }, 16);
   };
 
   return (
