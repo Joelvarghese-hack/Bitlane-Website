@@ -241,24 +241,15 @@ html.lenis body {
 /* Tape marquee: angled brand strip with scrolling text.          */
 /* ------------------------------------------------------------- */
 
-/* Marquee tapes ride above ALL page content everywhere (kept just below the
-   sticky nav at z-50 so the nav stays tappable). The negative block margins pull
-   the tape across the seams into its neighbouring sections so it physically
-   overlaps their content on every screen — not just floats in the whitespace. */
+/* Marquee tapes always paint above page content (z-45, just below the sticky
+   nav at z-50). They sit in their own band with clear space around them so they
+   never cover section headings. */
 .tape-wrap {
   position: relative;
   z-index: 45;
   overflow: hidden;
   padding: 1.15rem 0;
-  margin-top: -1.75rem;
-  margin-bottom: -1.75rem;
   pointer-events: none;
-}
-@media (min-width: 768px) {
-  .tape-wrap {
-    margin-top: -3rem;
-    margin-bottom: -3rem;
-  }
 }
 
 .tape-strip {

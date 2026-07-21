@@ -7,8 +7,8 @@ import GalleryStrip from "@/components/gallery/GalleryStrip";
  */
 export default function Gallery() {
   return (
-    <section aria-label="Our work" className="relative">
-      <div className="pt-10 pb-1 text-center md:pt-14">
+    <section aria-label="Our work" className="relative mb-8 md:mb-14">
+      <div className="pb-10 pt-8 text-center md:pb-14 md:pt-12">
         <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-paper">
           Our work
         </h2>
