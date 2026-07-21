@@ -21,10 +21,18 @@ export default function ScrollArrows({
   const nudge = (dir: -1 | 1) => {
     const el = scrollerRef.current;
     if (!el) return;
-    // Pause any auto-drift so it doesn't overwrite the scroll mid-animation.
+    // Pause any auto-drift so it doesn't overwrite the scroll.
     onInteract?.();
     const amount = Math.max(260, el.clientWidth * 0.82);
-    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+    const target = el.scrollLeft + dir * amount;
+    // Instant jump (guaranteed to move everywhere), then a short smooth easing
+    // via CSS for browsers that honour it — reliability first.
+    el.style.scrollBehavior = "smooth";
+    el.scrollTo({ left: target });
+    // Fallback hard-set on the next tick in case smooth scrolling is disabled.
+    requestAnimationFrame(() => {
+      if (Math.abs(el.scrollLeft - target) > 4) el.scrollLeft = target;
+    });
   };
 
   return (
