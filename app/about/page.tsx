@@ -21,14 +21,16 @@ export default function AboutPage() {
 
       <section className="px-[clamp(20px,5vw,88px)] pb-20">
         <Reveal className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2">
-          <div className="overflow-hidden rounded-4xl border border-paper/10">
+          <div className="aspect-[4/5] overflow-hidden rounded-4xl border border-paper/10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={asset("/images/about-team.jpg")}
-              alt="The Bitlane moving team"
+              src={asset("/images/owner.jpg")}
+              alt="The Bitlane owner"
+              width={820}
+              height={1025}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover object-top"
             />
           </div>
           <div className="space-y-4 text-base leading-relaxed text-paper/75">
