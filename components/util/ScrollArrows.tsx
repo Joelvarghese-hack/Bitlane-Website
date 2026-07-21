@@ -9,16 +9,20 @@ import { type RefObject } from "react";
  */
 export default function ScrollArrows({
   scrollerRef,
+  onInteract,
   label = "items",
   className = "",
 }: {
   scrollerRef: RefObject<HTMLElement | HTMLDivElement | null>;
+  onInteract?: () => void;
   label?: string;
   className?: string;
 }) {
   const nudge = (dir: -1 | 1) => {
     const el = scrollerRef.current;
     if (!el) return;
+    // Pause any auto-drift so it doesn't overwrite the scroll mid-animation.
+    onInteract?.();
     const amount = Math.max(260, el.clientWidth * 0.82);
     el.scrollBy({ left: dir * amount, behavior: "smooth" });
   };

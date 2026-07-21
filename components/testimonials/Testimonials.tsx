@@ -87,6 +87,7 @@ const TESTIMONIALS: Testimonial[] = [
  */
 export default function Testimonials() {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const pausedUntilRef = useRef(0);
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -131,7 +132,7 @@ export default function Testimonials() {
     const tick = (t: number) => {
       const dt = last ? (t - last) / 1000 : 0;
       last = t;
-      if (!hovering && !dragging) {
+      if (!hovering && !dragging && t >= pausedUntilRef.current) {
         el.scrollLeft += SPEED * dt;
         const half = el.scrollWidth / 2;
         if (half > 0 && el.scrollLeft >= half) el.scrollLeft -= half;
@@ -172,7 +173,12 @@ export default function Testimonials() {
         ))}
       </div>
 
-      <ScrollArrows scrollerRef={scrollerRef} label="reviews" className="mt-7" />
+      <ScrollArrows
+        scrollerRef={scrollerRef}
+        onInteract={() => (pausedUntilRef.current = performance.now() + 1600)}
+        label="reviews"
+        className="mt-7"
+      />
     </div>
   );
 }

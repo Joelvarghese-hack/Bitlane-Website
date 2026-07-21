@@ -44,6 +44,37 @@ body {
   font-optical-sizing: auto;
 }
 
+/* Fixed background attachment janks/repaints hard on mobile (iOS especially) and
+   makes the marquee + gallery visibly glitch while scrolling. Pin it to scroll
+   on smaller / touch screens where the effect isn't noticeable anyway. */
+@media (max-width: 900px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+/* Content protection: block casual text selection / copying / dragging site-wide,
+   while keeping form fields fully usable so people can still fill the quote form. */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
 ::selection {
   background: var(--velocity-red);
   color: var(--paper);
@@ -211,14 +242,23 @@ html.lenis body {
 /* ------------------------------------------------------------- */
 
 /* Marquee tapes ride above ALL page content everywhere (kept just below the
-   sticky nav at z-50 so the nav stays tappable). Content is allowed to be
-   overlapped by the tape wherever they meet. */
+   sticky nav at z-50 so the nav stays tappable). The negative block margins pull
+   the tape across the seams into its neighbouring sections so it physically
+   overlaps their content on every screen — not just floats in the whitespace. */
 .tape-wrap {
   position: relative;
   z-index: 45;
   overflow: hidden;
   padding: 1.15rem 0;
+  margin-top: -1.75rem;
+  margin-bottom: -1.75rem;
   pointer-events: none;
+}
+@media (min-width: 768px) {
+  .tape-wrap {
+    margin-top: -3rem;
+    margin-bottom: -3rem;
+  }
 }
 
 .tape-strip {
@@ -231,6 +271,9 @@ html.lenis body {
   display: flex;
   width: max-content;
   animation: tape-scroll 34s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .tape-group {
@@ -338,6 +381,9 @@ html.lenis body {
   display: flex;
   width: max-content;
   animation: tape-scroll 48s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .gallery-group {

@@ -21,6 +21,7 @@ const PHOTOS = [
  */
 export default function GalleryStrip() {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const pausedUntilRef = useRef(0);
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -62,7 +63,7 @@ export default function GalleryStrip() {
     const tick = (t: number) => {
       const dt = last ? (t - last) / 1000 : 0;
       last = t;
-      if (!hovering && !dragging) {
+      if (!hovering && !dragging && t >= pausedUntilRef.current) {
         el.scrollLeft += SPEED * dt;
         const half = el.scrollWidth / 2;
         if (half > 0 && el.scrollLeft >= half) el.scrollLeft -= half;
@@ -103,6 +104,7 @@ export default function GalleryStrip() {
 
       <ScrollArrows
         scrollerRef={scrollerRef}
+        onInteract={() => (pausedUntilRef.current = performance.now() + 1600)}
         label="photos"
         className="pointer-events-none absolute inset-x-0 bottom-4 [&>button]:pointer-events-auto"
       />

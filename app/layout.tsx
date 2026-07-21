@@ -4,6 +4,7 @@ import Nav from "@/components/nav/Nav";
 import Footer from "@/components/footer/Footer";
 import ScrollTopButton from "@/components/scroll/ScrollTopButton";
 import SmoothScroll from "@/components/scroll/SmoothScroll";
+import ContentGuard from "@/components/util/ContentGuard";
 import "./globals.css";
 
 // Titles / headings: Montserrat (variable).
@@ -53,6 +54,7 @@ export default function RootLayout({
         <Footer />
         <ScrollTopButton />
         <SmoothScroll />
+        <ContentGuard />
       </body>
     </html>
   );
