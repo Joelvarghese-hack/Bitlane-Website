@@ -13,7 +13,7 @@ export default function TapeMarquee({
   slope?: "up" | "down";
   logo?: "wordmark" | "icon";
 }) {
-  const rotate = slope === "down" ? "-2.4deg" : "2.4deg";
+  const rotate = slope === "down" ? "-4deg" : "4deg";
   const direction = slope === "up" ? "reverse" : "normal";
   const isIcon = logo === "icon";
   const src = isIcon ? asset("/images/logo-icon2.webp") : asset("/images/logo-white.webp");

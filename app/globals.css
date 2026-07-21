@@ -263,9 +263,11 @@ html.lenis body {
   margin-left: calc(-50vw + 50%) !important;
   margin-right: calc(-50vw + 50%) !important;
   overflow: hidden !important;
-  /* Fixed thin visible band; the rotated ribbon inside is much taller and gets
-     clipped to this height, which is what kills the corner wedges. */
-  height: clamp(2.9rem, 3.2vw, 3.6rem);
+  /* Tall transparent band. The colored ribbon inside is a thin diagonal stripe
+     centred in it, so the page background shows above and below the slant — the
+     TAPE itself is slanted, not a solid horizontal bar. Height must exceed the
+     ribbon's vertical travel across the viewport so its ends aren't clipped. */
+  height: clamp(8rem, 11vw, 9.5rem);
   padding: 0;
   display: flex;
   align-items: center;
@@ -273,8 +275,9 @@ html.lenis body {
 }
 
 .tape-strip {
-  width: 116%;
-  margin-left: -8%;
+  /* Wider than the viewport so the tilted ribbon still spans edge to edge. */
+  width: 122%;
+  margin-left: -11%;
   padding: 0;
   flex: 0 0 auto;
 }
@@ -306,19 +309,16 @@ html.lenis body {
 .tape-box {
   display: inline-flex;
   align-items: center;
-  /* Much taller than the visible band so the rotated ribbon fully covers the
-     band corners at any viewport width; content stays vertically centered and
-     the band clips the excess. */
-  height: 8.5rem;
+  /* Real ribbon thickness — this is the colored slanted stripe. No skew, no
+     italic: the logo and phone number read upright and slide sideways along it. */
+  height: 2.5rem;
   padding: 0 0.95em;
   font-weight: 800;
-  font-style: italic;
-  font-size: clamp(1.1rem, 2vw, 1.9rem);
+  font-size: clamp(1.05rem, 1.9vw, 1.7rem);
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.01em;
   text-decoration: none;
-  transform: skewX(-9deg);
 }
 .tape-box--phone {
   text-decoration: none;
@@ -362,12 +362,11 @@ html.lenis body {
   color: var(--brand-white);
 }
 
-/* Logo rides upright (counter-skew) inside the slanted white box. */
+/* Logo sits upright inside the ribbon (no counter-skew needed anymore). */
 .tape-logo {
   display: block;
-  height: 1.3em;
+  height: 1.35em;
   width: auto;
-  transform: skewX(9deg);
 }
 .tape-logo--icon {
   height: 1.6em;
