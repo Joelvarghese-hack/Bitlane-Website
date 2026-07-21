@@ -242,11 +242,12 @@ html.lenis body {
 /* ------------------------------------------------------------- */
 
 /* Marquee tapes always paint above page content (z-45, just below the sticky
-   nav at z-50). They sit in their own band with clear space around them so they
-   never cover section headings. */
+   nav at z-50). Full-width, isolated band; horizontal overflow stays clipped so
+   the intentionally oversized rotated ribbon can't spill and cause page scroll. */
 .tape-wrap {
   position: relative;
   z-index: 45;
+  width: 100%;
   overflow: hidden;
   padding: 1.15rem 0;
   pointer-events: none;
@@ -261,6 +262,7 @@ html.lenis body {
 .tape-track {
   display: flex;
   width: max-content;
+  min-width: 100%;
   animation: tape-scroll 34s linear infinite;
   will-change: transform;
   transform: translateZ(0);

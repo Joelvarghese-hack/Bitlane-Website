@@ -39,14 +39,21 @@ export default function TapeMarquee({
     </div>
   );
 
+  const clear = { clear: "both" as const, display: "block", width: "100%", height: "1px" };
+
   return (
-    <div className="tape-wrap" aria-hidden="true">
-      <div className="tape-strip" style={{ transform: `rotate(${rotate})` }}>
-        <div className="tape-track" style={{ animationDirection: direction }}>
-          {group}
-          {group}
+    <>
+      {/* structural clear so neighbouring desktop containers can't collapse in */}
+      <div aria-hidden="true" style={clear} />
+      <div className="tape-wrap" aria-hidden="true">
+        <div className="tape-strip" style={{ transform: `rotate(${rotate})` }}>
+          <div className="tape-track" style={{ animationDirection: direction }}>
+            {group}
+            {group}
+          </div>
         </div>
       </div>
-    </div>
+      <div aria-hidden="true" style={clear} />
+    </>
   );
 }
