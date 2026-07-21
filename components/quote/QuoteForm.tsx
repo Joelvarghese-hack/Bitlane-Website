@@ -177,16 +177,12 @@ export default function QuoteForm({
       }
     }
 
-    setStatus("sending");
-    try {
-      await sendQuote(form);
-      // Scrub the raw phone / email / addresses out of the DOM the moment the
-      // payload is on the wire, so the values don't linger in browser state.
-      form.reset();
-      goThankYou();
-    } catch {
-      setStatus("error");
-    }
+    // Fire the submission in the background (keepalive lets it finish after we
+    // navigate) and take the user straight to the Thank You screen — no waiting.
+    sendQuote(form).catch(() => {});
+    // Scrub the raw phone / email / addresses out of the DOM once it's on the wire.
+    form.reset();
+    goThankYou();
   }
 
   return (

@@ -14,11 +14,11 @@ export default function Gallery() {
         </h2>
       </div>
 
-      <TapeMarquee slope="down" />
+      <TapeMarquee slope="up" />
 
       <GalleryStrip />
 
-      <TapeMarquee slope="up" logo="icon" />
+      <TapeMarquee slope="down" logo="icon" />
     </section>
   );
 }

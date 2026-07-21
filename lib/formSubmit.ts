@@ -94,6 +94,8 @@ export async function sendQuote(form: HTMLFormElement): Promise<void> {
       Accept: "application/json",
     },
     body: JSON.stringify(buildQuotePayload(form)),
+    // Let the request finish even if the page navigates to the thank-you screen.
+    keepalive: true,
   });
 
   if (!response.ok) {
