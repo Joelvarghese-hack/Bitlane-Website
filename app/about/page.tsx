@@ -14,14 +14,11 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
-      <PageHero
-        title="About Bitlane"
-        lede="A Kingston moving company built on careful hands, honest pricing, and moves that feel easy from the first call to the last box."
-      />
+      <PageHero title="About Bitlane" />
 
-      <section className="px-[clamp(20px,5vw,88px)] pb-20">
-        <Reveal className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2">
-          <div className="aspect-[4/5] overflow-hidden rounded-4xl border border-paper/10">
+      <section className="px-[clamp(20px,5vw,88px)] pb-20 pt-4">
+        <Reveal className="mx-auto grid max-w-5xl items-start gap-10 md:grid-cols-2">
+          <div className="aspect-[4/5] overflow-hidden rounded-4xl border border-paper/10 md:sticky md:top-24">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={asset("/images/owner.jpg")}
@@ -35,16 +32,33 @@ export default function AboutPage() {
           </div>
           <div className="space-y-4 text-base leading-relaxed text-paper/75">
             <p>
-              Bitlane is a moving company based in Kingston, Ontario. We started
-              with one truck and a simple belief: moving day should be the easiest
-              day of your move, not the hardest. Since then we have helped families,
-              students, and businesses across the region relocate without the stress.
+              Bitlane was founded with one simple belief: people deserve a moving
+              company they can genuinely trust.
             </p>
             <p>
-              We are proud to be part of the Kingston community and to serve the
-              towns around it, along with the Greater Toronto Area, Ottawa, and
-              Montreal. Most of our work comes from referrals, which tells you more
-              than any slogan could.
+              We saw a gap in the industry where customers were often left dealing
+              with hidden costs, unreliable service, and rushed experiences. We
+              believed moving could be different. That&apos;s why we started Bitlane,
+              to provide honest pricing, dependable service, and the peace of mind
+              that comes from knowing your belongings are in safe hands.
+            </p>
+            <p>
+              Our mission has never been to be the cheapest or the biggest. It&apos;s
+              to deliver exceptional service without compromising integrity,
+              professionalism, or care. Every move is treated with the same level of
+              respect and attention, whether it&apos;s a student moving into their
+              first apartment, a family relocating across the city, or a business
+              moving across the province.
+            </p>
+            <p>
+              Because moving isn&apos;t just about getting from one place to another,
+              it&apos;s about starting the next chapter of your life with confidence.
+            </p>
+            <p>
+              We are proud to serve Kingston and the surrounding region, along with
+              the Greater Toronto Area, Ottawa, and Montreal. No matter the size of
+              the move or the distance of the drive, our team gets you there safely,
+              on time, and without the stress.
             </p>
           </div>
         </Reveal>

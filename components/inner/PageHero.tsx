@@ -2,7 +2,7 @@ import Link from "next/link";
 
 type PageHeroProps = {
   title: string;
-  lede: string;
+  lede?: string;
   cta?: { href: string; label: string };
 };
 
@@ -13,7 +13,9 @@ export default function PageHero({ title, lede, cta }: PageHeroProps) {
         <h1 className="text-[clamp(2.4rem,5.5vw,4rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
           {title}
         </h1>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-paper/70 md:text-lg">{lede}</p>
+        {lede && (
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-paper/70 md:text-lg">{lede}</p>
+        )}
         {cta && (
           <Link
             href={cta.href}

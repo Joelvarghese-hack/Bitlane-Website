@@ -12,21 +12,18 @@ export default function AboutBitlane() {
     <div className="relative">
       {/* organic orange blob + copy */}
       <div
-        className="relative overflow-hidden bg-velocity-red p-7 shadow-panel sm:p-10 md:p-14 lg:pr-[40%]"
+        className="relative overflow-hidden bg-velocity-red p-6 shadow-panel sm:p-8 md:p-10 lg:pr-[40%]"
         style={{ borderRadius: "3.5rem 2rem 3.25rem 2.25rem" }}
       >
         <div className="text-ink">
-          <span className="inline-flex items-center rounded-full bg-ink px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-paper">
-            Our story
-          </span>
-          <h2 className="mt-5 text-[clamp(2rem,4.2vw,3.5rem)] font-extrabold uppercase leading-[0.98] tracking-tight">
+          <h2 className="text-[clamp(2rem,4.2vw,3.5rem)] font-extrabold uppercase leading-[0.98] tracking-tight">
             About our company
           </h2>
-          <p className="mt-3 text-lg font-bold">Bitlane Moving Company</p>
+          <p className="mt-3 text-lg font-bold">Bitlane Relocations</p>
 
           <Link
             href="/about"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-paper shadow-lg transition-transform duration-200 hover:-translate-y-0.5"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-paper shadow-lg transition-transform duration-200 hover:-translate-y-0.5"
           >
             About Bitlane
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -34,18 +31,13 @@ export default function AboutBitlane() {
             </svg>
           </Link>
 
-          <div className="mt-8 max-w-xl space-y-4 text-[0.95rem] font-medium leading-relaxed text-ink/85">
+          <div className="mt-7 max-w-xl text-[0.95rem] font-medium leading-relaxed text-ink/85">
             <p>
               Bitlane is a Kingston based moving company built to make relocation
-              simple for the people and businesses of our community. From a first
-              apartment near Queen&apos;s to a family home across the city, we treat
-              every move with the same care, honest pricing, and attention to detail.
-            </p>
-            <p>
-              We are proud to serve Kingston and the surrounding region, along with
-              the Greater Toronto Area, Ottawa, and Montreal. No matter the size of
-              the move or the distance of the drive, our team gets you there safely,
-              on time, and without the stress.
+              simple, with the same care, honest pricing, and attention to detail on
+              every move. We proudly serve Kingston and the surrounding region, along
+              with the Greater Toronto Area, Ottawa, and Montreal, getting you there
+              safely and on time.
             </p>
           </div>
         </div>

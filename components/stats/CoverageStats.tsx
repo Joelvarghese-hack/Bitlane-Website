@@ -1,8 +1,8 @@
 const STATS = [
-  { value: "80+", label: "Moves completed" },
+  { value: "200+", label: "Moves completed" },
   { value: "2+", label: "Years in business" },
   { value: "100%", label: "Upfront pricing" },
-  { value: "20+", label: "Cities served" },
+  { value: "8+", label: "Cities served" },
 ];
 
 export default function CoverageStats() {

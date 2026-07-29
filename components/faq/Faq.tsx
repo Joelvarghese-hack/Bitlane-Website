@@ -17,19 +17,9 @@ const FAQS = [
       "Your price depends on the size of the move, the distance, and any extras like packing or specialty items. We give you one clear, all inclusive quote up front, so there are no surprises on moving day.",
   },
   {
-    question: "Do you offer packing and unpacking?",
-    answer:
-      "Yes. We can pack part or all of your home with professional grade materials, label every box by room, and unpack at the other end if you would like.",
-  },
-  {
     question: "Are you available on short notice?",
     answer:
       "Often, yes. We hold some capacity open for urgent and last minute moves. Call us and we will tell you honestly whether we can fit you in.",
-  },
-  {
-    question: "Is Bitlane insured?",
-    answer:
-      "Yes. We are insured and we handle every item with care. If your building has specific requirements or you need documentation for your move, let us know ahead of time and we will sort it out.",
   },
   {
     question: "What items are you not able to move?",
