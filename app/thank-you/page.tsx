@@ -27,12 +27,16 @@ export default function ThankYouPage() {
         </span>
 
         <h1 className="mt-8 text-[clamp(1.8rem,4.4vw,3rem)] font-extrabold uppercase leading-[1.08] tracking-tight text-paper">
-          Thank you for your message, we&apos;ll message you within 24 hrs.
+          Thank You!
         </h1>
 
         <p className="mt-5 text-base leading-relaxed text-paper/65">
-          Your details are on their way to our team. If it is urgent, you are
-          always welcome to call us and we will pick up the thread right away.
+          We&apos;ve received your request and are preparing your personalized
+          moving quote. We&apos;ll be in touch shortly.
+        </p>
+        <p className="mt-4 text-base leading-relaxed text-paper/65">
+          Need immediate assistance? Give us a call or send us a text at the number
+          below. We&apos;ll be happy to help you!
         </p>
 
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
