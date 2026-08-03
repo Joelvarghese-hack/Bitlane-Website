@@ -61,7 +61,7 @@ export default function Hero() {
       <div className="relative mx-auto w-full max-w-7xl px-[clamp(20px,5vw,88px)] py-24">
         <div className="max-w-2xl">
           <h1 className="text-[clamp(2.6rem,5.6vw,4.7rem)] font-extrabold uppercase leading-[0.98] tracking-tight text-paper">
-            Careful local professionals you can trust!
+            Kingston's Most Trusted Movers
           </h1>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link

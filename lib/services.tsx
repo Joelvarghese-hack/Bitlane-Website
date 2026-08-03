@@ -13,26 +13,6 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
-    slug: "specialty-item-moving",
-    title: "Specialty Item Moving",
-    short:
-      "Pianos, safes, artwork, and oversized pieces handled with the right equipment and a careful crew.",
-    detail: [
-      "Some belongings are simply too valuable, heavy, or awkward to trust to a standard move. Pianos, safes, gym equipment, artwork, and antiques each need the right dollies, straps, padding, and technique, and a crew that has handled them before. In a city like Kingston, with its century homes, narrow staircases, and waterfront condos, that experience makes the difference.",
-      "We plan specialty items ahead of time, protect them with proper wrapping and crating where needed, and move them at a careful, deliberate pace. Because we price by the volume your items take up rather than their weight, a heavy safe or a solid oak armoire never triggers a surprise surcharge.",
-    ],
-  },
-  {
-    slug: "affordable-pricing",
-    title: "Affordable Pricing",
-    short:
-      "Clear, all inclusive quotes with no hidden fees. You know the full cost before we lift a thing.",
-    detail: [
-      "Affordable does not mean cutting corners. It means an honest, all inclusive quote that reflects the real size of your move and the distance we are driving, with nothing buried in the fine print. You approve the price before moving day, and that is the price you pay at the end.",
-      "We price by volume, the amount of space your belongings fill in the truck, not by weight. That keeps things fair and predictable, whether you are moving a studio near downtown Kingston or a full family home out to the Greater Toronto Area.",
-    ],
-  },
-  {
     slug: "residential-moving",
     title: "Residential Moving",
     short:
@@ -50,6 +30,46 @@ export const SERVICES: Service[] = [
     detail: [
       "Businesses cannot afford long downtime. We move offices, retail spaces, and commercial equipment on your timeline, including evenings and weekends, and coordinate with building management, elevators, and loading docks so your team is back to work quickly.",
       "From a few workstations to a full office relocation in Kingston or across Ontario, we label, protect, and keep track of everything, and quote by volume so the budget is clear from the very start.",
+    ],
+  },
+  {
+    slug: "specialty-item-moving",
+    title: "Specialty Item Moving",
+    short:
+      "Pianos, safes, artwork, and oversized pieces handled with the right equipment and a careful crew.",
+    detail: [
+      "Some belongings are simply too valuable, heavy, or awkward to trust to a standard move. Pianos, safes, gym equipment, artwork, and antiques each need the right dollies, straps, padding, and technique, and a crew that has handled them before. In a city like Kingston, with its century homes, narrow staircases, and waterfront condos, that experience makes the difference.",
+      "We plan specialty items ahead of time, protect them with proper wrapping and crating where needed, and move them at a careful, deliberate pace. Because we price by the volume your items take up rather than their weight, a heavy safe or a solid oak armoire never triggers a surprise surcharge.",
+    ],
+  },
+  {
+    slug: "student-moving",
+    title: "Student Moving",
+    short:
+      "Affordable, fast moves for students between residences, dorms, and apartments across Ontario.",
+    detail: [
+      "Kingston is a student city, and move in and move out weeks are hectic. We offer fast, affordable moves between residences, student houses, and first apartments, sized and priced for a student budget.",
+      "Short notice is often fine, and because we charge by the volume of your things rather than the weight, a smaller move stays genuinely affordable.",
+    ],
+  },
+  {
+    slug: "senior-moving",
+    title: "Senior Moving",
+    short:
+      "Patient, respectful moves for seniors and downsizers, handled at a comfortable pace.",
+    detail: [
+      "Downsizing or relocating later in life deserves patience and respect. We move at a comfortable pace, take extra care with cherished and delicate belongings, and handle every bit of the heavy lifting from start to finish.",
+      "Whether it is a move to a smaller home, a retirement residence, or closer to family, we keep the day calm and organized, with a clear volume based price and no pressure at any point.",
+    ],
+  },
+  {
+    slug: "cleaning-services",
+    title: "Move-In / Move-Out Cleaning",
+    short:
+      "Professional move-in and move-out deep cleaning so the home is spotless and move ready.",
+    detail: [
+      "Moving is the right time for a proper deep clean, and we can take care of it as part of your move. We clean the old place after everything is out, so you leave it spotless for the next owner or your landlord, and we can clean the new place before your belongings arrive, so you move into a fresh, healthy home.",
+      "Our cleaning covers the areas that matter most, including kitchens, bathrooms, floors, cabinets, and baseboards, scrubbed and wiped down from top to bottom. Book it alongside your move and we will fold it into one clear quote, so the whole day is handled by a single team you already trust.",
     ],
   },
   {
@@ -80,26 +100,6 @@ export const SERVICES: Service[] = [
     detail: [
       "Already have a truck, a trailer, or a portable container? Book our crew by the hour to do the heavy lifting: loading, unloading, or rearranging furniture within your home. You get the same trained, careful movers without the truck.",
       "It is a practical option for container moves, in building shifts, and last minute help around Kingston. We will tell you honestly how many movers and how many hours the job really needs.",
-    ],
-  },
-  {
-    slug: "student-moving",
-    title: "Student Moving",
-    short:
-      "Affordable, fast moves for students between residences, dorms, and apartments across Ontario.",
-    detail: [
-      "Kingston is a student city, and move in and move out weeks are hectic. We offer fast, affordable moves between residences, student houses, and first apartments, sized and priced for a student budget.",
-      "Short notice is often fine, and because we charge by the volume of your things rather than the weight, a smaller move stays genuinely affordable.",
-    ],
-  },
-  {
-    slug: "senior-moving",
-    title: "Senior Moving",
-    short:
-      "Patient, respectful moves for seniors and downsizers, handled at a comfortable pace.",
-    detail: [
-      "Downsizing or relocating later in life deserves patience and respect. We move at a comfortable pace, take extra care with cherished and delicate belongings, and handle every bit of the heavy lifting from start to finish.",
-      "Whether it is a move to a smaller home, a retirement residence, or closer to family, we keep the day calm and organized, with a clear volume based price and no pressure at any point.",
     ],
   },
 ];

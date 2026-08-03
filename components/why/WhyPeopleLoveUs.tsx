@@ -17,8 +17,8 @@ type Feature = { title: string; body: string; tint: string; icon: ReactNode };
 
 const FEATURES: Feature[] = [
   {
-    title: "Price Guarantee For You",
-    body: "Our upfront pricing means no hidden fees and no surprise charges on moving day. Once we quote a price based on the size and distance of your move, we hold to it.",
+    title: "Upfront, Guaranteed Pricing",
+    body: "We believe in honest, transparent pricing. Once we have assessed your move and provided your quote, that is the price you can expect. If your move details change or additional services are requested, we will discuss everything with you beforehand, and never surprise you with unexpected charges on moving day.",
     tint: "bg-velocity-red/15 text-velocity-red",
     icon: (
       <svg {...S}>
@@ -28,9 +28,53 @@ const FEATURES: Feature[] = [
     ),
   },
   {
-    title: "Move On Time",
-    body: "We have the timing down to a science. Our team arrives prepared, on time, and delivers your belongings safely and on schedule, every single time.",
+    title: "200+ Successful Moves Completed",
+    body: "From local household moves to long distance relocations, we have successfully completed 200+ moves, helping families, students, and businesses relocate safely and efficiently. Every move has strengthened our expertise and commitment to delivering exceptional service.",
     tint: "bg-amber-pulse/15 text-amber-pulse",
+    icon: (
+      <svg {...S}>
+        <path d="M3 17V7h11v10M14 10h4l3 3v4h-7" />
+        <circle cx="7" cy="17.5" r="1.9" />
+        <circle cx="17" cy="17.5" r="1.9" />
+      </svg>
+    ),
+  },
+  {
+    title: "1,200+ Hours of Professional Experience",
+    body: "Our team brings over 1,200 hours of hands on moving experience, using professional moving techniques and industry grade equipment to safely handle furniture, appliances, fragile items, and specialty pieces with care and precision.",
+    tint: "bg-gold/15 text-gold",
+    icon: (
+      <svg {...S}>
+        <path d="M9 6h6M9 6v2.5c0 1.7 1 3 3 4.5 2-1.5 3-2.8 3-4.5V6M9 18h6M9 18v-2.5c0-1.7 1-3 3-4.5 2 1.5 3 2.8 3 4.5V18" />
+      </svg>
+    ),
+  },
+  {
+    title: "12+ Cities Served Across Ontario",
+    body: "We have proudly served customers in Kingston, Ottawa, Belleville, Brockville, Cornwall, Toronto, Mississauga, Pickering, Trenton, Peterborough, London, Montreal, and many other communities. Whether you are moving locally or long distance, we are ready to help wherever your next destination may be.",
+    tint: "bg-velocity-red/15 text-velocity-red",
+    icon: (
+      <svg {...S}>
+        <path d="M12 21c4.5-4.2 7-7.5 7-11a7 7 0 0 0-14 0c0 3.5 2.5 6.8 7 11z" />
+        <circle cx="12" cy="10" r="2.4" />
+      </svg>
+    ),
+  },
+  {
+    title: "Professional Packing & Furniture Protection",
+    body: "Your belongings deserve the highest level of care. We use premium moving blankets, shrink wrap, straps, dollies, and professional moving equipment to protect your furniture throughout the moving process. Full and partial packing services are also available upon request.",
+    tint: "bg-amber-pulse/15 text-amber-pulse",
+    icon: (
+      <svg {...S}>
+        <path d="M12 3l7 3v5c0 4.2-2.9 7.4-7 8.5-4.1-1.1-7-4.3-7-8.5V6z" />
+        <path d="M8.5 11l1.5 4 4-6" />
+      </svg>
+    ),
+  },
+  {
+    title: "Reliable, On-Time Service",
+    body: "Your time matters. Our team arrives prepared, communicates throughout your move, and works efficiently to keep everything on schedule while maintaining the highest standards of professionalism and care.",
+    tint: "bg-gold/15 text-gold",
     icon: (
       <svg {...S}>
         <circle cx="12" cy="12" r="8.5" />
@@ -39,49 +83,12 @@ const FEATURES: Feature[] = [
     ),
   },
   {
-    title: "Read Our Reviews",
-    body: "Do not just take our word for it. Read our reviews on Google and Yelp, then see why our customers keep coming back and referring their friends to us.",
+    title: "Trusted by Our Customers",
+    body: "Our reputation is built on satisfied customers and positive reviews. We invite you to read what our clients have to say and discover why so many people confidently recommend Bitlane Relocations to their friends and family.",
     tint: "bg-velocity-red/15 text-velocity-red",
     icon: (
       <svg {...S}>
         <path d="M12 3.5l2.5 5 5.5.8-4 3.9.95 5.5L12 16.1 7.05 18.7 8 13.2l-4-3.9 5.5-.8z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Professional Movers",
-    body: "We train our team on the best practices and equip them with the right tools, so your belongings are packed, carried, and moved safely and efficiently.",
-    tint: "bg-gold/15 text-gold",
-    icon: (
-      <svg {...S}>
-        <path d="M3 20h4l1.5-4.5" />
-        <path d="M14 9.5l2.5 1.5 3-1.8" />
-        <path d="M9.5 20l1.2-6.2 3.3 1.5.9 4.7" />
-        <circle cx="12.5" cy="5.2" r="1.9" />
-        <path d="M10.6 8.2l2-.6 2.2 3" />
-      </svg>
-    ),
-  },
-  {
-    title: "Premium Customer Service",
-    body: "Enjoy first class customer service without a premium price. We are here from start to finish, answering questions and putting your mind at ease.",
-    tint: "bg-velocity-red/15 text-velocity-red",
-    icon: (
-      <svg {...S}>
-        <path d="M5 13v-1a7 7 0 0 1 14 0v1" />
-        <path d="M4 13.5A1.5 1.5 0 0 1 5.5 12H7v5H5.5A1.5 1.5 0 0 1 4 15.5zM20 13.5A1.5 1.5 0 0 0 18.5 12H17v5h1.5a1.5 1.5 0 0 0 1.5-1.5z" />
-        <path d="M19 17v.5a3 3 0 0 1-3 3h-3" />
-      </svg>
-    ),
-  },
-  {
-    title: "Secure Packing Services",
-    body: "We wrap and protect your valuables and furniture with care, following proper packing methods from loading all the way through to unwrapping.",
-    tint: "bg-amber-pulse/15 text-amber-pulse",
-    icon: (
-      <svg {...S}>
-        <path d="M12 3l7 3v5c0 4.2-2.9 7.4-7 8.5-4.1-1.1-7-4.3-7-8.5V6z" />
-        <path d="M8.5 11l1.5 4 4-6" />
       </svg>
     ),
   },
@@ -92,7 +99,7 @@ export default function WhyPeopleLoveUs() {
     <div className="relative">
       <div className="relative z-10 mx-auto max-w-3xl text-center">
         <h2 className="text-[clamp(2rem,4.6vw,3.5rem)] font-extrabold leading-[1.03] tracking-tight text-paper">
-          Here&apos;s where we come in.
+          Why homeowners choose Bitlane
         </h2>
       </div>
 
