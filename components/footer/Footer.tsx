@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import ContactLink from "@/components/util/ContactLink";
 import { asset } from "@/lib/asset";
 import { QUOTE_EMAIL } from "@/lib/formSubmit";
@@ -31,14 +31,14 @@ export default function Footer() {
             </p>
             <ContactLink
               type="tel"
-              value="(613) 770-1638"
+              value="(555) 123-4567"
               toastAbove={false}
               className="mt-6 inline-flex items-center gap-2 rounded-full border border-paper/20 px-6 py-3 text-sm font-bold text-paper transition-colors hover:border-amber-pulse hover:text-amber-pulse"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 2.5h2.6l1.2 3-1.6 1.2a9.6 9.6 0 0 0 4.1 4.1l1.2-1.6 3 1.2v2.6c0 .6-.5 1-1 1C7 14 2 9 2 3.5c0-.5.4-1 1-1Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
               </svg>
-              (613) 770-1638
+              (555) 123-4567
             </ContactLink>
 
             {/* social */}
@@ -93,8 +93,8 @@ export default function Footer() {
             <ul className="mt-4 grid gap-2.5 text-sm">
               <li className="text-paper/70">Kingston, Ontario, Canada</li>
               <li>
-                <ContactLink type="tel" value="(613) 770-1638" toastAbove={false} className="inline-block font-semibold text-paper/85 transition-colors hover:text-amber-pulse">
-                  (613) 770-1638
+                <ContactLink type="tel" value="(555) 123-4567" toastAbove={false} className="inline-block font-semibold text-paper/85 transition-colors hover:text-amber-pulse">
+                  (555) 123-4567
                 </ContactLink>
               </li>
               <li>

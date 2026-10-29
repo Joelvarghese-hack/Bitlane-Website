@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, type FormEvent } from "react";
 
@@ -336,8 +336,8 @@ export default function QuoteForm({
         <p className="mt-3 text-center text-sm text-velocity-red" role="alert">
           Something went wrong sending your request. Please try again, or call us
           at{" "}
-          <a href="tel:+16137701638" className="font-semibold underline">
-            (613) 770-1638
+          <a href="tel:+15551234567" className="font-semibold underline">
+            (555) 123-4567
           </a>
           .
         </p>

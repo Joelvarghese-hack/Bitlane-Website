@@ -1,4 +1,4 @@
-import ContactLink from "@/components/util/ContactLink";
+﻿import ContactLink from "@/components/util/ContactLink";
 import { asset } from "@/lib/asset";
 
 /**
@@ -28,10 +28,10 @@ export default function ContactTile() {
         </p>
         <ContactLink
           type="tel"
-          value="(613) 770-1638"
+          value="(555) 123-4567"
           className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-semibold text-velocity-red transition-colors hover:text-paper"
         >
-          Call (613) 770-1638
+          Call (555) 123-4567
         </ContactLink>
       </div>
     </div>

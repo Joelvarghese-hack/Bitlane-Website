@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
@@ -81,11 +81,11 @@ export default function Nav() {
         <div className="ml-auto flex items-center gap-2 md:gap-4">
           <ContactLink
             type="tel"
-            value="(613) 770-1638"
+            value="(555) 123-4567"
             toastAbove={false}
             className="hidden whitespace-nowrap text-sm font-semibold text-paper/90 transition-colors hover:text-velocity-red lg:inline"
           >
-            (613) 770-1638
+            (555) 123-4567
           </ContactLink>
           <Link
             href={quoteHref}

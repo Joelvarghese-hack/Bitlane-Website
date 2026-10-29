@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import ContactLink from "@/components/util/ContactLink";
 import { QUOTE_EMAIL } from "@/lib/formSubmit";
@@ -274,8 +274,8 @@ export default function PrivacyPolicyPage() {
             <ul className="ml-5 list-disc space-y-2 marker:text-amber-pulse">
               <li>
                 Phone:{" "}
-                <ContactLink type="tel" value="(613) 770-1638" toastAbove={false} className="inline-block font-semibold text-amber-pulse hover:text-paper">
-                  (613) 770-1638
+                <ContactLink type="tel" value="(555) 123-4567" toastAbove={false} className="inline-block font-semibold text-amber-pulse hover:text-paper">
+                  (555) 123-4567
                 </ContactLink>
               </li>
               <li>

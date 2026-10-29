@@ -1,9 +1,9 @@
-/**
+﻿/**
  * Inline WhatsApp link for the nav. Opens a chat with Bitlane, pre-filled with a
  * short message. The same message is set as the title attribute so it shows on
- * hover. Number: +1 (613) 770-1638.
+ * hover. Number: +1 (555) 123-4567.
  */
-const WA_NUMBER = "16137701638";
+const WA_NUMBER = "15551234567";
 export const WA_MESSAGE =
   "Hi Bitlane, I would like to get a quote for my upcoming move.";
 const WA_HREF = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`;

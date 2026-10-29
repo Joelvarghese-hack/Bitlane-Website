@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import PageHero from "@/components/inner/PageHero";
 import QuoteForm from "@/components/quote/QuoteForm";
 import ContactLink from "@/components/util/ContactLink";
@@ -21,8 +21,8 @@ export default function ContactPage() {
         <div className="mx-auto max-w-2xl">
           <ul className="grid gap-3 text-sm md:grid-cols-2">
             <li>
-              <ContactLink type="tel" value="(613) 770-1638" toastAbove={false} className="inline-block font-semibold text-paper transition-colors hover:text-amber-pulse">
-                (613) 770-1638
+              <ContactLink type="tel" value="(555) 123-4567" toastAbove={false} className="inline-block font-semibold text-paper transition-colors hover:text-amber-pulse">
+                (555) 123-4567
               </ContactLink>
             </li>
             <li>

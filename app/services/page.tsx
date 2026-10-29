@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/inner/PageHero";
 import Reveal from "@/components/scroll/Reveal";
@@ -81,10 +81,10 @@ export default function ServicesPage() {
           </Link>
           <ContactLink
             type="tel"
-            value="(613) 770-1638"
+            value="(555) 123-4567"
             className="inline-flex items-center justify-center rounded-full border border-paper/20 px-7 py-3.5 text-sm font-semibold text-paper transition-colors hover:border-amber-pulse hover:text-amber-pulse"
           >
-            Call (613) 770-1638
+            Call (555) 123-4567
           </ContactLink>
         </div>
       </section>

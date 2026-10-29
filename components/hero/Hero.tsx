@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
@@ -130,13 +130,13 @@ export default function Hero() {
             </Link>
             <ContactLink
               type="tel"
-              value="(613) 770-1638"
+              value="(555) 123-4567"
               className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-7 py-3.5 text-base font-semibold text-paper transition-all duration-200 hover:border-amber-pulse hover:text-amber-pulse"
             >
               <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 2.5h2.6l1.2 3-1.6 1.2a9.6 9.6 0 0 0 4.1 4.1l1.2-1.6 3 1.2v2.6c0 .6-.5 1-1 1C7 14 2 9 2 3.5c0-.5.4-1 1-1Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
               </svg>
-              (613) 770-1638
+              (555) 123-4567
             </ContactLink>
           </div>
 

@@ -1,4 +1,4 @@
-import { asset } from "@/lib/asset";
+﻿import { asset } from "@/lib/asset";
 
 /**
  * Angled marquee of slanted tape boxes: white boxes carrying the Bitlane logo
@@ -33,7 +33,7 @@ export default function TapeMarquee({
               className={`tape-logo ${isIcon ? "tape-logo--icon" : ""}`}
             />
           </span>
-          <span className="tape-box tape-box--phone">(613) 770-1638</span>
+          <span className="tape-box tape-box--phone">(555) 123-4567</span>
         </span>
       ))}
     </div>
