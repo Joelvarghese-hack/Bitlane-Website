@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import RatingBadges from "@/components/hero/RatingBadges";
 import ContactLink from "@/components/util/ContactLink";
-import HeroBox3D from "@/components/hero/HeroBox3D";
 import { asset } from "@/lib/asset";
 
 const INPUT =
@@ -111,18 +110,6 @@ export default function Hero() {
         }}
         aria-hidden="true"
       />
-
-      {/* Signature 3D object: a slowly turning cardboard box (desktop only). */}
-      <div
-        className="pointer-events-none absolute right-[1%] top-1/2 hidden h-[78%] w-[44%] -translate-y-1/2 lg:block"
-        aria-hidden="true"
-      >
-        <div
-          className="absolute inset-0"
-          style={{ background: "radial-gradient(circle at 58% 46%, rgba(254,68,54,0.12), transparent 62%)" }}
-        />
-        <HeroBox3D className="absolute inset-0" />
-      </div>
 
       <div className="relative mx-auto w-full max-w-7xl px-[clamp(20px,5vw,88px)] py-24">
         <div className="max-w-2xl">
