@@ -1,5 +1,6 @@
 import Hero from "@/components/hero/Hero";
 import ProblemStatement from "@/components/problem/ProblemStatement";
+import TruckReveal from "@/components/truck/TruckReveal";
 import TapeMarquee from "@/components/marquee/TapeMarquee";
 import WhyPeopleLoveUs from "@/components/why/WhyPeopleLoveUs";
 import ServiceShowcase from "@/components/services/ServiceShowcase";
@@ -29,6 +30,8 @@ export default function Home() {
           <WhyPeopleLoveUs />
         </Reveal>
       </section>
+
+      <TruckReveal />
 
       <TapeMarquee slope="down" />
 

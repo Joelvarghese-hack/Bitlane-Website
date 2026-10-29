@@ -18,18 +18,31 @@ export default function AboutPage() {
 
       <section className="px-[clamp(20px,5vw,88px)] pb-20 pt-4">
         <Reveal className="mx-auto grid max-w-5xl items-start gap-10 md:grid-cols-2">
-          <div className="aspect-[4/5] overflow-hidden rounded-4xl border border-paper/10 md:sticky md:top-24">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={asset("/images/owner.jpg")}
-              alt="The Bitlane owner"
-              width={820}
-              height={1025}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover object-top"
-            />
-          </div>
+          <figure className="md:sticky md:top-24">
+            <div className="aspect-[4/5] overflow-hidden rounded-4xl border border-paper/10">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={asset("/images/owner.jpg")}
+                alt="Marcus Bennett, founder of Bitlane"
+                width={820}
+                height={1025}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+            <figcaption className="mt-5">
+              <p className="text-xl font-bold text-paper">Marcus Bennett</p>
+              <p className="mt-0.5 text-sm font-semibold uppercase tracking-[0.12em] text-velocity-red">
+                Founder
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-paper/70">
+                Marcus started Bitlane after a decade of moving families across
+                Eastern Ontario. He still rides along on most jobs, and he built the
+                crew around one rule: treat every box like it is your own.
+              </p>
+            </figcaption>
+          </figure>
           <div className="space-y-4 text-base leading-relaxed text-paper/75">
             <p>
               Bitlane was founded with one simple belief: people deserve a moving

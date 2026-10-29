@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import RatingBadges from "@/components/hero/RatingBadges";
 import ContactLink from "@/components/util/ContactLink";
+import HeroBox3D from "@/components/hero/HeroBox3D";
 import { asset } from "@/lib/asset";
 
 const INPUT =
@@ -32,8 +34,60 @@ function goToQuote(event: React.FormEvent<HTMLFormElement>) {
 }
 
 export default function Hero() {
+  const rootRef = useRef<HTMLElement>(null);
+
+  // One orchestrated load sequence: the headline masks up, then the actions,
+  // quote form, and ratings settle in, while the background video eases from a
+  // slight zoom to rest. Skipped under reduced motion, where the server-rendered
+  // hero is already fully visible.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let ctx: { revert: () => void } | null = null;
+    let cancelled = false;
+
+    (async () => {
+      const { gsap } = await import("gsap");
+      if (cancelled || !rootRef.current) return;
+      const scope = rootRef.current;
+      const q = (sel: string) => scope.querySelector<HTMLElement>(sel);
+      const headline = q('[data-anim="headline"]');
+      const steps = Array.from(scope.querySelectorAll<HTMLElement>('[data-anim="step"]'));
+      const video = q("video");
+
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        if (video) tl.fromTo(video, { scale: 1.08 }, { scale: 1, duration: 1.8, ease: "power2.out" }, 0);
+        if (headline)
+          tl.fromTo(
+            headline,
+            { yPercent: 115, opacity: 0, clipPath: "inset(0 0 100% 0)" },
+            { yPercent: 0, opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 1 },
+            0.05,
+          );
+        if (steps.length)
+          tl.fromTo(
+            steps,
+            { y: 22, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, stagger: 0.12 },
+            0.45,
+          );
+      }, scope);
+    })();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, []);
+
   return (
-    <section className="hero-fade relative -mt-28 flex min-h-[calc(92vh+7rem)] items-center overflow-hidden pt-28">
+    <section
+      ref={rootRef}
+      className="hero-fade relative -mt-28 flex min-h-[calc(92vh+7rem)] items-center overflow-hidden pt-28"
+    >
       {/* background video (drop public/hero.mp4 in and it plays; poster until then) */}
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-[0.3]"
@@ -58,12 +112,29 @@ export default function Hero() {
         aria-hidden="true"
       />
 
+      {/* Signature 3D object: a slowly turning cardboard box (desktop only). */}
+      <div
+        className="pointer-events-none absolute right-[1%] top-1/2 hidden h-[78%] w-[44%] -translate-y-1/2 lg:block"
+        aria-hidden="true"
+      >
+        <div
+          className="absolute inset-0"
+          style={{ background: "radial-gradient(circle at 58% 46%, rgba(254,68,54,0.12), transparent 62%)" }}
+        />
+        <HeroBox3D className="absolute inset-0" />
+      </div>
+
       <div className="relative mx-auto w-full max-w-7xl px-[clamp(20px,5vw,88px)] py-24">
         <div className="max-w-2xl">
-          <h1 className="text-[clamp(2.6rem,5.6vw,4.7rem)] font-extrabold uppercase leading-[0.98] tracking-tight text-paper">
-            Kingston's Most Trusted Movers
-          </h1>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="overflow-hidden pb-[0.12em]">
+            <h1
+              data-anim="headline"
+              className="text-[clamp(2.6rem,5.6vw,4.7rem)] font-extrabold uppercase leading-[0.98] tracking-tight text-paper"
+            >
+              Kingston's Most Trusted Movers
+            </h1>
+          </div>
+          <div data-anim="step" className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/about"
               className="inline-flex items-center justify-center rounded-full border border-paper/25 px-7 py-3.5 text-base font-semibold text-paper transition-all duration-200 hover:border-amber-pulse hover:text-amber-pulse"
@@ -82,11 +153,12 @@ export default function Hero() {
             </ContactLink>
           </div>
 
-          <p className="mt-9 text-sm font-semibold uppercase tracking-[0.14em] text-amber-pulse">
+          <p data-anim="step" className="mt-9 text-sm font-semibold uppercase tracking-[0.14em] text-amber-pulse">
             Get a free quote
           </p>
           <form
             onSubmit={goToQuote}
+            data-anim="step"
             className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <input name="Pick Up Location" required autoComplete="postal-code" placeholder="Enter pick up postal code" className={INPUT} />
@@ -99,7 +171,9 @@ export default function Hero() {
             </button>
           </form>
 
-          <RatingBadges className="mt-8" />
+          <div data-anim="step">
+            <RatingBadges className="mt-8" />
+          </div>
         </div>
       </div>
     </section>
